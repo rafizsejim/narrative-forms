@@ -1,0 +1,134 @@
+/* Narrative Forms frontend – minimal, modern, theme-friendly */
+.nrfm-form-wrapper { margin: 20px 0; }
+
+.nrfm-form {
+    width: 100%;
+    max-width: 100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #111827;
+}
+
+.nrfm-form p { margin: 0 0 12px; }
+.nrfm-form label { display: block; margin: 0 0 4px; font-weight: 600; color: #111827; }
+.nrfm-form .nrfm-required { color: #ef4444; margin-left: 4px; }
+.nrfm-field-error { color: #b91c1c; font-size: 12px; margin-top: 6px; }
+
+.nrfm-form input[type="text"],
+.nrfm-form input[type="email"],
+.nrfm-form input[type="url"],
+.nrfm-form input[type="tel"],
+.nrfm-form input[type="number"],
+.nrfm-form input[type="date"],
+.nrfm-form input[type="password"],
+.nrfm-form textarea,
+.nrfm-form select {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: #111827;
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.nrfm-form input:focus,
+.nrfm-form textarea:focus,
+.nrfm-form select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.nrfm-form textarea { resize: vertical; min-height: 110px; }
+.nrfm-form input::placeholder,
+.nrfm-form textarea::placeholder { color: #6b7280; opacity: 1; }
+
+.nrfm-form select { padding-right: 10px; }
+
+.nrfm-form input[type="checkbox"],
+.nrfm-form input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+    accent-color: #2563eb;
+}
+
+.nrfm-form button[type="submit"],
+.nrfm-form input[type="submit"] {
+    display: inline-block;
+    padding: 9px 16px;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #fff;
+    background: #0f172a;
+    border: 1px solid #0f172a;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.nrfm-form button[type="submit"]:hover,
+.nrfm-form input[type="submit"]:hover { background: #0b1220; border-color: #0b1220; }
+.nrfm-form button[type="submit"]:focus,
+.nrfm-form input[type="submit"]:focus { outline: none; box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.16); }
+.nrfm-form button[type="submit"]:disabled,
+.nrfm-form input[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Use :user-invalid (not :invalid) so the red border only appears after the visitor
+   interacts or tries to submit — not on a pristine, untouched required field. The red
+   asterisk already marks required fields by default. */
+.nrfm-form input:user-invalid,
+.nrfm-form textarea:user-invalid,
+.nrfm-form select:user-invalid { border-color: #ef4444; }
+.nrfm-form input:user-invalid:focus,
+.nrfm-form textarea:user-invalid:focus,
+.nrfm-form select:user-invalid:focus { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.18); }
+
+.nrfm-form input[type="file"] {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.9375rem;
+    color: #111827;
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.nrfm-form input[type="file"]:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.nrfm-message {
+    padding: 10px 14px;
+    margin: 0 0 14px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.nrfm-message.nrfm-success { color: #1f5132; background: #e7f6ed; border-color: #ccead6; }
+.nrfm-message.nrfm-error { color: #7c1f28; background: #fdecec; border-color: #f7d3d6; }
+
+@media (max-width: 600px) {
+    .nrfm-form { max-width: 100%; }
+    .nrfm-form input[type="text"],
+    .nrfm-form input[type="email"],
+    .nrfm-form input[type="url"],
+    .nrfm-form input[type="tel"],
+    .nrfm-form input[type="number"],
+    .nrfm-form input[type="date"],
+    .nrfm-form input[type="password"],
+    .nrfm-form textarea,
+    .nrfm-form select { font-size: 16px; }
+}

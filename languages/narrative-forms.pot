@@ -1,0 +1,937 @@
+# Copyright (C) 2025 NarrativeCode
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Narrative Forms 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/narrative-forms\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-08-22T18:11:38+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: narrative-forms\n"
+
+#. Plugin Name of the plugin
+#: narrative-forms.php
+#: includes/admin/class-nrfm-admin.php:23
+msgid "Narrative Forms"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: narrative-forms.php
+msgid "https://wordpress.org/plugins/narrative-forms"
+msgstr ""
+
+#. Description of the plugin
+#: narrative-forms.php
+msgid "Lightweight, developer-friendly WordPress form plugin. Pure HTML forms with no complexity."
+msgstr ""
+
+#. Author of the plugin
+#: narrative-forms.php
+msgid "NarrativeCode"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:22
+#: includes/views/form-new.php:9
+#: includes/views/settings.php:9
+msgid "Narrative Forms"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:33
+#: includes/admin/class-nrfm-admin.php:34
+msgid "All Forms"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:42
+#: includes/views/form-list.php:9
+#: includes/views/form-new.php:10
+#: includes/views/form-new.php:13
+msgid "Add New Form"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:43
+msgid "Add New"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:51
+#: includes/admin/class-nrfm-admin.php:52
+#: includes/views/form-edit.php:90
+#: includes/views/form-list.php:128
+#: includes/views/settings.php:10
+#: includes/views/settings.php:13
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:165
+#: includes/admin/class-nrfm-admin.php:585
+#: includes/class-nrfm-submission.php:13
+msgid "Form not found"
+msgstr ""
+
+#: includes/admin/class-nrfm-admin.php:176
+msgid "No submissions to export"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:19
+#: includes/admin/class-nrfm-pro-upsell.php:20
+msgid "Go PRO"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:65
+msgid "Narrative Forms PRO"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:65
+msgid "Recommended"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:67
+msgid "Unlock powerful features for serious forms"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:68
+msgid "Go beyond simple submissions with advanced logic, access control, limits, and more — all while keeping the same lightweight HTML-first workflow you love."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:70
+msgid "Upgrade to PRO"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:71
+msgid "See full feature list"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:77
+msgid "Conditional Logic"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:78
+msgid "Show or hide fields, sections, or actions based on user input. Build smarter forms without code."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:81
+msgid "Require User Login"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:82
+msgid "Restrict submissions to logged-in users and personalize defaults using user data."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:85
+msgid "Submission Limit"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:86
+msgid "Limit total submissions per form or per user with custom messages when the limit is reached."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:89
+msgid "Multi‑step"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:89
+#: includes/admin/class-nrfm-pro-upsell.php:93
+#: includes/admin/class-nrfm-pro-upsell.php:97
+#: includes/admin/class-nrfm-pro-upsell.php:101
+msgid "Coming Soon"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:90
+msgid "Split long forms into bite‑sized steps with progress indicators and validation between steps."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:93
+msgid "Direct Form Link Share"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:94
+msgid "Share a hosted form URL instantly — perfect for quick campaigns or support intake."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:97
+msgid "Captcha Integration"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:98
+msgid "Reduce spam with seamless reCaptcha and Cloudflare Turnstile support."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:101
+msgid "Save Progress"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:102
+msgid "Let users save drafts and finish later — fewer abandoned forms, higher conversions."
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:105
+msgid "And more…"
+msgstr ""
+
+#: includes/admin/class-nrfm-pro-upsell.php:106
+msgid "Webhook enhancements, integrations, automation, templates, and much more on the roadmap."
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:28
+#: includes/admin/class-nrfm-submissions-table.php:92
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:51
+msgid "No submissions found."
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:55
+msgid "Select submission"
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:91
+msgid "View"
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:92
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:111
+msgid "Submitted On"
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:112
+#: includes/views/form-edit.php:91
+#: includes/views/form-list.php:131
+msgid "Actions"
+msgstr ""
+
+#: includes/class-nrfm-ajax.php:11
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+#: includes/class-nrfm-ajax.php:18
+msgid "Form ID missing."
+msgstr ""
+
+#: includes/class-nrfm-ajax.php:27
+msgid "Form not found."
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:36
+msgid "Captcha"
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:39
+msgid "Enable Turnstile"
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:43
+msgid "Protect forms using Cloudflare Turnstile (recommended)"
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:45
+msgid "Free, privacy‑friendly CAPTCHA by Cloudflare. Requires a site key and secret key."
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:49
+msgid "Site Key"
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:55
+msgid "Secret Key"
+msgstr ""
+
+#: includes/class-nrfm-captcha.php:91
+msgid "Captcha verification failed. Please try again."
+msgstr ""
+
+#: includes/class-nrfm-form.php:88
+msgid "Thank you! We will be in touch soon."
+msgstr ""
+
+#: includes/class-nrfm-form.php:89
+msgid "Oops. An error occurred."
+msgstr ""
+
+#: includes/class-nrfm-form.php:90
+msgid "Sorry, that email address looks invalid."
+msgstr ""
+
+#: includes/class-nrfm-form.php:91
+msgid "Please fill in the required fields."
+msgstr ""
+
+#: includes/class-nrfm-form.php:92
+#: includes/views/form-edit.php:217
+msgid "One or more files exceed the maximum allowed size."
+msgstr ""
+
+#: includes/class-nrfm-form.php:93
+#: includes/views/form-edit.php:226
+#, php-format
+msgid "You can upload up to %d files."
+msgstr ""
+
+#: includes/class-nrfm-form.php:94
+msgid "There was an error uploading the file."
+msgstr ""
+
+#: includes/class-nrfm-submission.php:417
+#: includes/views/form-edit.php:364
+#: includes/views/form-edit.php:470
+msgid "New Form Submission"
+msgstr ""
+
+#: includes/class-nrfm-submission.php:440
+msgid "New form submission received:"
+msgstr ""
+
+#: includes/functions.php:218
+msgid "Contact Form"
+msgstr ""
+
+#: includes/functions.php:244
+msgid "Newsletter Signup"
+msgstr ""
+
+#: includes/functions.php:262
+msgid "Feedback Form"
+msgstr ""
+
+#: includes/views/form-edit.php:37
+#: includes/views/form-new.php:8
+#: includes/views/settings.php:8
+msgid "You are here:"
+msgstr ""
+
+#: includes/views/form-edit.php:38
+msgid "narrative-forms"
+msgstr ""
+
+#: includes/views/form-edit.php:39
+#: includes/views/form-edit.php:42
+msgid "Edit Form"
+msgstr ""
+
+#: includes/views/form-edit.php:46
+msgid "Form saved successfully."
+msgstr ""
+
+#: includes/views/form-edit.php:59
+#: includes/views/form-new.php:22
+msgid "Form Title"
+msgstr ""
+
+#: includes/views/form-edit.php:66
+msgid "Slug"
+msgstr ""
+
+#: includes/views/form-edit.php:70
+msgid "Edit"
+msgstr ""
+
+#: includes/views/form-edit.php:74
+#: includes/views/form-list.php:79
+#: includes/views/form-list.php:169
+msgid "Shortcode"
+msgstr ""
+
+#: includes/views/form-edit.php:78
+msgid "Copy this shortcode and paste it into your post, page, or text widget content."
+msgstr ""
+
+#: includes/views/form-edit.php:88
+#: includes/views/form-edit.php:606
+#: includes/views/form-list.php:122
+msgid "Fields"
+msgstr ""
+
+#: includes/views/form-edit.php:89
+#: includes/views/form-list.php:125
+msgid "Messages"
+msgstr ""
+
+#: includes/views/form-edit.php:94
+#: includes/views/form-list.php:80
+#: includes/views/form-list.php:135
+#: includes/views/form-list.php:170
+msgid "Submissions"
+msgstr ""
+
+#: includes/views/form-edit.php:109
+msgid "Add Field"
+msgstr ""
+
+#: includes/views/form-edit.php:111
+msgid "Text"
+msgstr ""
+
+#: includes/views/form-edit.php:112
+msgid "Email"
+msgstr ""
+
+#: includes/views/form-edit.php:113
+msgid "URL"
+msgstr ""
+
+#: includes/views/form-edit.php:114
+msgid "Number"
+msgstr ""
+
+#: includes/views/form-edit.php:115
+msgid "Date"
+msgstr ""
+
+#: includes/views/form-edit.php:116
+msgid "Textarea"
+msgstr ""
+
+#: includes/views/form-edit.php:117
+msgid "Dropdown"
+msgstr ""
+
+#: includes/views/form-edit.php:118
+msgid "Checkboxes"
+msgstr ""
+
+#: includes/views/form-edit.php:119
+msgid "Radio Buttons"
+msgstr ""
+
+#: includes/views/form-edit.php:120
+msgid "File Upload"
+msgstr ""
+
+#: includes/views/form-edit.php:121
+msgid "Submit Button"
+msgstr ""
+
+#: includes/views/form-edit.php:125
+msgid "Use the buttons above to generate your field HTML, or manually modify your form below."
+msgstr ""
+
+#: includes/views/form-edit.php:131
+msgid "Configure Field"
+msgstr ""
+
+#: includes/views/form-edit.php:142
+msgid "Form Code"
+msgstr ""
+
+#: includes/views/form-edit.php:148
+msgid "Show Preview"
+msgstr ""
+
+#: includes/views/form-edit.php:157
+msgid "Form Preview"
+msgstr ""
+
+#: includes/views/form-edit.php:158
+msgid "Hide Preview"
+msgstr ""
+
+#: includes/views/form-edit.php:168
+msgid "Form Messages"
+msgstr ""
+
+#: includes/views/form-edit.php:173
+msgid "Success"
+msgstr ""
+
+#: includes/views/form-edit.php:178
+msgid "The text that shows after a successful form submission."
+msgstr ""
+
+#: includes/views/form-edit.php:183
+msgid "Invalid Email Address"
+msgstr ""
+
+#: includes/views/form-edit.php:188
+msgid "The text that shows when an invalid email address is given."
+msgstr ""
+
+#: includes/views/form-edit.php:193
+msgid "Required Field Missing"
+msgstr ""
+
+#: includes/views/form-edit.php:198
+msgid "The text that shows when a required field is missing."
+msgstr ""
+
+#: includes/views/form-edit.php:203
+msgid "General Error"
+msgstr ""
+
+#: includes/views/form-edit.php:208
+msgid "The text that shows when a general error occurred."
+msgstr ""
+
+#: includes/views/form-edit.php:213
+msgid "File Too Large"
+msgstr ""
+
+#: includes/views/form-edit.php:222
+msgid "Maximum Files Exceeded"
+msgstr ""
+
+#: includes/views/form-edit.php:227
+msgid "Shown when the number of selected files exceeds the per-field limit."
+msgstr ""
+
+#. translators: %s is a small HTML snippet example, e.g., <strong>, <em>, <a>
+#: includes/views/form-edit.php:237
+#, php-format
+msgid "HTML tags like %s are allowed in the message fields."
+msgstr ""
+
+#: includes/views/form-edit.php:242
+msgid "Form Settings"
+msgstr ""
+
+#: includes/views/form-edit.php:246
+msgid "Save Form Submissions"
+msgstr ""
+
+#: includes/views/form-edit.php:251
+#: includes/views/form-edit.php:268
+#: includes/views/settings.php:33
+msgid "Yes"
+msgstr ""
+
+#: includes/views/form-edit.php:257
+#: includes/views/form-edit.php:274
+#: includes/views/settings.php:39
+msgid "No"
+msgstr ""
+
+#: includes/views/form-edit.php:259
+msgid "Select \"Yes\" to store successful form submissions."
+msgstr ""
+
+#: includes/views/form-edit.php:263
+msgid "Hide Form After Successful Submission"
+msgstr ""
+
+#: includes/views/form-edit.php:276
+msgid "Select \"Yes\" to hide the form fields after a successful submission."
+msgstr ""
+
+#: includes/views/form-edit.php:281
+msgid "Redirect to URL After Successful Submission"
+msgstr ""
+
+#: includes/views/form-edit.php:287
+msgid "Leave empty for no redirect. Otherwise, use complete (absolute) URLs, including http://"
+msgstr ""
+
+#: includes/views/form-edit.php:288
+msgid "You can use the following variables in the redirect URL:"
+msgstr ""
+
+#: includes/views/form-edit.php:302
+msgid "Redirect to URL After Error (Optional)"
+msgstr ""
+
+#: includes/views/form-edit.php:308
+msgid "Leave empty to show inline error. Tokens supported."
+msgstr ""
+
+#: includes/views/form-edit.php:312
+msgid "Wrapper Classes"
+msgstr ""
+
+#: includes/views/form-edit.php:315
+msgid "Space‑separated classes added to the <form> tag to inherit theme styles."
+msgstr ""
+
+#: includes/views/form-edit.php:319
+msgid "Run Actions Asynchronously"
+msgstr ""
+
+#: includes/views/form-edit.php:323
+msgid "Return success immediately and process email/webhooks in the background."
+msgstr ""
+
+#: includes/views/form-edit.php:325
+msgid "Best for speed. Submissions are saved first; actions run via WP‑Cron shortly after."
+msgstr ""
+
+#: includes/views/form-edit.php:334
+msgid "Form Actions"
+msgstr ""
+
+#: includes/views/form-edit.php:336
+msgid "Actions run after a valid submission. Add one or more actions below. Emails deliver content; Webhooks send the data to an external URL."
+msgstr ""
+
+#: includes/views/form-edit.php:347
+#: includes/views/form-edit.php:453
+msgid "Send Email"
+msgstr ""
+
+#: includes/views/form-edit.php:350
+#: includes/views/form-edit.php:411
+#: includes/views/form-edit.php:456
+#: includes/views/form-edit.php:506
+msgid "Remove"
+msgstr ""
+
+#: includes/views/form-edit.php:355
+#: includes/views/form-edit.php:461
+msgid "From"
+msgstr ""
+
+#: includes/views/form-edit.php:359
+#: includes/views/form-edit.php:465
+msgid "To"
+msgstr ""
+
+#: includes/views/form-edit.php:363
+#: includes/views/form-edit.php:469
+msgid "Subject"
+msgstr ""
+
+#: includes/views/form-edit.php:367
+#: includes/views/form-edit.php:473
+msgid "Message"
+msgstr ""
+
+#: includes/views/form-edit.php:379
+#: includes/views/form-edit.php:480
+msgid "Content Type"
+msgstr ""
+
+#: includes/views/form-edit.php:388
+#: includes/views/form-edit.php:489
+msgid "Additional Headers"
+msgstr ""
+
+#: includes/views/form-edit.php:391
+#: includes/views/form-edit.php:492
+msgid "Optional. One per line. Example: Reply-To: John <john@example.com>"
+msgstr ""
+
+#: includes/views/form-edit.php:408
+#: includes/views/form-edit.php:503
+msgid "Webhook"
+msgstr ""
+
+#: includes/views/form-edit.php:416
+#: includes/views/form-edit.php:511
+msgid "Webhook URL"
+msgstr ""
+
+#: includes/views/form-edit.php:420
+#: includes/views/form-edit.php:515
+msgid "Method"
+msgstr ""
+
+#: includes/views/form-edit.php:429
+#: includes/views/form-edit.php:524
+msgid "Format"
+msgstr ""
+
+#: includes/views/form-edit.php:446
+msgid "Add New Action"
+msgstr ""
+
+#: includes/views/form-edit.php:447
+msgid "Add Email Notification"
+msgstr ""
+
+#: includes/views/form-edit.php:448
+msgid "Add Webhook"
+msgstr ""
+
+#: includes/views/form-edit.php:541
+#: includes/views/settings.php:146
+msgid "Save Changes"
+msgstr ""
+
+#: includes/views/form-edit.php:554
+msgid "Export delimiter:"
+msgstr ""
+
+#: includes/views/form-edit.php:560
+msgid "Export to CSV"
+msgstr ""
+
+#: includes/views/form-edit.php:577
+msgid "Viewing Form Submission"
+msgstr ""
+
+#: includes/views/form-edit.php:582
+msgid "Meta"
+msgstr ""
+
+#: includes/views/form-edit.php:583
+#: includes/views/form-edit.php:612
+msgid "Value"
+msgstr ""
+
+#: includes/views/form-edit.php:588
+msgid "Timestamp"
+msgstr ""
+
+#: includes/views/form-edit.php:592
+msgid "User Agent"
+msgstr ""
+
+#: includes/views/form-edit.php:596
+msgid "IP Address"
+msgstr ""
+
+#: includes/views/form-edit.php:600
+msgid "Referrer URL"
+msgstr ""
+
+#: includes/views/form-edit.php:611
+msgid "Field"
+msgstr ""
+
+#: includes/views/form-edit.php:642
+msgid "Empty"
+msgstr ""
+
+#: includes/views/form-edit.php:652
+msgid "Raw"
+msgstr ""
+
+#: includes/views/form-edit.php:659
+msgid "Back to submissions list"
+msgstr ""
+
+#: includes/views/form-edit.php:675
+msgid "Search submissions"
+msgstr ""
+
+#: includes/views/form-list.php:7
+#: narrative-forms.php:97
+msgid "Forms"
+msgstr ""
+
+#: includes/views/form-list.php:16
+msgid "Form deleted successfully."
+msgstr ""
+
+#: includes/views/form-list.php:22
+msgid "All"
+msgstr ""
+
+#: includes/views/form-list.php:29
+#: includes/views/form-list.php:138
+msgid "Trash"
+msgstr ""
+
+#: includes/views/form-list.php:35
+msgid "Search Forms:"
+msgstr ""
+
+#: includes/views/form-list.php:37
+msgid "Search Forms"
+msgstr ""
+
+#: includes/views/form-list.php:50
+#: includes/views/form-list.php:177
+msgid "Select bulk action"
+msgstr ""
+
+#: includes/views/form-list.php:52
+#: includes/views/form-list.php:179
+msgid "Bulk actions"
+msgstr ""
+
+#: includes/views/form-list.php:54
+#: includes/views/form-list.php:115
+#: includes/views/form-list.php:181
+msgid "Restore"
+msgstr ""
+
+#: includes/views/form-list.php:55
+#: includes/views/form-list.php:118
+#: includes/views/form-list.php:182
+msgid "Delete Permanently"
+msgstr ""
+
+#: includes/views/form-list.php:57
+#: includes/views/form-list.php:184
+msgid "Move to Trash"
+msgstr ""
+
+#: includes/views/form-list.php:60
+#: includes/views/form-list.php:187
+msgid "Apply"
+msgstr ""
+
+#. translators: %s is the number of forms
+#: includes/views/form-list.php:64
+#: includes/views/form-list.php:191
+#, php-format
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/views/form-list.php:73
+#: includes/views/form-list.php:163
+msgid "Select All"
+msgstr ""
+
+#: includes/views/form-list.php:77
+#: includes/views/form-list.php:167
+#: narrative-forms.php:98
+msgid "Form"
+msgstr ""
+
+#: includes/views/form-list.php:95
+msgid "No forms in Trash."
+msgstr ""
+
+#: includes/views/form-list.php:142
+msgid "Show more details"
+msgstr ""
+
+#: includes/views/form-list.php:198
+msgid "No forms found."
+msgstr ""
+
+#: includes/views/form-list.php:201
+msgid "Create Your First Form"
+msgstr ""
+
+#: includes/views/form-new.php:26
+msgid "Your form title..."
+msgstr ""
+
+#: includes/views/form-new.php:33
+msgid "Create Form"
+msgstr ""
+
+#: includes/views/form-new.php:39
+#: includes/views/settings.php:152
+msgid "Looking for help?"
+msgstr ""
+
+#: includes/views/form-new.php:40
+msgid "Build forms with HTML or add fields using the buttons on the editor."
+msgstr ""
+
+#: includes/views/settings.php:17
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/views/settings.php:25
+msgid "General"
+msgstr ""
+
+#: includes/views/settings.php:28
+msgid "Load Stylesheet?"
+msgstr ""
+
+#: includes/views/settings.php:42
+msgid "Select \"Yes\" to apply some basic form styles to all Narrative Forms."
+msgstr ""
+
+#: includes/views/settings.php:49
+msgid "Wrapper Tag"
+msgstr ""
+
+#: includes/views/settings.php:57
+msgid "None"
+msgstr ""
+
+#: includes/views/settings.php:60
+msgid "Select the HTML tag to wrap form fields in."
+msgstr ""
+
+#: includes/views/settings.php:66
+msgid "Honeypot Protection"
+msgstr ""
+
+#: includes/views/settings.php:71
+msgid "Enable honeypot spam protection"
+msgstr ""
+
+#: includes/views/settings.php:74
+msgid "Adds an invisible field to forms that bots will fill out, allowing us to identify and block spam submissions."
+msgstr ""
+
+#: includes/views/settings.php:79
+msgid "Advanced Field Attributes"
+msgstr ""
+
+#: includes/views/settings.php:84
+msgid "Show CSS Class and Custom ID inputs (applied to the field wrapper) in field configuration"
+msgstr ""
+
+#: includes/views/settings.php:86
+msgid "When enabled, each field configuration includes optional inputs to set a wrapper CSS class (space‑separated) and a wrapper ID."
+msgstr ""
+
+#: includes/views/settings.php:95
+msgid "Advanced Anti‑Spam"
+msgstr ""
+
+#: includes/views/settings.php:98
+msgid "Time Trap (seconds)"
+msgstr ""
+
+#: includes/views/settings.php:101
+msgid "Minimum seconds a form should remain open before submission. 0 to disable."
+msgstr ""
+
+#: includes/views/settings.php:105
+msgid "Require Same‑origin Referrer"
+msgstr ""
+
+#: includes/views/settings.php:109
+msgid "Reject submissions where the referrer host is not this site."
+msgstr ""
+
+#: includes/views/settings.php:114
+msgid "Max Links in Message"
+msgstr ""
+
+#: includes/views/settings.php:117
+msgid "Reject if the message contains more than this many URLs. 0 to disable."
+msgstr ""
+
+#: includes/views/settings.php:121
+msgid "Rate Limit per IP"
+msgstr ""
+
+#: includes/views/settings.php:123
+msgid "Max"
+msgstr ""
+
+#: includes/views/settings.php:123
+msgid "submissions in"
+msgstr ""
+
+#: includes/views/settings.php:123
+msgid "minutes (0 to disable)."
+msgstr ""
+
+#: includes/views/settings.php:130
+msgid "Data & Uninstall"
+msgstr ""
+
+#: includes/views/settings.php:133
+msgid "Delete all data on uninstall"
+msgstr ""
+
+#: includes/views/settings.php:137
+msgid "If checked, remove forms, submissions, and settings when the plugin is deleted."
+msgstr ""
+
+#: includes/views/settings.php:139
+msgid "Leave unchecked to keep everything so you can reinstall without losing data."
+msgstr ""
+
+#. translators: %s is the URL to the Narrative Forms documentation
+#: includes/views/settings.php:154
+#, php-format
+msgid "See the <a href=\"%s\" target=\"_blank\">Narrative Forms docs</a>."
+msgstr ""

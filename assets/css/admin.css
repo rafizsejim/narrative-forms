@@ -1,0 +1,474 @@
+/* Narrative Forms Admin Styles */
+
+/* Breadcrumb */
+.nrfm-breadcrumb {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* Form Meta */
+.nrfm-form-meta {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 12px;
+    margin: 20px 0;
+}
+
+.nrfm-form-meta .form-table th {
+    width: 120px;
+    padding: 10px;
+}
+
+/* Tabs */
+.nrfm-tabs {
+    margin-top: 20px;
+}
+
+/* The tab bar's content area is a plain transparent region; each panel
+   supplies its own section cards (matching the global Settings page). */
+.nrfm-tab-content {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+.nrfm-tab-content .nrfm-tab-panel { padding: 0; }
+
+/* Panel + section heading hierarchy */
+.nrfm-tab-panel > h2 { margin-top: 0; }
+.nrfm-tab-title { font-size: 18px; font-weight: 600; color: var(--nrfm-admin-fg); margin: 0 0 12px; }
+.nrfm-tab-panel .form-table h3 { display:none; }
+
+/* Fields tab: editor/preview span the panel (each pane is self-bordered) */
+.nrfm-editor-section {
+    position: relative;
+    margin-bottom: 0;
+}
+/* No side padding inside; keep zero gap in the middle via gap:0 on the wrapper */
+.nrfm-editor-section .nrfm-editor-wrapper.nrfm-editor-split { padding-left: 0; padding-right: 0; }
+/* Heading spacing inside editor column */
+.nrfm-editor-section .nrfm-editor-column h4 { margin-left: 10px; }
+
+/* Remove stray white gap under tabs when submissions renders outside main form */
+.nrfm-tab-panel#tab-submissions {
+    margin-top: 0;
+}
+.nrfm-tabs + .nrfm-tab-content { margin-top: 18px; }
+
+.nrfm-tab-panel {
+    display: none;
+}
+
+.nrfm-tab-panel.active {
+    display: block;
+}
+
+/* Nested sub-settings revealed by a parent toggle (captcha + Pro modules).
+   Scoped to the class itself so it works on both the global Settings page
+   and the per-form Settings tab. */
+.nrfm-setting-children {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-left: 2px solid var(--nrfm-admin-border, #e5e7eb);
+    background: #f9fafb;
+    border-radius: var(--nrfm-admin-input-radius, 8px);
+}
+.nrfm-setting-children label {
+    font-size: 13px;
+    line-height: 1.35;
+    font-weight: 500;
+    color: #2c3338;
+}
+.nrfm-setting-children label strong { font-weight: 500; }
+.nrfm-setting-children input,
+.nrfm-setting-children select,
+.nrfm-setting-children textarea { font-size: 13px; }
+.nrfm-setting-children p:first-child { margin-top: 0; }
+.nrfm-setting-children p:last-child { margin-bottom: 0; }
+
+/* Submissions single view tables */
+.nrfm-tab-panel #tab-submissions .widefat.fixed.striped th,
+.nrfm-tab-panel #tab-submissions .widefat.fixed.striped td {
+    vertical-align: top;
+}
+
+
+/* Field Buttons */
+.nrfm-field-buttons {
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.nrfm-field-btn {
+    min-width: 100px;
+}
+
+/* Field Configuration (slides down) */
+.nrfm-field-config {
+    background: #fff;
+    border: 1px solid var(--nrfm-admin-border, #e5e7eb);
+    margin: 20px 0;
+    border-radius: var(--nrfm-admin-radius, 12px);
+    overflow: hidden;
+}
+
+.nrfm-field-config-header {
+    background: #f9fafb;
+    color: var(--nrfm-admin-fg, #111827);
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--nrfm-admin-border, #e5e7eb);
+}
+
+.nrfm-field-config-header h4 {
+    margin: 0;
+    color: var(--nrfm-admin-fg, #111827);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nrfm-field-config-body {
+    padding: 0 18px 16px;
+}
+
+/* Stacked on/off toggles (Required, Wrap in tag) get real spacing */
+.nrfm-toggle-list { display: flex; flex-direction: column; gap: 12px; }
+.nrfm-toggle-list label { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+
+/* Action buttons sit clear of the last field row */
+.nrfm-field-config-body > .button { margin-top: 14px; }
+
+.nrfm-field-config .form-table th {
+    width: 150px;
+    padding: 10px 10px 10px 0;
+}
+
+.nrfm-field-config .form-table td {
+    padding: 10px;
+}
+
+/* Choice fields */
+.nrfm-choice {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nrfm-choice input {
+    flex: 1;
+}
+
+/* Editor Layout - Fixed for equal height columns */
+.nrfm-editor-wrapper {
+    margin-top: 0;
+    /* leave room for the preview note to sit just below the bottom border */
+    margin-bottom: 0;
+}
+
+.nrfm-editor-wrapper.nrfm-editor-split {
+    display: flex;
+    gap: 0; /* No gap between columns */
+    align-items: stretch;
+    /* Fix a shared height so both columns end on the same line */
+    height: 710px;
+}
+
+.nrfm-editor-wrapper.nrfm-editor-split .nrfm-editor-column,
+.nrfm-editor-wrapper.nrfm-editor-split .nrfm-preview-column {
+    display: flex;
+    flex-direction: column;
+    /* 50/50 split */
+    flex: 1 1 50%;
+    width: 50%;
+}
+
+/* Ensure bottom borders align perfectly */
+.nrfm-editor-wrapper.nrfm-editor-split .nrfm-editor-column .CodeMirror,
+.nrfm-editor-wrapper.nrfm-editor-split #nrfm-form-preview { min-height: 660px; }
+
+/* Mobile: stack editors without breaking layout */
+@media screen and (max-width: 782px) {
+  .nrfm-editor-wrapper.nrfm-editor-split { height: auto; }
+  .nrfm-editor-wrapper.nrfm-editor-split .nrfm-editor-column,
+  .nrfm-editor-wrapper.nrfm-editor-split .nrfm-preview-column { width: 100%; flex: 1 1 auto; }
+  .nrfm-preview-column, .nrfm-editor-column { padding-right: 0; }
+}
+
+/* Columns edge handling */
+.nrfm-preview-column { position: relative; padding-right: 0; }
+.nrfm-editor-column { padding-right: 0; }
+
+.nrfm-editor-column h4,
+.nrfm-preview-column h4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px 8px 10px; /* add 10px horizontal margin */
+    padding: 0 0 8px;
+    background: transparent;
+    border: none;
+}
+
+/* Preview toggles */
+#nrfm-hide-preview, #nrfm-show-preview { font-size: 12px; font-weight: normal; text-decoration: none; margin-right: 10px; }
+#nrfm-hide-preview:hover, #nrfm-show-preview:hover { text-decoration: underline; }
+
+/* The raw textarea is always replaced by CodeMirror; keep it hidden to prevent
+   a flash before CodeMirror mounts. */
+#nrfm-form-content { display: none !important; }
+
+/* CodeMirror overrides for equal height */
+.CodeMirror {
+    border: 1px solid #ddd;
+    flex: 1;
+    height: auto;
+    min-height: 650px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Preview iframe equal height */
+#nrfm-form-preview {
+    width: 100%;
+    border: 1px solid #ddd;
+    background: white;
+    flex: 1;
+    height: auto;
+    min-height: 650px;
+}
+
+.nrfm-editor-wrapper.nrfm-editor-split .nrfm-editor-column .CodeMirror {
+    border-right: none;
+}
+
+/* Ensure containers fill the wrapper height */
+.nrfm-editor-wrapper.nrfm-editor-split > div {
+    min-height: 0;
+}
+
+/* Hide any lint markers/tooltips if a WP default enables them */
+.CodeMirror-lint-markers,
+.CodeMirror-lint-tooltip,
+.CodeMirror-lint-marker-warning,
+.CodeMirror-lint-marker-error {
+    display: none !important;
+}
+
+/* Variable buttons */
+.nrfm-variable-buttons {
+    margin-top: 10px;
+}
+
+.nrfm-variable-buttons .button {
+    margin: 2px;
+}
+
+/* Forms list table improvements */
+.wp-list-table .column-shortcode input {
+    background: transparent;
+    border: none;
+    font-family: monospace;
+    width: 100%;
+    cursor: pointer;
+}
+
+.wp-list-table .column-shortcode input:focus {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    outline: none;
+}
+
+.wp-list-table .column-submissions {
+    width: 100px;
+}
+
+/* Settings Page */
+.nrfm-settings-wrap .form-table th {
+    width: 200px;
+}
+
+/* Action Items */
+/* Actions – compact header with summary and collapsible body */
+.nrfm-action-item{background:#fff;border:1px solid #e5e7eb;border-radius:3px;margin:12px 0}
+.nrfm-action-item>h3{margin:0;padding:8px 10px;display:flex;align-items:center;gap:8px;font-size:13px}
+.nrfm-action-item .nrfm-action-title{font-weight:600;font-size:13px}
+.nrfm-action-item .nrfm-action-summary{color:#6b7280;flex:1}
+.nrfm-action-item .nrfm-action-toggle{margin-left:auto;padding:0 6px;text-decoration:none;color:#6b7280}
+.nrfm-action-item .nrfm-action-body{padding:10px;border-top:1px solid #e5e7eb}
+
+/* Messages */
+.nrfm-message {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.nrfm-message.nrfm-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.nrfm-message.nrfm-error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .nrfm-editor-wrapper {
+        flex-direction: column;
+    }
+    
+    .nrfm-field-buttons {
+        flex-direction: column;
+    }
+    
+    .nrfm-field-btn {
+        width: 100%;
+    }
+}
+
+/* =============================================================================
+   Settings design language — sleek, minimal, card-based (shared by the Settings
+   page and the form-edit screen). Pure CSS, admin-only; scoped to .nrfm-wrap so
+   it never touches the View editor, list tables, or any other admin checkbox.
+   No framework, no web fonts, no JS — adopting this adds nothing to page weight.
+   ========================================================================== */
+.nrfm-wrap {
+    /* Full-width admin layout */
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+    /* Design tokens */
+    --nrfm-admin-bg: #ffffff;
+    --nrfm-admin-border: #e5e7eb;
+    --nrfm-admin-divider: #f1f5f9;
+    --nrfm-admin-fg: #111827;
+    --nrfm-admin-muted: #6b7280;
+    --nrfm-admin-primary: #2563eb;
+    --nrfm-admin-primary-hover: #1d4ed8;
+    --nrfm-admin-radius: 12px;
+    --nrfm-admin-input-radius: 8px;
+}
+
+.nrfm-wrap h1 { color: var(--nrfm-admin-fg); font-weight: 700; }
+
+/* Section header above a card */
+.nrfm-wrap .nrfm-section-title { font-size: 15px; font-weight: 600; color: var(--nrfm-admin-fg); margin: 26px 0 10px; }
+
+/* Tabs */
+.nrfm-wrap .nav-tab-wrapper { border-bottom: 1px solid var(--nrfm-admin-border); padding-bottom: 0; }
+.nrfm-wrap .nav-tab {
+    background: transparent; border: 0; margin: 0 28px -1px 0; padding: 10px 2px;
+    color: var(--nrfm-admin-muted); font-weight: 500; border-bottom: 2px solid transparent;
+}
+.nrfm-wrap .nav-tab:last-child { margin-right: 0; }
+.nrfm-wrap .nav-tab:hover { color: var(--nrfm-admin-fg); }
+.nrfm-wrap .nav-tab-active,
+.nrfm-wrap .nav-tab-active:hover,
+.nrfm-wrap .nav-tab-active:focus {
+    color: var(--nrfm-admin-primary); border-bottom-color: var(--nrfm-admin-primary);
+    background: transparent; box-shadow: none;
+}
+
+/* The settings form-table becomes a clean card */
+.nrfm-wrap .form-table {
+    background: var(--nrfm-admin-bg); border: 1px solid var(--nrfm-admin-border);
+    border-radius: var(--nrfm-admin-radius); border-collapse: separate; border-spacing: 0;
+    overflow: hidden; margin: 12px 0 20px;
+}
+.nrfm-wrap .form-table th,
+.nrfm-wrap .form-table td {
+    padding: 16px 20px; border-bottom: 1px solid var(--nrfm-admin-divider);
+    vertical-align: top; text-align: left;
+}
+.nrfm-wrap .form-table tr:last-child th,
+.nrfm-wrap .form-table tr:last-child td { border-bottom: 0; }
+.nrfm-wrap .form-table th[scope="row"] { width: 30%; font-weight: 600; color: var(--nrfm-admin-fg); }
+.nrfm-wrap .form-table .description { color: var(--nrfm-admin-muted); margin: 6px 0 0; font-size: 13px; }
+
+/* Inputs */
+.nrfm-wrap .form-table input[type="text"],
+.nrfm-wrap .form-table input[type="email"],
+.nrfm-wrap .form-table input[type="url"],
+.nrfm-wrap .form-table input[type="number"],
+.nrfm-wrap .form-table input[type="password"],
+.nrfm-wrap .form-table select,
+.nrfm-wrap .form-table textarea {
+    border: 1px solid var(--nrfm-admin-border); border-radius: var(--nrfm-admin-input-radius);
+    padding: 8px 12px; color: var(--nrfm-admin-fg); box-shadow: none; background: #fff;
+}
+.nrfm-wrap .form-table input:focus,
+.nrfm-wrap .form-table select:focus,
+.nrfm-wrap .form-table textarea:focus {
+    border-color: var(--nrfm-admin-primary); box-shadow: 0 0 0 2px rgba(37, 99, 235, .15); outline: none;
+}
+
+/* Boolean checkboxes become pill toggles (scoped to settings cards only) */
+.nrfm-wrap .form-table input[type="checkbox"] {
+    -webkit-appearance: none; appearance: none; position: relative; flex: 0 0 auto;
+    width: 38px; min-width: 38px; height: 22px; margin: 0 10px 0 0; padding: 0;
+    background: #cbd5e1; border: 0; border-radius: 999px; cursor: pointer;
+    transition: background .15s ease; vertical-align: middle;
+}
+.nrfm-wrap .form-table input[type="checkbox"]::before {
+    content: ""; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; margin: 0;
+    background: #fff; border-radius: 50%; box-shadow: 0 1px 2px rgba(16, 24, 40, .25);
+    transition: transform .15s ease;
+}
+.nrfm-wrap .form-table input[type="checkbox"]:checked { background: var(--nrfm-admin-primary); }
+.nrfm-wrap .form-table input[type="checkbox"]:checked::before { transform: translateX(16px); }
+.nrfm-wrap .form-table input[type="checkbox"]:focus-visible { outline: 2px solid var(--nrfm-admin-primary); outline-offset: 2px; }
+.nrfm-wrap .form-table td > label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; font-weight: 500; color: var(--nrfm-admin-fg); }
+
+/* ---- Form-edit screen: prevent double cards ----
+   The form-meta panel and action items are themselves cards, so a form-table
+   inside them drops its own card chrome to avoid a box-in-a-box; rows keep the
+   design-system styling (dividers, padding, toggles, inputs). */
+.nrfm-wrap .nrfm-form-meta .form-table,
+.nrfm-wrap .nrfm-action-item .form-table {
+    background: transparent; border: 0; border-radius: 0; overflow: visible; margin: 0;
+}
+
+/* Form Meta panel matches the settings card look */
+.nrfm-wrap .nrfm-form-meta {
+    border-color: var(--nrfm-admin-border); border-radius: var(--nrfm-admin-radius);
+    padding: 0; overflow: hidden;
+}
+.nrfm-wrap .nrfm-form-meta .form-table th { width: 30%; padding: 16px 20px; }
+
+/* Tables inside action bodies go edge-to-edge (the action body pads them) */
+.nrfm-wrap .nrfm-action-item .form-table th,
+.nrfm-wrap .nrfm-action-item .form-table td { padding-left: 0; padding-right: 0; }
+
+/* Secondary buttons (Cancel, field-type buttons, Copy Link, etc.) */
+.nrfm-wrap .button,
+.nrfm-wrap .button-secondary {
+    background: #fff; border: 1px solid var(--nrfm-admin-border); color: var(--nrfm-admin-fg);
+    border-radius: var(--nrfm-admin-input-radius); height: 34px; line-height: 32px;
+    padding: 0 14px; font-size: 13px; box-shadow: none; text-shadow: none;
+}
+.nrfm-wrap .button:hover,
+.nrfm-wrap .button:focus,
+.nrfm-wrap .button-secondary:hover,
+.nrfm-wrap .button-secondary:focus {
+    background: #f9fafb; border-color: #cbd5e1; color: var(--nrfm-admin-fg);
+}
+.nrfm-wrap .button-small {
+    height: 28px; line-height: 26px; padding: 0 10px; font-size: 12px;
+}
+
+/* Primary button (defined after .button so it wins) */
+.nrfm-wrap .button-primary {
+    background: var(--nrfm-admin-primary); border-color: var(--nrfm-admin-primary); color: #fff;
+    border-radius: var(--nrfm-admin-input-radius); padding: 0 16px; height: 34px; line-height: 32px;
+    font-size: 13px; box-shadow: none; text-shadow: none;
+}
+.nrfm-wrap .button-primary:hover,
+.nrfm-wrap .button-primary:focus {
+    background: var(--nrfm-admin-primary-hover); border-color: var(--nrfm-admin-primary-hover); color: #fff; box-shadow: none;
+}
