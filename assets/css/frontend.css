@@ -48,8 +48,6 @@
 .nrfm-form input::placeholder,
 .nrfm-form textarea::placeholder { color: #6b7280; opacity: 1; }
 
-.nrfm-form select { padding-right: 10px; }
-
 .nrfm-form input[type="checkbox"],
 .nrfm-form input[type="radio"] {
     width: 16px;

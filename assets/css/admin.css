@@ -388,7 +388,7 @@
 }
 .nrfm-wrap .form-table tr:last-child th,
 .nrfm-wrap .form-table tr:last-child td { border-bottom: 0; }
-.nrfm-wrap .form-table th[scope="row"] { width: 30%; font-weight: 600; color: var(--nrfm-admin-fg); }
+.nrfm-wrap .form-table th[scope="row"] { width: 30%; font-weight: 500; color: var(--nrfm-admin-fg); }
 .nrfm-wrap .form-table .description { color: var(--nrfm-admin-muted); margin: 6px 0 0; font-size: 13px; }
 
 /* Inputs */

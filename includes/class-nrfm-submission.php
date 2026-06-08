@@ -78,6 +78,10 @@ class NRFM_Submission {
             $data = array_merge($data, $file_data);
         }
         
+        // Convert inline base64 image data URLs (e.g. signature pads) into stored files so the
+        // submission row holds a small URL instead of a huge blob. Content-based auto-detection.
+        $data = $this->store_data_url_images($data);
+
         // Clean
         $cleaned_data = $this->clean_data($data);
         
@@ -328,6 +332,96 @@ class NRFM_Submission {
         return $file_data;
     }
     
+    /**
+     * Auto-detect inline base64 image data URLs (e.g. signature-pad output written into a
+     * hidden input) and store them as real files, replacing the value with the same file-entry
+     * shape handle_file_uploads() produces. This keeps the submission row small and lets the
+     * admin, CSV export and Views render a link/thumbnail automatically.
+     *
+     * Content-based detection — any image data URL in a normal field is converted; no field
+     * configuration is needed. Toggle/limit with the nrfm_store_data_urls,
+     * nrfm_data_url_mime_types and nrfm_data_url_max_bytes filters.
+     *
+     * @param array $data Submitted field values (after file uploads are merged in).
+     * @return array
+     */
+    private function store_data_url_images($data) {
+        if (!is_array($data) || !apply_filters('nrfm_store_data_urls', true)) {
+            return $data;
+        }
+
+        // Image mime => file extension. Only these are ever decoded and written to disk.
+        $allowed = apply_filters('nrfm_data_url_mime_types', array(
+            'image/png'  => 'png',
+            'image/jpeg' => 'jpg',
+            'image/gif'  => 'gif',
+            'image/webp' => 'webp',
+        ));
+
+        // Max decoded byte size, bounded by the server's upload cap.
+        $max_bytes  = (int) apply_filters('nrfm_data_url_max_bytes', 5 * 1024 * 1024);
+        $server_cap = function_exists('wp_max_upload_size') ? (int) wp_max_upload_size() : 0;
+        if ($server_cap > 0 && $max_bytes > 0) {
+            $max_bytes = min($max_bytes, $server_cap);
+        }
+
+        foreach ($data as $key => $value) {
+            // Only scalar strings that look like an image data URL are candidates.
+            if (!is_string($value) || stripos($value, 'data:image/') !== 0) {
+                continue;
+            }
+            // Mirror clean_data(): never touch internal/captcha fields.
+            if (strpos($key, 'nrfm_') === 0 || strpos($key, '_') === 0) {
+                continue;
+            }
+            if (!preg_match('#^data:(image/[a-z0-9.+-]+);base64,#i', $value, $m)) {
+                continue;
+            }
+            $mime = strtolower($m[1]);
+            if (!isset($allowed[$mime])) {
+                continue; // Unknown image type: leave the value untouched.
+            }
+
+            $b64 = substr($value, strlen($m[0]));
+            // Cheap size guard before decoding (base64 is ~4/3 of the binary size).
+            if ($max_bytes > 0 && (int) (strlen($b64) * 0.75) > $max_bytes) {
+                $data[$key] = '';
+                continue;
+            }
+            $binary = base64_decode($b64, true);
+            if ($binary === false || $binary === '' || ($max_bytes > 0 && strlen($binary) > $max_bytes)) {
+                $data[$key] = '';
+                continue;
+            }
+            // Confirm the bytes really are the image type claimed (defeats disguised payloads).
+            $probe = function_exists('getimagesizefromstring') ? @getimagesizefromstring($binary) : false;
+            if (!is_array($probe) || empty($probe['mime']) || strtolower($probe['mime']) !== $mime) {
+                $data[$key] = '';
+                continue;
+            }
+
+            // Hand the bytes to WordPress: it picks the uploads dir, makes the name unique, and
+            // rejects any extension not in the site's allowed mime list.
+            $name   = sanitize_file_name($key . '-' . substr(md5($binary), 0, 8) . '.' . $allowed[$mime]);
+            $stored = wp_upload_bits($name, null, $binary);
+            if (!empty($stored['error']) || empty($stored['file']) || empty($stored['url'])) {
+                $data[$key] = ''; // Could not store: drop the blob rather than bloat the row.
+                continue;
+            }
+
+            // Same shape as a file upload entry, so storage/admin/CSV/Views render it as a link.
+            $data[$key] = array(
+                'name' => $name,
+                'path' => $stored['file'],
+                'url'  => esc_url_raw($stored['url']),
+                'type' => $mime,
+                'size' => strlen($binary),
+            );
+        }
+
+        return $data;
+    }
+
     private function clean_data($data) {
         $cleaned = array();
         

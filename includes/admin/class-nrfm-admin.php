@@ -15,6 +15,7 @@ class NRFM_Admin {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu_pages' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'menu_icon_style' ) );
 		add_action( 'admin_init', array( $this, 'handle_actions' ) );
 		if ( ! function_exists( 'nrfm_is_pro_active' ) || ! nrfm_is_pro_active() ) {
 			require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-pro-upsell.php';
@@ -23,6 +24,10 @@ class NRFM_Admin {
 	}
 
 	public function add_menu_pages() {
+		// Icon is 'none' here on purpose: passing a data:image/svg+xml icon makes WordPress's
+		// svg-painter.js repaint every fill in the SVG to one scheme colour, which would flatten
+		// our two-tone badge (the "<NF>" would vanish into the box). We paint the icon ourselves
+		// in menu_icon_style() via CSS, which the painter never touches.
 		add_menu_page(
 			__( 'Narrative Forms', 'narrative-forms' ),
 			// Menu label is intentionally single-word so it never wraps to a second line in the
@@ -31,7 +36,7 @@ class NRFM_Admin {
 			'manage_options',
 			'nrfm-forms',
 			array( $this, 'render_forms_page' ),
-			'dashicons-feedback',
+			'none',
 			30
 		);
 
@@ -61,6 +66,19 @@ class NRFM_Admin {
 			'nrfm-forms-settings',
 			array( $this, 'render_settings_page' )
 		);
+	}
+
+	/**
+	 * Paint the brand menu icon ourselves via CSS (a two-tone "<NF>" badge from
+	 * assets/img/menu-icon.svg). We can't pass it through add_menu_page() because WordPress's
+	 * svg-painter.js would flatten the badge to a single colour. Attached to core's global
+	 * 'admin-menu' stylesheet so it loads on every screen where the sidebar appears.
+	 */
+	public function menu_icon_style() {
+		$icon = esc_url( NRFM_PLUGIN_URL . 'assets/img/menu-icon.svg' );
+		$css  = '#adminmenu #toplevel_page_nrfm-forms .wp-menu-image{background:url(' . $icon . ') no-repeat center !important;background-size:20px 20px !important;}'
+			. '#adminmenu #toplevel_page_nrfm-forms .wp-menu-image:before{content:"" !important;}';
+		wp_add_inline_style( 'admin-menu', $css );
 	}
 
 	public function enqueue_assets( $hook ) {
