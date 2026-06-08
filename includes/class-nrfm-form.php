@@ -97,7 +97,6 @@ class NRFM_Form {
             'save_submissions' => 1,
             'hide_after_success' => 0,
             'redirect_url' => '',
-            'redirect_error_url' => '',
             'honeypot_enabled' => 1,
             'async_actions' => 1,
         ));

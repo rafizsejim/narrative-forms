@@ -453,7 +453,6 @@ class NRFM_Admin {
 				'save_submissions'   => ! empty( $raw_settings['save_submissions'] ) ? 1 : 0,
 				'hide_after_success' => ! empty( $raw_settings['hide_after_success'] ) ? 1 : 0,
 				'redirect_url'       => isset( $raw_settings['redirect_url'] ) ? esc_url_raw( $raw_settings['redirect_url'] ) : '',
-				'redirect_error_url' => isset( $raw_settings['redirect_error_url'] ) ? esc_url_raw( $raw_settings['redirect_error_url'] ) : '',
 				'honeypot_enabled'   => ! empty( $raw_settings['honeypot_enabled'] ) ? 1 : 0,
 				'async_actions'      => 1, // always on
 			);

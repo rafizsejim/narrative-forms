@@ -151,6 +151,7 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
+* Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
 * Readme updated.
 
 = 1.0.0 =

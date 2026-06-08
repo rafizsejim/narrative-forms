@@ -530,14 +530,6 @@ msgstr ""
 msgid "You can use the following variables in the redirect URL:"
 msgstr ""
 
-#: includes/views/form-edit.php:302
-msgid "Redirect to URL After Error (Optional)"
-msgstr ""
-
-#: includes/views/form-edit.php:308
-msgid "Leave empty to show inline error. Tokens supported."
-msgstr ""
-
 #: includes/views/form-edit.php:312
 msgid "Wrapper Classes"
 msgstr ""

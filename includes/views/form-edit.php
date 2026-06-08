@@ -278,19 +278,8 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                                     <button type="button" class="button button-small nrfm-insert-var" data-target="redirect-url" data-var="<?php echo esc_attr($nrfm_var); ?>"><?php echo esc_html($nrfm_var); ?></button>
                                 <?php endforeach; ?>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <label for="redirect-error-url"><?php esc_html_e('Redirect to URL After Error (Optional)', 'narrative-forms'); ?></label>
-                        </th>
-                        <td>
-                            <input type="url" name="settings[redirect_error_url]" id="redirect-error-url" class="large-text"
-                                   value="<?php echo esc_attr($nrfm_settings['redirect_error_url'] ?? ''); ?>"
-                                   placeholder="https://example.com/oops?reason=invalid">
-                            <p class="description"><?php echo esc_html__('Leave empty to show inline error. Tokens supported.', 'narrative-forms'); ?></p>
                             <?php
-                            // Backward compatibility hook for existing integrations.
+                            // Lets add-ons append settings after the redirect options.
                             do_action('nrfm_form_settings_after_redirect', $form);
                             ?>
                         </td>

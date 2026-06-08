@@ -88,13 +88,9 @@ class NRFM_Submission {
         // Validate
         $validation = $this->validate($cleaned_data, $form);
         if (!$validation['valid']) {
-            // Optional error redirect
-            $err_settings = $form->get_settings();
-            $err_redirect = isset($err_settings['redirect_error_url']) ? $err_settings['redirect_error_url'] : '';
             return array(
                 'success' => false,
                 'message' => $form->get_message($validation['error_code']),
-                'redirect_url' => self::token_replace_redirect($err_redirect, $cleaned_data),
             );
         }
         
