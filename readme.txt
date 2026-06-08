@@ -153,6 +153,7 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 * The basic Narrative Forms stylesheet is now enabled by default on new installs.
 * Simplified the field setup panel by removing a nested box.
 * Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
+* Forms whose template includes its own form tag now render and submit correctly; the plugin always provides the form wrapper.
 
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.

@@ -173,7 +173,12 @@ class NRFM_Form {
         
         // Form content with wrapper tag processing
         $content = $this->post->post_content;
-        
+
+        // The plugin already wraps fields in its own <form>. Strip any <form>/</form>
+        // tags the template may contain: nested forms are invalid HTML, so the browser
+        // would close the real form early, breaking submission and add-ons like Save & Resume.
+        $content = preg_replace('#</?form\b[^>]*>#i', '', $content);
+
         // Apply wrapper tag if set globally and not 'none'
         if (!empty($global_settings['wrapper_tag']) && $global_settings['wrapper_tag'] !== 'none') {
             $wrapper = $global_settings['wrapper_tag'];
