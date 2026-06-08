@@ -17,10 +17,88 @@ class NRFM_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'menu_icon_style' ) );
 		add_action( 'admin_init', array( $this, 'handle_actions' ) );
+		add_action( 'admin_init', array( $this, 'maybe_create_starter_form' ) );
 		if ( ! function_exists( 'nrfm_is_pro_active' ) || ! nrfm_is_pro_active() ) {
 			require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-pro-upsell.php';
 			new NRFM_Pro_Upsell();
 		}
+	}
+
+	/**
+	 * Seed a ready-to-use Contact Form on first install so new users do not face a
+	 * blank screen. Runs once, and only when the site has no forms yet (not on upgrade).
+	 */
+	public function maybe_create_starter_form() {
+		if ( get_option( 'nrfm_starter_form_created' ) ) {
+			return;
+		}
+		// Mark done immediately so this never repeats, even if creation is skipped below.
+		update_option( 'nrfm_starter_form_created', 1 );
+
+		$existing = get_posts( array(
+			'post_type'      => 'nrfm_form',
+			'post_status'    => 'any',
+			'posts_per_page' => 1,
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		) );
+		if ( ! empty( $existing ) ) {
+			return;
+		}
+
+		$html = $this->starter_form_html();
+
+		// Insert with the form fields intact. The default post kses allowlist strips
+		// <input>/<select>/<textarea> (and multisite admins lack unfiltered_html), so drop
+		// the content filters for this one trusted, plugin-controlled insert.
+		kses_remove_filters();
+		$form_id = wp_insert_post( array(
+			'post_type'    => 'nrfm_form',
+			'post_status'  => 'publish',
+			'post_title'   => __( 'Contact Form', 'narrative-forms' ),
+			'post_content' => $html,
+		) );
+		kses_init_filters();
+
+		if ( ! $form_id || is_wp_error( $form_id ) ) {
+			return;
+		}
+		// Build the field schema so the Submissions table has columns from the start.
+		$this->update_form_schema( $form_id, $html );
+	}
+
+	/**
+	 * Markup for the seeded starter form: a simple contact form with a dropdown.
+	 * Clean semantic HTML that also demonstrates the HTML-first approach.
+	 */
+	private function starter_form_html() {
+		$lines = array(
+			'<p>',
+			'    <label for="nrfm-name">' . esc_html__( 'Name', 'narrative-forms' ) . '</label>',
+			'    <input type="text" id="nrfm-name" name="name" placeholder="' . esc_attr__( 'Your name', 'narrative-forms' ) . '" required>',
+			'</p>',
+			'<p>',
+			'    <label for="nrfm-email">' . esc_html__( 'Email', 'narrative-forms' ) . '</label>',
+			'    <input type="email" id="nrfm-email" name="email" placeholder="' . esc_attr__( 'you@example.com', 'narrative-forms' ) . '" required>',
+			'</p>',
+			'<p>',
+			'    <label for="nrfm-subject">' . esc_html__( 'Subject', 'narrative-forms' ) . '</label>',
+			'    <select id="nrfm-subject" name="subject">',
+			'        <option>' . esc_html__( 'General question', 'narrative-forms' ) . '</option>',
+			'        <option>' . esc_html__( 'Support', 'narrative-forms' ) . '</option>',
+			'        <option>' . esc_html__( 'Sales', 'narrative-forms' ) . '</option>',
+			'        <option>' . esc_html__( 'Other', 'narrative-forms' ) . '</option>',
+			'    </select>',
+			'</p>',
+			'<p>',
+			'    <label for="nrfm-message">' . esc_html__( 'Message', 'narrative-forms' ) . '</label>',
+			'    <textarea id="nrfm-message" name="message" rows="5" placeholder="' . esc_attr__( 'How can we help?', 'narrative-forms' ) . '" required></textarea>',
+			'</p>',
+			'<p>',
+			'    <button type="submit">' . esc_html__( 'Send message', 'narrative-forms' ) . '</button>',
+			'</p>',
+		);
+		return implode( "\n", $lines );
 	}
 
 	public function add_menu_pages() {

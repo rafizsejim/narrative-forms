@@ -150,6 +150,7 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 == Changelog ==
 
 = 1.0.2 =
+* New installs now include a ready to use Contact Form with a dropdown, so you do not start from a blank screen.
 * The basic Narrative Forms stylesheet is now enabled by default on new installs.
 * Simplified the field setup panel by removing a nested box.
 * Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.

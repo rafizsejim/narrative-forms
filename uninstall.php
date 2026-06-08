@@ -25,6 +25,8 @@ if ( defined( 'NRFM_PURGE_ON_UNINSTALL' ) && NRFM_PURGE_ON_UNINSTALL ) {
 if ( $nrfm_purge ) {
 	// Delete options
 	delete_option( 'nrfm_settings' );
+	delete_option( 'nrfm_starter_form_created' );
+	delete_option( 'nrfm_schema_version' );
 
 	// Delete all forms (custom post type)
 	$nrfm_forms = get_posts(
