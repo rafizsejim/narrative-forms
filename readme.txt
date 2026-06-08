@@ -4,7 +4,7 @@ Tags: contact form, form builder, forms, html forms, frontend submission
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,9 +149,11 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 
 == Changelog ==
 
+= 1.0.2 =
+* Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
+
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
-* Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
 * Readme updated.
 
 = 1.0.0 =
@@ -167,6 +169,9 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 * Customisable success and error messages, redirects, and template tags.
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+Removes the redirect after error option; form errors now always show inline.
 
 = 1.0.1 =
 Adds optional usage analytics (nothing is collected unless you allow it) and updates the readme.

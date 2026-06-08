@@ -3,7 +3,7 @@
  * Plugin Name: Narrative Forms
  * Plugin URI: https://narrative-forms.com
  * Description: Lightweight, developer-friendly WordPress form plugin. Pure HTML forms with no complexity.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: NarrativeCode
  * Text Domain: narrative-forms
  * Domain Path: /languages
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('NRFM_VERSION', '1.0.1');
+define('NRFM_VERSION', '1.0.2');
 define('NRFM_PLUGIN_FILE', __FILE__);
 define('NRFM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NRFM_PLUGIN_URL', plugin_dir_url(__FILE__));
