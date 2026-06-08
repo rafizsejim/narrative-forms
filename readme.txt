@@ -150,6 +150,7 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 == Changelog ==
 
 = 1.0.1 =
+* Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
 * Readme updated.
 
 = 1.0.0 =
@@ -167,10 +168,20 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 == Upgrade Notice ==
 
 = 1.0.1 =
-Readme updated.
+Adds optional usage analytics (nothing is collected unless you allow it) and updates the readme.
 
 = 1.0.0 =
 First public release of Narrative Forms, a WordPress form plugin built on plain HTML.
+
+== Privacy ==
+
+Narrative Forms uses the [Appsero](https://appsero.com) SDK to collect some telemetry data, but only after you confirm it. This helps us troubleshoot problems faster and make product improvements.
+
+The Appsero SDK **does not gather any data by default.** It only starts collecting basic telemetry **when you allow it through the admin notice**. We collect the data to ensure a great experience for all of our users.
+
+Integrating the Appsero SDK **DOES NOT IMMEDIATELY** start gathering data, and never **without your confirmation.**
+
+Learn more about how [Appsero collects and uses this data](https://appsero.com/privacy-policy/).
 
 == External services ==
 
@@ -190,3 +201,10 @@ This plugin may connect to external services in the following situations:
   * What data is sent: Submitted form fields and limited metadata (timestamp, IP address, user agent, referrer). Data is sent as JSON or as URL encoded form data depending on your configuration.
   * Where it is sent: To the exact URL you configure in the action, on a domain you choose. Any example like `https://example.com/webhook` in the UI or docs is a placeholder; no data is sent there unless you explicitly configure it.
   * Policies: The destination service is chosen by you. Please consult that service's terms of use and privacy policy.
+
+* Appsero (optional usage analytics, off until you allow it)
+  * What it is and why: Narrative Forms uses the Appsero SDK to understand how the plugin is used so we can fix problems and improve it. See the Privacy section above.
+  * When data is sent: Only after you explicitly allow it through the admin notice. Nothing is sent until then. A short, optional survey may be offered if you deactivate the plugin.
+  * What data is sent: Basic environment and usage details such as the site URL, WordPress and PHP versions, active theme and plugins, your locale, and the admin email used to confirm your choice. No form submissions or visitor data are ever sent.
+  * Where it is sent: To Appsero at `https://api.appsero.com`.
+  * Policies: Privacy `https://appsero.com/privacy-policy/`

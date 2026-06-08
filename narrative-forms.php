@@ -19,6 +19,24 @@ define('NRFM_PLUGIN_FILE', __FILE__);
 define('NRFM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NRFM_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+/**
+ * Appsero usage analytics (opt-in only).
+ *
+ * The Appsero SDK collects nothing until the site administrator explicitly
+ * allows it through the admin notice. See the "Privacy" section in readme.txt.
+ */
+function appsero_init_tracker_narrative_forms() {
+    if ( ! class_exists( 'Appsero\Client' ) ) {
+        require_once __DIR__ . '/appsero/src/Client.php';
+    }
+
+    $client = new Appsero\Client( '9d8a0265-2205-42ba-8609-80a007354733', 'HTML Forms & Contact Form for WordPress – Narrative Forms', __FILE__ );
+
+    // Opt-in usage insights only (no licensing, no Appsero updater; wp.org handles updates).
+    $client->insights()->init();
+}
+appsero_init_tracker_narrative_forms();
+
 register_activation_hook(__FILE__, 'nrfm_activate');
 function nrfm_activate() {
     global $wpdb;
