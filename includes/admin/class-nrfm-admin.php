@@ -7,7 +7,7 @@ class NRFM_Admin {
 
 	private $current_tab = '';
 	private $default_settings = array(
-		'load_stylesheet'  => 0,
+		'load_stylesheet'  => 1,
 		'wrapper_tag'      => 'p',
 		'honeypot_enabled' => 1,
 	);

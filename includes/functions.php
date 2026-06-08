@@ -109,7 +109,7 @@ function nrfm_get_settings( $key = null, $default = null ) {
 	$settings = get_option( 'nrfm_settings', array() ); // used for read-only; leaving as-is for backward compat
 
 	$defaults = array(
-		'load_stylesheet' => 0,
+		'load_stylesheet' => 1,
 	);
 
 	$settings = wp_parse_args( $settings, $defaults );

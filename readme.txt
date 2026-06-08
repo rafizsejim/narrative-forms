@@ -4,7 +4,7 @@ Tags: contact form, form builder, forms, html forms, frontend submission
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -149,6 +149,10 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 
 == Changelog ==
 
+= 1.0.3 =
+* The basic Narrative Forms stylesheet is now enabled by default on new installs.
+* Simplified the field setup panel by removing a nested box.
+
 = 1.0.2 =
 * Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
 
@@ -169,6 +173,9 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions extensio
 * Customisable success and error messages, redirects, and template tags.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+The basic stylesheet now loads by default, and the field setup panel is simpler.
 
 = 1.0.2 =
 Removes the redirect after error option; form errors now always show inline.

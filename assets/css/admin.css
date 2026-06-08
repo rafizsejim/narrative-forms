@@ -426,11 +426,12 @@
 .nrfm-wrap .form-table td > label { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; font-weight: 500; color: var(--nrfm-admin-fg); }
 
 /* ---- Form-edit screen: prevent double cards ----
-   The form-meta panel and action items are themselves cards, so a form-table
-   inside them drops its own card chrome to avoid a box-in-a-box; rows keep the
-   design-system styling (dividers, padding, toggles, inputs). */
+   The form-meta panel, action items, and field-config box are themselves cards,
+   so a form-table inside them drops its own card chrome to avoid a box-in-a-box;
+   rows keep the design-system styling (dividers, padding, toggles, inputs). */
 .nrfm-wrap .nrfm-form-meta .form-table,
-.nrfm-wrap .nrfm-action-item .form-table {
+.nrfm-wrap .nrfm-action-item .form-table,
+.nrfm-wrap .nrfm-field-config .form-table {
     background: transparent; border: 0; border-radius: 0; overflow: visible; margin: 0;
 }
 
