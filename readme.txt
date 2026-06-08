@@ -137,11 +137,15 @@ Yes to displaying submissions: the Narrative Forms Frontend Submissions add-on p
 
 == Screenshots ==
 
-1. The Narrative Forms editor: write or paste HTML, use one-click field buttons, and see a live form preview as you type.
-2. A clean contact form with AJAX submissions running on the front end of a WordPress site.
-3. The stored submissions table in the admin, with one-click CSV export.
-4. Email and webhook action settings for routing each form submission.
-5. Anti-spam and form settings, including honeypot, per-IP rate limiting, and Cloudflare Turnstile.
+1. Forms are just HTML: paste your markup — or an AI's — and it becomes a real form. Here a custom RSVP card with pill buttons and a star rating.
+2. No field-type limits — a table-booking form with a seating switcher, a guest stepper, and native date and time pickers.
+3. Build anything: an instant-quote form with selectable option cards and range sliders that update a live price.
+4. The built-in editor — one-click field buttons scaffold the HTML (here a file-upload field with size and count limits), or write your own.
+5. Decide what happens after a submission: store it, hide the form, or redirect — with tokens like [NAME] and [NRFM_IP_ADDRESS].
+6. Email notifications: send each submission to any address, in plain text or HTML, with per-field tokens.
+7. Actions run after every submission — send email and POST the data to any webhook URL.
+8. Settings: an optional stylesheet, honeypot, and Cloudflare Turnstile — privacy-friendly, with no third-party tracking.
+9. Layered anti-spam — a time trap, same-origin check, link limit, and per-IP rate limiting — plus a clean uninstall.
 
 == Changelog ==
 
