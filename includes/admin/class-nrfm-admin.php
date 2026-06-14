@@ -282,9 +282,6 @@ class NRFM_Admin {
 			case 'save_settings':
 				$this->save_settings();
 				break;
-			case 'bulk_delete_forms':
-				$this->bulk_delete_forms();
-				break;
 		}
 	}
 

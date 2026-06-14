@@ -4,7 +4,7 @@ Tags: html forms, contact form, form builder, custom form, frontend submission
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -151,15 +151,18 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Changelog ==
 
+= 1.0.3 =
+* Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
+* Deleting submissions now shows a confirmation message, and bulk deletes ask before removing.
+* Fixed the form preview being clipped at its edges.
+* Internal cleanup: removed unused code, including a dead admin action handler and an unused plugin constant.
+
 = 1.0.2 =
 * New installs now include a ready to use Contact Form with a dropdown, so you do not start from a blank screen.
 * The basic Narrative Forms stylesheet is now enabled by default on new installs.
 * Simplified the field setup panel by removing a nested box.
 * Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
 * Forms whose template includes its own form tag now render and submit correctly; the plugin always provides the form wrapper.
-* Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
-* Fixed the form preview being clipped at its edges.
-* Deleting submissions now shows a confirmation message, and bulk deletes ask before removing.
 
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
@@ -178,6 +181,9 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 * Customisable success and error messages, redirects, and template tags.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Fixes a Security check failed notice on the form edit screen, adds a confirmation when deleting submissions, and stops the form preview from being clipped.
 
 = 1.0.2 =
 Adds a ready to use Contact Form on install, enables the basic stylesheet by default, simplifies the field setup panel, and shows form errors inline.

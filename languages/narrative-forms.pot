@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Narrative Forms 1.0.2\n"
+"Project-Id-Version: Narrative Forms 1.0.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/narrative-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-08T19:36:06+00:00\n"
+"POT-Creation-Date: 2026-06-14T08:36:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: narrative-forms\n"
@@ -123,26 +123,25 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:297
-#: includes/admin/class-nrfm-admin.php:1031
+#: includes/admin/class-nrfm-admin.php:291
+#: includes/admin/class-nrfm-admin.php:975
 #: includes/class-nrfm-submission.php:65
 msgid "Form not found"
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:303
+#: includes/admin/class-nrfm-admin.php:297
 msgid "Submissions table is unavailable."
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:314
+#: includes/admin/class-nrfm-admin.php:308
 msgid "No submissions to export"
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:1019
+#: includes/admin/class-nrfm-admin.php:963
 msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:1025
-#: includes/admin/class-nrfm-admin.php:1044
+#: includes/admin/class-nrfm-admin.php:988
 #: includes/views/form-edit.php:559
 msgid "Security check failed."
 msgstr ""
@@ -278,31 +277,31 @@ msgid "Integrations, automation, and templates — with new features on the way.
 msgstr ""
 
 #: includes/admin/class-nrfm-submissions-table.php:33
-#: includes/admin/class-nrfm-submissions-table.php:166
+#: includes/admin/class-nrfm-submissions-table.php:174
 msgid "Delete"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:71
+#: includes/admin/class-nrfm-submissions-table.php:79
 msgid "No submissions found."
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:75
+#: includes/admin/class-nrfm-submissions-table.php:83
 msgid "Select submission"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:165
+#: includes/admin/class-nrfm-submissions-table.php:173
 msgid "View"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:166
+#: includes/admin/class-nrfm-submissions-table.php:174
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:185
+#: includes/admin/class-nrfm-submissions-table.php:193
 msgid "Submitted On"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:186
+#: includes/admin/class-nrfm-submissions-table.php:194
 #: includes/views/form-edit.php:99
 #: includes/views/form-list.php:256
 msgid "Actions"
@@ -760,12 +759,23 @@ msgstr ""
 msgid "Back to submissions list"
 msgstr ""
 
-#: includes/views/form-edit.php:699
+#: includes/views/form-edit.php:701
+#, php-format
+msgid "%d submission deleted."
+msgid_plural "%d submissions deleted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/views/form-edit.php:709
 msgid "Search submissions"
 msgstr ""
 
+#: includes/views/form-edit.php:711
+msgid "Delete the selected submissions? This cannot be undone."
+msgstr ""
+
 #: includes/views/form-list.php:21
-#: narrative-forms.php:181
+#: narrative-forms.php:180
 msgid "Forms"
 msgstr ""
 
@@ -837,7 +847,7 @@ msgstr ""
 
 #: includes/views/form-list.php:121
 #: includes/views/form-list.php:330
-#: narrative-forms.php:182
+#: narrative-forms.php:181
 msgid "Form"
 msgstr ""
 
