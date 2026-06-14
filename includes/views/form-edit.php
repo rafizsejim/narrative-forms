@@ -689,7 +689,17 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                     <?php
                     require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-submissions-table.php';
                     $nrfm_table_obj = new NRFM_Submissions_Table($nrfm_form_id);
-                    $nrfm_table_obj->process_bulk_action();
+                    $nrfm_deleted_count = (int) $nrfm_table_obj->process_bulk_action();
+                    // Single deletes redirect here with a count; show one notice for both single and bulk.
+                    if ( isset( $_GET['nrfm_sub_deleted'] ) ) {
+                        $nrfm_del_nonce = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
+                        if ( $nrfm_del_nonce && wp_verify_nonce( $nrfm_del_nonce, 'edit_form' ) ) {
+                            $nrfm_deleted_count = max( $nrfm_deleted_count, max( 0, intval( wp_unslash( $_GET['nrfm_sub_deleted'] ) ) ) );
+                        }
+                    }
+                    if ( $nrfm_deleted_count > 0 ) {
+                        echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( _n( '%d submission deleted.', '%d submissions deleted.', $nrfm_deleted_count, 'narrative-forms' ), $nrfm_deleted_count ) ) . '</p></div>';
+                    }
                     ?>
                     <form method="get">
                         <input type="hidden" name="page" value="nrfm-forms">
@@ -698,7 +708,7 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                         <input type="hidden" name="tab" value="submissions">
                         <?php $nrfm_table_obj->search_box(esc_html__('Search submissions', 'narrative-forms'), 'nrfm-submissions'); ?>
                     </form>
-                    <form method="post" id="nrfm-submissions-form">
+                    <form method="post" id="nrfm-submissions-form" onsubmit="var s=this.querySelector('select[name=action]'),t=this.querySelector('select[name=action2]'),v=(s&&s.value!='-1')?s.value:(t?t.value:'-1');return v!='delete'||window.confirm('<?php echo esc_js( __( 'Delete the selected submissions? This cannot be undone.', 'narrative-forms' ) ); ?>');">
                         <?php wp_nonce_field('bulk-submissions'); ?>
                         <?php $nrfm_table_obj->prepare_items(); ?>
                         <?php $nrfm_table_obj->display(); ?>

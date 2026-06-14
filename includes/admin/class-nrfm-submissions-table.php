@@ -34,12 +34,16 @@ class NRFM_Submissions_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Process the bulk Delete action. Returns the number of submissions deleted
+	 * (0 if none, or this was not a delete request) so the caller can show a notice.
+	 */
 	public function process_bulk_action() {
 		if ( $this->current_action() !== 'delete' ) {
-			return;
+			return 0;
 		}
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return 0;
 		}
 		check_admin_referer( 'bulk-submissions' );
 
@@ -47,24 +51,28 @@ class NRFM_Submissions_Table extends WP_List_Table {
 			? array_map( 'absint', (array) wp_unslash( $_REQUEST['submission_ids'] ) )
 			: array();
 		if ( empty( $ids ) ) {
-			return;
+			return 0;
 		}
 
 		global $wpdb;
 		$table = nrfm_get_valid_table( 'submissions' );
 		if ( $table === '' ) {
-			return;
+			return 0;
 		}
 		// Use individual deletes to avoid placeholder count mismatches in prepare()
+		$deleted = 0;
 		foreach ( $ids as $id ) {
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->delete( $table, array( 'id' => (int) $id ), array( '%d' ) );
+			if ( $wpdb->delete( $table, array( 'id' => (int) $id ), array( '%d' ) ) ) {
+				$deleted++;
+			}
 			/** Fires after a submission row is deleted, so add-ons can clean up related data. */
 			do_action( 'nrfm_submission_deleted', (int) $id );
 		}
 		// Clear submission count cache for this form
 		nrfm_clear_submission_cache( $this->form_id );
-		return;
+		delete_transient( 'nrfm_cols_' . $this->form_id );
+		return $deleted;
 	}
 
 	public function no_items() {

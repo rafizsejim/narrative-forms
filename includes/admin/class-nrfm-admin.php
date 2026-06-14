@@ -282,9 +282,6 @@ class NRFM_Admin {
 			case 'save_settings':
 				$this->save_settings();
 				break;
-			case 'bulk_delete_submissions':
-				$this->bulk_delete_submissions();
-				break;
 			case 'bulk_delete_forms':
 				$this->bulk_delete_forms();
 				break;
@@ -393,62 +390,12 @@ class NRFM_Admin {
 		// Redirect to the submissions tab of the same form (consistent behavior)
 		$target = add_query_arg(
 			array(
-				'page'     => 'nrfm-forms',
-				'action'   => 'edit',
-				'form'     => $form_id,
-				'tab'      => 'submissions',
-				'_wpnonce' => wp_create_nonce( 'edit_form' ),
-			),
-			admin_url( 'admin.php' )
-		);
-		wp_safe_redirect( $target );
-		exit;
-	}
-
-	private function bulk_delete_submissions() {
-		if ( ! nrfm_can_manage() ) {
-			return; }
-		$nonce = isset( $_POST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ) : '';
-		if ( ! wp_verify_nonce( $nonce, 'bulk-submissions' ) ) {
-			return;
-		}
-		$form_id = isset( $_POST['form_id'] ) ? intval( wp_unslash( $_POST['form_id'] ) ) : 0;
-		$ids     = isset( $_POST['submission_ids'] ) && is_array( $_POST['submission_ids'] ) ? array_map( 'intval', (array) wp_unslash( $_POST['submission_ids'] ) ) : array();
-		if ( empty( $ids ) || $form_id <= 0 ) {
-			$target = add_query_arg(
-				array(
-					'page'     => 'nrfm-forms',
-					'action'   => 'edit',
-					'form'     => $form_id,
-					'tab'      => 'submissions',
-					'_wpnonce' => wp_create_nonce( 'edit_form' ),
-				),
-				admin_url( 'admin.php' )
-			);
-			wp_safe_redirect( $target );
-			exit;
-		}
-		global $wpdb;
-		$table = nrfm_get_valid_table( 'submissions' );
-		if ( $table === '' ) {
-			return;
-		}
-		foreach ( $ids as $sid ) {
-            // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$wpdb->delete( $table, array( 'id' => $sid ), array( '%d' ) );
-			/** Fires after a submission row is deleted, so add-ons can clean up related data. */
-			do_action( 'nrfm_submission_deleted', (int) $sid );
-		}
-		// Clear cached counts for this form
-		nrfm_clear_submission_cache( $form_id );
-		delete_transient( 'nrfm_cols_' . $form_id );
-		$target = add_query_arg(
-			array(
-				'page'     => 'nrfm-forms',
-				'action'   => 'edit',
-				'form'     => $form_id,
-				'tab'      => 'submissions',
-				'_wpnonce' => wp_create_nonce( 'edit_form' ),
+				'page'             => 'nrfm-forms',
+				'action'           => 'edit',
+				'form'             => $form_id,
+				'tab'              => 'submissions',
+				'nrfm_sub_deleted' => 1,
+				'_wpnonce'         => wp_create_nonce( 'edit_form' ),
 			),
 			admin_url( 'admin.php' )
 		);

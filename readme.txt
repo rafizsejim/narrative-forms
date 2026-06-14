@@ -159,6 +159,7 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 * Forms whose template includes its own form tag now render and submit correctly; the plugin always provides the form wrapper.
 * Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
 * Fixed the form preview being clipped at its edges.
+* Deleting submissions now shows a confirmation message, and bulk deletes ask before removing.
 
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
