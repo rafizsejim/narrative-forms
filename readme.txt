@@ -197,26 +197,8 @@ Learn more about how [Appsero collects and uses this data](https://appsero.com/p
 
 == External services ==
 
-This plugin may connect to external services in the following situations:
+This plugin connects to external services only in these optional cases, and each is off until you enable or allow it.
 
-* Cloudflare Turnstile (optional CAPTCHA)
-  * What it is and why: A free, privacy friendly CAPTCHA by Cloudflare used to protect forms from automated spam.
-  * When data is sent: Only when a page with a Narrative Forms form is viewed (the Turnstile JS is loaded) and when a form is submitted (server verifies the token).
-  * What data is sent:
-    * To the JS endpoint: the browser requests `https://challenges.cloudflare.com/turnstile/v0/api.js` to render the widget.
-    * To the verify endpoint: the server sends the Turnstile response token, your site's secret key, and the requester's IP address to `https://challenges.cloudflare.com/turnstile/v0/siteverify` to validate the submission.
-  * Policies: Terms `https://www.cloudflare.com/website-terms/` and Privacy `https://www.cloudflare.com/privacypolicy/`
-
-* Webhooks (optional, configured by you)
-  * What it is and why: If you add a Webhook action, Narrative Forms will send the submitted form fields to the URL you specify to integrate with external systems (for example marketing automation, CRMs, or servers you control).
-  * When data is sent: After a successful submission, for each configured Webhook action.
-  * What data is sent: Submitted form fields and limited metadata (timestamp, IP address, user agent, referrer). Data is sent as JSON or as URL encoded form data depending on your configuration.
-  * Where it is sent: To the exact URL you configure in the action, on a domain you choose. Any example like `https://example.com/webhook` in the UI or docs is a placeholder; no data is sent there unless you explicitly configure it.
-  * Policies: The destination service is chosen by you. Please consult that service's terms of use and privacy policy.
-
-* Appsero (optional usage analytics, off until you allow it)
-  * What it is and why: Narrative Forms uses the Appsero SDK to understand how the plugin is used so we can fix problems and improve it. See the Privacy section above.
-  * When data is sent: Only after you explicitly allow it through the admin notice. Nothing is sent until then. A short, optional survey may be offered if you deactivate the plugin.
-  * What data is sent: Basic environment and usage details such as the site URL, WordPress and PHP versions, active theme and plugins, your locale, and the admin email used to confirm your choice. No form submissions or visitor data are ever sent.
-  * Where it is sent: To Appsero at `https://api.appsero.com`.
-  * Policies: Privacy `https://appsero.com/privacy-policy/`
+* **Cloudflare Turnstile (optional CAPTCHA).** Used only if you enable Turnstile. When a page with a form loads, the browser requests `https://challenges.cloudflare.com/turnstile/v0/api.js` to render the widget; on submit, the server sends the Turnstile token, your secret key, and the visitor's IP address to `https://challenges.cloudflare.com/turnstile/v0/siteverify` to verify it. Terms: `https://www.cloudflare.com/website-terms/` Privacy: `https://www.cloudflare.com/privacypolicy/`
+* **Webhooks (optional, configured by you).** Used only if you add a Webhook action. After a successful submission, the submitted form fields plus limited metadata (timestamp, IP address, user agent, referrer) are sent as JSON or URL encoded data to the exact URL you configure, on a domain you choose. Example URLs in the UI are placeholders and receive nothing. The destination is your choice, so consult that service's terms and privacy policy.
+* **Appsero (optional usage analytics).** Off until you allow it through the admin notice; nothing is sent before that. It then sends basic environment details (site URL, WordPress and PHP versions, active theme and plugins, locale, and the admin email used to confirm) to `https://api.appsero.com`, plus an optional survey if you deactivate. No form submissions or visitor data are sent. Privacy: `https://appsero.com/privacy-policy/`
