@@ -1018,12 +1018,12 @@ class NRFM_Admin {
 		if ( ! nrfm_can_manage() ) {
 			wp_die( esc_html__( 'Sorry, you are not allowed to access this page.', 'narrative-forms' ) );
 		}
-		$nonce           = isset( $_GET['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ) : '';
 		$is_view_request = ! empty( $_GET['nrfm_view'] );
-		// Always require edit_form nonce for this page
-		if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'edit_form' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'narrative-forms' ) );
-		}
+		// No nonce check on this read-only screen: it is already gated by nrfm_can_manage()
+		// above, and nonces are for state-changing actions, not page views. A GET-nav nonce on
+		// the shared _wpnonce parameter also breaks when another plugin's admin notice reuses
+		// _wpnonce (for example the Appsero opt-in link), causing a false "Security check failed".
+		// The form save action keeps its own nonce.
 		$form_id = isset( $_GET['form'] ) ? intval( wp_unslash( $_GET['form'] ) ) : 0;
 		$form    = new NRFM_Form( $form_id );
 

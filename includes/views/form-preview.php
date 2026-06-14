@@ -28,9 +28,9 @@ $nrfm_form    = new NRFM_Form( $nrfm_form_id );
 		/* Emitted last in <head> so it overrides the theme's page background. Keeps the
 		   preview canvas neutral while the form itself still shows the theme's styling.
 		   (wp_add_inline_style printed too early, so the theme's body background won.) */
-		html, body { background: #fff !important; width: 100%; max-width: 100%; text-align: left; }
+		html, body { background: #fff !important; width: 100%; max-width: 100%; margin: 0; padding: 0; text-align: left; }
 		body::before, body::after, body > *:not(#form-preview) { display: none !important; }
-		#form-preview { display: block !important; width: 100%; height: 100%; padding: 20px; border: 0; margin: 0; }
+		#form-preview { display: block !important; box-sizing: border-box; width: 100%; height: 100%; padding: 20px; border: 0; margin: 0; }
 	</style>
 </head>
 <body class="page-template-default page">

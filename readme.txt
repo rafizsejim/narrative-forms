@@ -157,6 +157,8 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 * Simplified the field setup panel by removing a nested box.
 * Removed the redirect after error option. Form errors now always show inline, the same way in AJAX and non JavaScript submissions.
 * Forms whose template includes its own form tag now render and submit correctly; the plugin always provides the form wrapper.
+* Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
+* Fixed the form preview being clipped at its edges.
 
 = 1.0.1 =
 * Added optional usage analytics through the Appsero SDK. Nothing is collected unless you allow it in the admin notice. See the Privacy section.
