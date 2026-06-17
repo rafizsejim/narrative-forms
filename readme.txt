@@ -4,7 +4,7 @@ Tags: html forms, contact form, form builder, custom form, frontend submission
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -151,8 +151,10 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Changelog ==
 
-= 1.0.3 =
+= 1.0.4 =
 * Added a developer hook for add-ons: nrfm_field_buttons_after (after the editor toolbar).
+
+= 1.0.3 =
 * Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
 * Deleting submissions now shows a confirmation message, and bulk deletes ask before removing.
 * Fixed the form preview being clipped at its edges.
@@ -182,6 +184,9 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 * Customisable success and error messages, redirects, and template tags.
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+Adds a developer hook (nrfm_field_buttons_after) so add-ons can extend the form editor toolbar. No changes for existing forms.
 
 = 1.0.3 =
 Fixes a Security check failed notice on the form edit screen, adds a confirmation when deleting submissions, and stops the form preview from being clipped.
