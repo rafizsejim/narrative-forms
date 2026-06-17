@@ -152,6 +152,7 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 == Changelog ==
 
 = 1.0.3 =
+* Added a developer hook for add-ons: nrfm_field_buttons_after (after the editor toolbar).
 * Fixed a Security check failed error that could appear when dismissing the usage analytics notice on the form edit screen.
 * Deleting submissions now shows a confirmation message, and bulk deletes ask before removing.
 * Fixed the form preview being clipped at its edges.

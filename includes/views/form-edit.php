@@ -128,7 +128,18 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                     <button type="button" class="button nrfm-field-btn" data-field="file"><?php esc_html_e('File Upload', 'narrative-forms'); ?></button>
                     <button type="button" class="button nrfm-field-btn" data-field="submit"><?php esc_html_e('Submit Button', 'narrative-forms'); ?></button>
                 </div>
-                
+                <?php
+                /**
+                 * Fires right after the field-insert toolbar on the form edit screen.
+                 *
+                 * Add-ons can render extra editor tools here (for example an AI form
+                 * generator button) without forking this template.
+                 *
+                 * @param NRFM_Form $form The form being edited.
+                 */
+                do_action( 'nrfm_field_buttons_after', $form );
+                ?>
+
                 <p class="description" style="margin-bottom:20px;">
                     <?php echo esc_html__('Use the buttons above to generate your field HTML, or manually modify your form below.', 'narrative-forms'); ?>
                 </p>
