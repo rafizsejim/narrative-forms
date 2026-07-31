@@ -196,7 +196,8 @@
             
             if (data.success && data.data) {
                 messageDiv.className += ' nrfm-success';
-                messageDiv.textContent = data.data.message || 'Thank you! Your form has been submitted.';
+                // Server sanitizes the message with wp_kses_post, so rendering as HTML is safe and lets admins style it.
+                messageDiv.innerHTML = data.data.message || 'Thank you! Your form has been submitted.';
                 
                 // Insert message before form
                 wrapper.insertBefore(messageDiv, form);
@@ -218,7 +219,7 @@
                 emit('success', form, { response: data });
             } else {
                 messageDiv.className += ' nrfm-error';
-                messageDiv.textContent = (data.data && data.data.message) ? data.data.message : (form.getAttribute('data-msg-error') || 'An error occurred. Please try again.');
+                messageDiv.innerHTML = (data.data && data.data.message) ? data.data.message : (form.getAttribute('data-msg-error') || 'An error occurred. Please try again.');
                 
                 // Insert message before form
                 wrapper.insertBefore(messageDiv, form);
@@ -245,7 +246,7 @@
             // Show error message
             var messageDiv = document.createElement('div');
             messageDiv.className = 'nrfm-message nrfm-error';
-            messageDiv.textContent = (form.getAttribute('data-msg-error') || 'An error occurred. Please try again.');
+            messageDiv.innerHTML = (form.getAttribute('data-msg-error') || 'An error occurred. Please try again.');
             wrapper.insertBefore(messageDiv, form);
             emit('error', form, { error: error });
             emit('submitted', form, { error: error });

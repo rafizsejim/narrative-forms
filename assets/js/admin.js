@@ -92,7 +92,14 @@
             if (!$input.length) {
                 return;
             }
-            var isEnabled = $input.is(':checked');
+            var matchValue = $group.data('parent-value');
+            var isEnabled;
+            if (typeof matchValue !== 'undefined' && matchValue !== '') {
+                // Value-match mode (e.g. a <select>): show when the parent equals this value.
+                isEnabled = (String($input.val()) === String(matchValue));
+            } else {
+                isEnabled = $input.is(':checked');
+            }
             $group.toggle(isEnabled);
         }
 
@@ -100,7 +107,7 @@
             applyVisibility($(this));
         });
 
-        $(document).on('change', '#nrfm-form-editor #tab-settings input[type="checkbox"], .nrfm-settings-wrap input[type="checkbox"]', function() {
+        $(document).on('change', '#nrfm-form-editor #tab-settings input[type="checkbox"], .nrfm-settings-wrap input[type="checkbox"], .nrfm-settings-wrap select', function() {
             $children.each(function() {
                 applyVisibility($(this));
             });

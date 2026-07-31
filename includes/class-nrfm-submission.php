@@ -491,7 +491,7 @@ class NRFM_Submission {
         }
         
         // Check required fields. Build the list from the markup, then let extensions
-        // (e.g. PRO conditional logic) drop fields that are hidden for this submission.
+        // (e.g. the built-in conditional logic) drop fields that are hidden for this submission.
         preg_match_all('/name=["\']([^"\']+)["\'][^>]*required/i', $html, $required_matches);
         $required_fields = array();
         if (!empty($required_matches[1])) {

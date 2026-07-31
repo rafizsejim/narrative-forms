@@ -1,26 +1,26 @@
 === HTML Forms & Contact Form for WordPress: Narrative Forms ===
 Contributors: narrativecode
-Tags: html forms, contact form, form builder, custom form, frontend submission
+Tags: html forms, contact form, form builder, custom form, conditional logic
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.0.4
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-The HTML form plugin for WordPress: build a contact form or custom form by pasting any HTML, even from AI. Fast AJAX, no drag and drop.
+HTML form plugin for WordPress: build a contact form or any custom form from HTML or AI. Conditional logic, webhooks, file uploads, no builder.
 
 == Description ==
 
-Narrative Forms is the HTML form plugin for WordPress. Instead of dragging boxes around a builder, you write plain semantic HTML, or paste it straight from an AI like ChatGPT, Claude, or Gemini, and Narrative Forms turns it into a real form with fast AJAX form submissions and stored, exportable data. Any input with a name attribute is saved. That is the whole idea: forms are just HTML, so there is no field type registry, nothing proprietary to lock you in, and no ceiling on what your form can be. If you want a clean, fast, developer friendly HTML form plugin, a simple contact form, or a custom form that a heavy form builder cannot easily produce, this is it. It stays lightweight, loads its assets only on pages that contain a form, and is built to scale to millions of submissions.
+Narrative Forms is the HTML form plugin for WordPress. Instead of dragging boxes around a builder, you write plain semantic HTML, or paste it straight from an AI like ChatGPT, Claude, or Gemini, and Narrative Forms turns it into a real form with fast AJAX form submissions and stored, exportable data. Any input with a name attribute is saved. That is the whole idea: forms are just HTML, so there is no field type registry, nothing proprietary to lock you in, and no ceiling on what your form can be. If you want a clean, fast, developer friendly HTML form plugin, a simple contact form, or a custom form that a heavy form builder cannot easily produce, this is it. It stays lightweight, loads its assets only on pages that contain a form, and is built to scale to millions of submissions. Everything it does is free, with no premium tier: the AI form builder, conditional logic, webhooks with delivery logs and retries, a REST API, require login, schedule windows, and hosted share links are all included at no cost.
 
 = Why an HTML form plugin beats a drag and drop builder =
 
 Most WordPress form plugins lock you into a drag and drop form builder and a fixed list of field types. If the builder does not offer a field, you cannot have it. Narrative Forms is an HTML form plugin with no field registry: a field is simply an HTML element with a name. Need a multi step layout, an unusual input, a custom widget, or markup your designer already wrote? Paste it in and it works. You keep full control of the markup, the classes, and the look, so your contact form or custom form renders exactly the way you built it. Drag and drop made sense years ago. Today you describe what you want or paste what you already have. No builder, no bloat, and no fighting a clunky UI to recreate a form you can already picture. That is why people who outgrow a drag and drop form builder move to a real HTML form plugin.
 
-= Build forms with AI: paste from ChatGPT, Claude, or Gemini =
+= Build forms with AI, built in or pasted from ChatGPT, Claude, or Gemini =
 
-Because forms are just HTML, any large language model can build one for you. Ask ChatGPT, Claude, Gemini, or your favourite AI for a contact form with a name, email, a dropdown, and a file upload, copy the HTML it returns, and paste it into Narrative Forms. There is no proprietary field format to satisfy, so whatever the AI generates simply works as an HTML form. That makes Narrative Forms an AI friendly form plugin: you bring your own model, paste the markup, and ship the form. The free plugin is completely model agnostic, so you are never tied to one AI. Prefer it built in? AI form generation that writes the HTML for you inside WordPress is on the Narrative Forms Pro roadmap. For now, the free HTML form plugin already works with any AI you paste in.
+Because forms are just HTML, any large language model can build one for you, and Narrative Forms gives you two ways to use that. The built in AI form builder writes the form HTML for you right inside WordPress: open a form, click Generate with AI, describe what you want, and keep refining it by chatting. You bring your own API key for an OpenAI compatible provider such as DeepSeek, OpenAI, or OpenRouter, so you stay in control of the model and the cost. You can also paste from anywhere: ask ChatGPT, Claude, or Gemini for a form and drop the HTML in, because there is no proprietary field format to satisfy. Either way, the plugin stays model agnostic, ships with no AI key, and contacts no AI service until you add one; see the Privacy and External services sections for what is sent and when.
 
 = Everything in the free HTML forms plugin =
 
@@ -28,27 +28,37 @@ The free HTML forms plugin is a complete forms solution, not a teaser. Here is w
 
 * **Fast AJAX form submissions.** Forms submit without a page reload, and there is a graceful fallback when JavaScript is turned off, so the form never breaks for a visitor. AJAX form submissions also keep your pages cache friendly, because the page can stay static while the form posts in the background.
 * **A built in HTML editor.** One click field buttons generate the markup for common fields, and a live preview shows the form as you type. Write the HTML by hand, scaffold it quickly with the buttons, or paste a form an AI wrote for you. The editor never hides your markup behind a visual builder, so what you see is what ships.
+* **A built in AI form builder.** Describe the form you want and let AI write the HTML for you inside WordPress, then keep refining it by chatting. You bring your own API key for an OpenAI compatible provider (DeepSeek, OpenAI, OpenRouter, or a custom endpoint), so you control the model and the cost. Your key is stored for administrators only and is never exposed to visitors.
+* **Conditional logic.** Show or hide any field based on what the visitor enters, using simple match rules. A hidden required field is dropped from validation automatically, so a conditional logic rule never blocks a submission.
 * **Email notifications.** Send a clean, readable email for every form submission, to yourself or any address, in plain text or HTML. Each field is formatted tidily, and you can route different forms to different inboxes with separate email actions.
-* **Webhook actions.** Send form data to any URL when the form is submitted. Connect your forms to Zapier, Make, a CRM, or your own endpoint with a webhook, no code required, and add more than one webhook action per form so one submission can fan out to several services.
+* **Webhook actions with delivery logs, retries, and templates.** Send form data to any URL when the form is submitted, with no code, and add more than one webhook per form so one submission can fan out to several services. Every webhook call is recorded in a delivery log, failed calls retry automatically with backoff, and reusable webhook templates ship with one click Discord, Slack, and Microsoft Teams presets plus custom JSON payloads and request headers.
+* **REST API.** Read and manage your form submissions programmatically through a REST API (namespace nrfm/v1), authenticated by a capability check or an API key you generate. Connect your forms to another app, a dashboard, or your own tooling.
 * **File upload form fields.** Accept a file upload field with a maximum file size and a maximum number of files per field. Uploaded files are stored safely in the WordPress media folder and recorded with the submission, so building a file upload form is one paste of HTML away.
 * **Stored form submissions and CSV export.** Optionally keep every submission in a fast, indexed database table that you browse in the admin. Run a CSV export of your form submissions at any time; the export streams in batches, so it works even with very large numbers of submissions and never times out.
+* **Save and resume.** Let visitors save a long form as a draft and continue later from a private resume link. Drafts expire automatically and are cleared once the form is submitted.
+* **Submission notifications.** An unread badge on the Forms menu and the submissions list flags new entries, so a fresh form submission never slips by.
+* **Require login.** Restrict any form to logged in users only, with your own message and login link for signed out visitors.
+* **Schedule windows.** Open and close a form automatically on the dates and times you set, with separate messages for before it opens and after it closes.
+* **Direct share links.** Give any form its own hosted URL, so you can share a working form without adding it to a page or copying a shortcode.
 * **Layered spam protection.** Stop bots with a honeypot, a time trap that rejects instant submissions, a same origin referrer check, a limit on the number of links in a message, and an optional rate limit per IP. You can also switch on Cloudflare Turnstile for a privacy respecting CAPTCHA. This spam protection adds no third party tracking to your site.
 * **Custom messages and redirects.** Set your own success and error messages, redirect to any URL after a successful submit, and use template tags so the form behaves exactly how you want.
 * **Clean, optional styling.** A calm, minimal stylesheet ships with the plugin and is on by default, and you can switch it off in one click if your theme or custom CSS should own the look. Semantic wrapper classes keep your theme in charge of how your HTML form appears.
 
 Every output is escaped and every input is sanitised, following WordPress coding and security standards, so the plugin stays review safe and secure.
 
+= Send form data anywhere with webhooks and a REST API =
+
+Narrative Forms is built to move your form submissions wherever they need to go. Add a webhook action with your endpoint URL and every submission is delivered to that webhook, so you can connect a form to Zapier, Make, a CRM, Discord, Slack, Microsoft Teams, or your own service without writing code. A webhook delivery log shows every call and its response, failed webhooks retry automatically with backoff, and webhook templates let you shape a custom JSON payload with one click presets for Discord, Slack, and Teams. When you would rather pull data than push it, the REST API exposes your form submissions under the nrfm/v1 namespace, protected by a capability check or an API key. Add conditional logic to show or hide fields, require login to restrict a form, and schedule windows to open and close it automatically, and your form data never gets stuck in the admin.
+
 = Contact forms, custom forms, and every form in between =
 
-Narrative Forms is a general purpose form plugin, so the same HTML first workflow covers almost any form you need to build. Use it for a simple contact form, a lead capture form, a support request form, a job application, an RSVP, a survey, a registration form, a file upload form, or a custom form with a layout that a drag and drop builder cannot easily produce. Because a field is just an HTML element with a name attribute, you can mix text inputs, email fields, dropdowns, checkboxes, radio buttons, date pickers, textareas, and file upload fields in any structure you like.
+Narrative Forms is a general purpose form plugin, so the same HTML first workflow covers almost any form you need to build. Use it for a simple contact form, a lead capture form, a support request form, a job application, an RSVP, a survey, a registration form, a file upload form, or a custom form with a layout that a drag and drop builder cannot easily produce. Because a field is just an HTML element with a name attribute, you can build the exact contact form or custom form you have in mind and wire it to email, a webhook, or the REST API.
 
-Agencies and developers reach for this HTML form plugin when a client needs a form that does not fit a builder's template: a multi column layout, a branded card, a stepper, a pricing calculator, or markup a designer handed over. You paste the HTML, give the fields names, and the form is live with AJAX form submissions, stored data, and CSV export. There is no template to fight and no field type you cannot add, which is the difference between an HTML form plugin and a drag and drop form builder.
-
-It is also a great fit when you want to keep your stack lean. A single lightweight form plugin handles your contact form, your file upload form, and your custom forms, with email and webhook actions for routing, layered spam protection to keep out bots, and stored form submissions you can export to CSV whenever you need them. Whether you collect a handful of submissions a month or millions over time, the same plugin scales with you.
+Agencies and developers reach for this HTML form plugin when a client needs a form that does not fit a builder's template: a multi column layout, a branded card, a stepper, a pricing calculator, or markup a designer handed over. You paste the HTML, give the fields names, and the form is live with AJAX form submissions, stored data, conditional logic, and CSV export. There is no template to fight and no field type you cannot add, which is the difference between an HTML form plugin and a drag and drop form builder. Whether you collect a handful of submissions a month or millions over time, the same lightweight form plugin scales with you.
 
 = Developer friendly HTML form plugin =
 
-Narrative Forms is built for people who like control. Prefill fields with template variables such as {{ user.email }}, {{ get.utm_source | default:'direct' }}, or {{ site.name }}, using providers like user, URL parameters, post, site, and date, each with filters such as default, upper, lower, date, and truncate. On the front end, public JavaScript events (`nrfm-submit`, `nrfm-submitted`, `nrfm-success`, `nrfm-error`) let you push conversions to Google Tag Manager or your dataLayer, show a toast, or run any custom logic with a tiny nrfm.on() helper. Filters and actions sit at every decision point, including the form HTML, validation, and webhook request arguments, so you can extend this HTML form plugin without forking it.
+Narrative Forms is built for people who like control. Prefill fields with template variables such as {{ user.email }}, {{ get.utm_source | default:'direct' }}, or {{ site.name }}, using providers like user, URL parameters, post, site, and date, each with filters such as default, upper, lower, date, and truncate. On the front end, public JavaScript events (`nrfm-submit`, `nrfm-submitted`, `nrfm-success`, `nrfm-error`) let you push conversions to Google Tag Manager or your dataLayer, show a toast, or run any custom logic with a tiny nrfm.on() helper. Filters and actions sit at every decision point, including the form HTML, validation, and webhook request arguments, and a REST API is available for reading and managing form submissions, so you can extend this HTML form plugin without forking it.
 
 = Built to scale to millions of form submissions =
 
@@ -57,85 +67,50 @@ Narrative Forms is engineered for sites that collect a lot of data. Form submiss
 = Who this HTML forms plugin is for =
 
 * Developers and agencies who want a contact form or custom HTML form they fully control, without a heavy builder.
-* Anyone who uses an AI assistant: generate the HTML, paste it, and you are done.
-* Site owners who need reliable form submissions, email notifications, file upload forms, and CSV export without the bloat.
+* Anyone who uses an AI assistant: generate the HTML with the built in AI form builder or paste it from ChatGPT, and you are done.
+* Site owners who need reliable form submissions, email notifications, webhooks, file upload forms, and CSV export without the bloat.
+* Teams that want conditional logic, require login, scheduled forms, and a REST API without paying for a premium tier.
 * Teams that have outgrown a drag and drop form builder and want a faster, lighter way to build forms.
 
-Common uses include contact forms, lead capture, support requests, job applications, RSVPs, surveys, file uploads, registrations, and multi field custom forms that a drag and drop builder cannot easily produce.
-
-= Upgrade to Narrative Forms Pro =
-
-Narrative Forms Pro keeps the same lightweight, HTML first core and adds the power features that busy sites and agencies need:
-
-* Conditional logic: show or hide fields, and trigger actions, based on what the visitor enters.
-* Save and resume: let visitors save a long form as a draft and finish it later from where they left off.
-* Submission notifications: a badge for unread form submissions in the admin so a new entry never slips by.
-* Require login: restrict any form to logged in users only.
-* Schedule windows: open and close a form automatically on the date and time you set.
-* Advanced webhooks: reusable webhook templates, automatic retries with backoff, and a delivery log for every call.
-* REST API: read form submissions programmatically and connect your forms to anything.
-* Share links: generate a hosted, shareable link to any form.
-
-AI form generation, which writes the HTML for you from a plain language description, is on the Pro roadmap. Today the free HTML form plugin already works with any AI you paste in. Learn more at https://narrative-forms.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=free
+Common uses include contact forms, lead capture, support requests, job applications, RSVPs, surveys, file uploads, registrations, and multi field custom forms with conditional logic that a drag and drop builder cannot easily produce.
 
 = Publish form submissions with Frontend Submissions (Views) =
 
-Most form plugins keep submissions locked in the admin. The Narrative Forms Frontend Submissions add on turns your form submissions into front end content with reusable Views: display any form's submissions as a public directory, a testimonial wall, a photo gallery, a job board, an event timeline, or product reviews, with instant search, pagination, single pages, per field privacy, and approval moderation. Frontend submission display is a paid add on that requires the free Narrative Forms plugin. Collect with the form, publish with a View. Learn more at https://narrative-forms.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=free
-
-== Installation ==
-
-1. Install Narrative Forms from Plugins, then Add New in your WordPress dashboard, or upload the plugin folder to `/wp-content/plugins/` and activate it. A ready to use Contact Form is created on a fresh install, so you can start from a working example instead of a blank screen.
-2. Go to Narrative Forms, then Add New, then write or paste your form HTML, or use the one click field buttons to scaffold it. You can also paste markup generated by an AI such as ChatGPT or Gemini. Make sure every input, select, and textarea has a name attribute so its data is saved.
-3. Copy the form's shortcode and paste it into any post, page, or block where you want the HTML form to appear.
-4. Optional: enable stored form submissions, set up email or webhook actions, configure spam protection, and customise the success message and redirect under the form's tabs.
-
-That is it. Your HTML form is live with fast AJAX form submissions and stored, exportable data.
+Most form plugins keep submissions locked in the admin. The Narrative Forms Frontend Submissions add on turns your form submissions into front end content with reusable Views: display any form's submissions as a public directory, a testimonial wall, a photo gallery, a job board, an event timeline, or product reviews, with instant search, pagination, single pages, per field privacy, and approval moderation. Frontend submission display is the one paid add on and it requires the free Narrative Forms plugin. Collect with the form, publish with a View. Learn more at https://narrative-forms.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=free
 
 == Frequently Asked Questions ==
 
 = What is the best HTML form plugin for WordPress? =
 
-If you want full control of your markup, Narrative Forms is built to be the simplest HTML form plugin for WordPress. You write or paste plain HTML, or generate it with an AI, and any input with a name attribute becomes a saved field. There is no drag and drop builder and no field type registry to limit you, so the form is exactly what you build, from a basic contact form to a complex custom form.
+If you want full control of your markup, Narrative Forms is built to be the simplest HTML form plugin for WordPress. You write or paste plain HTML, or generate it with an AI, and any input with a name attribute becomes a saved field. There is no drag and drop builder and no field type registry to limit you, so the form is exactly what you build, from a basic contact form to a complex custom form with conditional logic and file uploads.
 
 = How do I create an HTML contact form without a builder? =
 
 Go to Narrative Forms, then Add New, and write or paste your contact form HTML, or use the one click field buttons to scaffold it. Give every input, select, and textarea a name attribute so its value is saved. Copy the generated shortcode into any post, page, or block, and your HTML contact form is live with fast AJAX form submissions and optional stored data.
 
-= Can I paste a form from ChatGPT or another AI? =
+= Does Narrative Forms have a built in AI form builder? =
 
-Yes. Ask ChatGPT, Claude, Gemini, or any AI for the form markup, then paste it straight into the editor. Because Narrative Forms saves any named HTML field and has no proprietary field format, whatever the model generates works as is. If you would like AI form generation built into WordPress so you can create a form from a single sentence, that is on the Narrative Forms Pro roadmap.
+Yes. The built in AI form builder writes the form HTML for you inside WordPress: click Generate with AI, describe the form you want, and keep refining it by chatting. You bring your own API key for an OpenAI compatible provider such as DeepSeek, OpenAI, or OpenRouter, so you control the model and the cost. You can also paste a form from ChatGPT, Claude, or Gemini, because Narrative Forms saves any named HTML field.
 
-= Is there a drag and drop builder? =
+= How do I show or hide fields with conditional logic? =
 
-No, and that is on purpose. Drag and drop form builders are slow and limit you to their field types, while an HTML form plugin lets you build anything. With Narrative Forms you write, paste, or AI generate plain HTML and keep full control of the markup and styling. For anyone comfortable with HTML, or with an AI assistant, it is dramatically faster than a drag and drop form builder.
+Open the form's Conditional Logic tab and add a rule such as show or hide a field when another field equals, contains, is greater than, or is empty. Conditional logic runs in the browser for an instant response and is enforced again on the server, and any required field hidden by a rule is dropped from validation so it never blocks a submission.
 
-= Does it support file upload forms? =
+= How do I send form data to a webhook such as Discord, Slack, or Zapier? =
 
-Yes. Add a file upload field to your HTML and Narrative Forms handles it, with a configurable maximum file size and a maximum number of files per field. Uploaded files are stored safely in the WordPress media folder and recorded with the submission, so a file upload form takes one paste of HTML.
+Open the form's Actions tab and add a webhook action with your endpoint URL. On each submission the field data is sent to that webhook URL, so you can connect Narrative Forms to Zapier, Make, a CRM, or your own service without writing code. Webhook templates include one click Discord, Slack, and Teams presets, every call is recorded in a delivery log, and failed webhooks retry automatically. You can add more than one webhook per form.
 
 = Where are form submissions stored, and can I export them to CSV? =
 
-You can optionally store every submission in a dedicated, indexed database table that you view in the admin. Run a CSV export of your form submissions at any time; the export streams in batches, so it works even with very large numbers of submissions. You can also forward form submissions by email or webhook instead of, or in addition to, storing them.
+You can optionally store every submission in a dedicated, indexed database table that you view in the admin. Run a CSV export of your form submissions at any time; the export streams in batches, so it works even with very large numbers of submissions. You can also forward form submissions by email or webhook, or read them through the REST API, instead of or in addition to storing them.
 
-= How do I send form data to a webhook? =
+= Is there a REST API for form submissions? =
 
-Open the form's Actions tab and add a webhook action with your endpoint URL. On each submission the field data is sent to that webhook URL, so you can connect Narrative Forms to Zapier, Make, a CRM, or your own service without writing any code. You can add more than one webhook per form.
-
-= How does Narrative Forms block spam? =
-
-It layers several lightweight, privacy friendly checks for spam protection: a honeypot field, a time trap that rejects instant bot submissions, a same origin referrer check, a limit on the number of links in a submission, and an optional rate limit per IP. You can also enable Cloudflare Turnstile for a privacy respecting CAPTCHA. This spam protection adds no third party tracking to your site.
-
-= Is it a lightweight form plugin that works with caching and at scale? =
-
-Yes. The plugin loads its CSS and JavaScript only on pages that contain a form, the admin is intentionally minimal, and form submissions use a fast indexed table with cached reads and bounded, paginated queries. It is a lightweight form plugin built to stay quick from your first submission to your millionth, and it works with page caching because submissions go through AJAX.
-
-= How do I track form conversions in Google Tag Manager or analytics? =
-
-Narrative Forms fires public JavaScript events on submit; `nrfm-success` is the one you usually want. Listen for it with the nrfm.on('success', ...) helper or a standard event listener, then push a custom event to your dataLayer for Google Tag Manager or fire a Google Analytics event. You can also read the submitted values with FormData.
+Yes. Narrative Forms exposes a REST API under the nrfm/v1 namespace so another application can read and manage your form submissions. Requests are authenticated by a capability check or by an API key you generate in Settings, so access stays under your control. It is handy for dashboards, integrations, and your own tooling.
 
 = Can I display form submissions on the front end? =
 
-Yes, with the Narrative Forms Frontend Submissions add on, which publishes your form submissions as public Views such as directories, testimonials, galleries, and listings, with instant search, single pages, per field privacy, and approval moderation. Frontend submission display is a paid add on; the free HTML form plugin focuses on collecting, storing, and routing your form submissions.
+Yes, with the Narrative Forms Frontend Submissions add on, which publishes your form submissions as public Views such as directories, testimonials, galleries, and listings, with instant search, single pages, per field privacy, and approval moderation. Frontend submission display is the one paid add on; the free HTML form plugin focuses on collecting, storing, and routing your form submissions.
 
 == Screenshots ==
 
@@ -143,13 +118,27 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 2. No field type limits in this HTML form plugin: a table booking form with a seating switcher, a guest stepper, and native date and time pickers.
 3. Build a custom form fast: an instant quote form with selectable option cards and range sliders that update a live price.
 4. The built in HTML editor with one click field buttons, a live preview, and a file upload form field with size and count limits.
-5. Form settings: store form submissions, hide the form, or redirect after submit, with template tokens like [NAME] and [NRFM_IP_ADDRESS].
-6. Email notifications for every form submission, in plain text or HTML, with a template token for each field.
-7. Webhook actions: send form data to any webhook URL after every submission, with no code.
-8. Appearance and protection settings: an optional stylesheet, honeypot, and Cloudflare Turnstile, privacy friendly with no third party tracking.
-9. Advanced spam protection and data settings: a time trap, same origin check, link limit, and rate limit per IP.
+5. The built in AI form builder writing a WordPress form from a plain language prompt, with your own OpenAI compatible API key.
+6. Conditional logic rules that show or hide a field based on what the visitor enters.
+7. Webhook actions with a delivery log and automatic retries, plus Discord, Slack, and Teams payload templates.
+8. Stored form submissions in the admin with one click, batched CSV export.
+9. Appearance and protection settings: an optional stylesheet, honeypot, and Cloudflare Turnstile, privacy friendly with no third party tracking.
 
 == Changelog ==
+
+= 1.2.0 =
+* New: webhook delivery logs and automatic retries. See every webhook call and its response, and failed calls retry automatically with backoff.
+* New: webhook templates with Discord, Slack, and Microsoft Teams presets, plus custom JSON payloads and request headers.
+* New: REST API for form submissions (namespace nrfm/v1), authenticated by a capability check or an API key.
+* New: require login. Restrict any form to logged in users, with your own message and login link.
+* New: schedule windows. Open and close a form automatically on the dates and times you set.
+* New: direct share links. Give any form its own hosted URL, with no page or shortcode required.
+
+= 1.1.0 =
+* New: built in AI form builder. Describe a form and let AI write the HTML for you inside WordPress, then keep refining it by chatting. Bring your own API key for an OpenAI compatible provider (DeepSeek, OpenAI, OpenRouter, or a custom endpoint). See the External services and Privacy sections.
+* New: conditional logic. Show or hide any field based on what the visitor enters.
+* New: save and resume. Visitors can save a long form as a draft and finish later from a private resume link.
+* New: submission notifications. An unread badge flags new form submissions in the admin.
 
 = 1.0.4 =
 * Added a developer hook for add-ons: nrfm_field_buttons_after (after the editor toolbar).
@@ -185,6 +174,12 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Upgrade Notice ==
 
+= 1.2.0 =
+Adds webhook delivery logs and retries, webhook templates, a REST API, require login, schedule windows, and share links, all free. Existing forms keep working.
+
+= 1.1.0 =
+Adds a built in AI form builder, conditional logic, save and resume, and submission notifications, all free. Existing forms keep working.
+
 = 1.0.4 =
 Adds a developer hook (nrfm_field_buttons_after) so add-ons can extend the form editor toolbar. No changes for existing forms.
 
@@ -217,3 +212,4 @@ This plugin connects to external services only in these optional cases, and each
 * **Cloudflare Turnstile (optional CAPTCHA).** Used only if you enable Turnstile. When a page with a form loads, the browser requests `https://challenges.cloudflare.com/turnstile/v0/api.js` to render the widget; on submit, the server sends the Turnstile token, your secret key, and the visitor's IP address to `https://challenges.cloudflare.com/turnstile/v0/siteverify` to verify it. Terms: `https://www.cloudflare.com/website-terms/` Privacy: `https://www.cloudflare.com/privacypolicy/`
 * **Webhooks (optional, configured by you).** Used only if you add a Webhook action. After a successful submission, the submitted form fields plus limited metadata (timestamp, IP address, user agent, referrer) are sent as JSON or URL encoded data to the exact URL you configure, on a domain you choose. Example URLs in the UI are placeholders and receive nothing. The destination is your choice, so consult that service's terms and privacy policy.
 * **Appsero (optional usage analytics).** Off until you allow it through the admin notice; nothing is sent before that. It then sends basic environment details (site URL, WordPress and PHP versions, active theme and plugins, locale, and the admin email used to confirm) to `https://api.appsero.com`, plus an optional survey if you deactivate. No form submissions or visitor data are sent. Privacy: `https://appsero.com/privacy-policy/`
+* **AI form builder (optional, configured by you).** Off until you enter an API key under Narrative Forms, then Settings. It then contacts your chosen AI provider only when you click Generate on a form, sending your instruction text and the current form markup in the editor to that provider's chat completions endpoint. Nothing is sent at any other time, and no form submissions or visitor data are ever sent. You use your own account and API key with the provider you pick, so your request is governed by that provider's terms and privacy policy. Supported endpoints: DeepSeek `https://api.deepseek.com` (Privacy: `https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html`), OpenAI `https://api.openai.com` (Privacy: `https://openai.com/policies/privacy-policy/`), OpenRouter `https://openrouter.ai` (Privacy: `https://openrouter.ai/privacy`), or any OpenAI compatible endpoint you configure. Your API key is stored for administrators only and is never sent to the browser or to visitors.

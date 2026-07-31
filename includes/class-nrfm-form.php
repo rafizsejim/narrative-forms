@@ -90,7 +90,7 @@ class NRFM_Form {
 
     /**
      * Centralized default settings for a form (single source of truth).
-     * Filters are preserved for PRO/extension points.
+     * Filters are preserved as extension points.
      */
     public static function default_settings() {
         return apply_filters('nrfm_form_default_settings', array(
@@ -145,7 +145,7 @@ class NRFM_Form {
         // Show message if exists
         if ($result) {
             $class = $result['success'] ? 'nrfm-success' : 'nrfm-error';
-            $html .= '<div class="nrfm-message ' . $class . '">' . esc_html($result['message']) . '</div>';
+            $html .= '<div class="nrfm-message ' . $class . '">' . wp_kses_post($result['message']) . '</div>';
             
             // Hide form if successful and setting enabled
             if ($result['success'] && $this->settings['hide_after_success']) {
@@ -203,13 +203,13 @@ class NRFM_Form {
         $form_html .= '<div class="nrfm-fields-wrap">' . $content . '</div>';
         $form_html .= '</form>';
         
-        // PRO HOOK: Filter form HTML
+        // Extension hook: Filter form HTML
         $form_html = apply_filters('nrfm_form_html', $form_html, $this);
         
         $html .= $form_html;
         $html .= '</div>';
         
-        // PRO HOOK: Filter complete rendered output
+        // Extension hook: Filter complete rendered output
         $html = apply_filters('nrfm_form_render', $html, $this);
         
         return $html;

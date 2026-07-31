@@ -10,6 +10,13 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
  * Submissions table (WP_List_Table) for a single form
  */
 class NRFM_Submissions_Table extends WP_List_Table {
+	/**
+	 * Maximum number of form-field columns shown in the list. The full record is
+	 * always available on the View screen, and every field is in the CSV export,
+	 * so a wide form stays scannable here without losing any data.
+	 */
+	const MAX_COLUMNS = 6;
+
 	private $form_id;
 	private $field_keys   = array();
 	private $field_labels = array();
@@ -127,18 +134,18 @@ class NRFM_Submissions_Table extends WP_List_Table {
 					foreach ( $val as $v ) {
 						$vv = is_scalar( $v ) ? (string) $v : '';
 						if ( $vv !== '' && isset( $choice_map[ $vv ] ) ) {
-							$parts[] = $choice_map[ $vv ];
+							$parts[] = $this->strip_redundant_code( (string) $choice_map[ $vv ], $vv );
 						} else {
 							$parts[] = $vv;
 						}
 					}
-					return esc_html( implode( ', ', $parts ) );
+					return $this->truncated_html( implode( ', ', $parts ) );
 				}
 				$str = (string) $val;
 				if ( $str !== '' && isset( $choice_map[ $str ] ) ) {
-					$str = (string) $choice_map[ $str ];
+					$str = $this->strip_redundant_code( (string) $choice_map[ $str ], $str );
 				}
-				return esc_html( mb_substr( $str, 0, 80 ) );
+				return $this->truncated_html( $str );
 			}
 			return '-';
 		}
@@ -188,7 +195,7 @@ class NRFM_Submissions_Table extends WP_List_Table {
 		// Use WP expected id to enable select-all behavior
 		$cols = array( 'cb' => '<input id="cb-select-all-1" type="checkbox" />' );
 		foreach ( $this->field_keys as $k ) {
-			$cols[ $k ] = esc_html( $this->sanitize_label_for_column( $k, $this->field_labels[ $k ] ) );
+			$cols[ $k ] = $this->truncated_html( $this->sanitize_label_for_column( $k, $this->field_labels[ $k ] ) );
 		}
 		$cols['submitted_on'] = __( 'Submitted On', 'narrative-forms' );
 		$cols['actions']      = __( 'Actions', 'narrative-forms' );
@@ -227,7 +234,7 @@ class NRFM_Submissions_Table extends WP_List_Table {
 			if ( is_array( $schema ) && ! empty( $schema ) ) {
 				$labels = array();
 				foreach ( $schema as $k ) {
-					if ( count( $labels ) >= 12 ) {
+					if ( count( $labels ) >= self::MAX_COLUMNS ) {
 						break;
 					}
 					$labels[ $k ] = ( empty( $raw_fields[ $k ] ) && isset( $question_map[ $k ] ) && $question_map[ $k ] !== '' )
@@ -264,7 +271,7 @@ class NRFM_Submissions_Table extends WP_List_Table {
 							}
 							if ( ! isset( $labels[ $k ] ) ) {
 								$labels[ $k ] = ucfirst( str_replace( '_', ' ', $k ) ); }
-							if ( count( $labels ) >= 12 ) {
+							if ( count( $labels ) >= self::MAX_COLUMNS ) {
 								break 2;
 							}
 						}
@@ -272,7 +279,7 @@ class NRFM_Submissions_Table extends WP_List_Table {
 				}
 				set_transient( $cache_key, $labels, DAY_IN_SECONDS );
 		}
-		$this->field_keys   = array_slice( array_keys( $labels ), 0, 12 );
+		$this->field_keys   = array_slice( array_keys( $labels ), 0, self::MAX_COLUMNS );
 		// Final guard: sanitize labels for columns to avoid concatenated option phrases
 		foreach ( $labels as $k => $v ) {
 			$labels[ $k ] = $this->sanitize_label_for_column( $k, $v );
@@ -289,6 +296,34 @@ class NRFM_Submissions_Table extends WP_List_Table {
 			return ucfirst( str_replace( '_', ' ', $key ) );
 		}
 		return $label;
+	}
+
+	/**
+	 * Remove a trailing "(value)" from a choice label when it only repeats the
+	 * stored machine value, e.g. "Lose fat (lose)" becomes "Lose fat". A
+	 * parenthetical holding anything else (a price like "(+$4,000)", a note) is
+	 * left untouched, so no meaningful text is lost.
+	 */
+	private function strip_redundant_code( $label, $value ) {
+		$value = (string) $value;
+		if ( $value === '' ) {
+			return $label;
+		}
+		$cleaned = preg_replace( '/\s*\(\s*' . preg_quote( $value, '/' ) . '\s*\)\s*$/i', '', (string) $label );
+		return ( $cleaned !== null && $cleaned !== '' ) ? $cleaned : $label;
+	}
+
+	/**
+	 * Escape text for a header or cell, shortening it to keep the table tidy and
+	 * exposing the full value in a hover tooltip. Used for both column headers and
+	 * cell values so one long label or value never blows up the layout.
+	 */
+	private function truncated_html( $text, $len = 28 ) {
+		$text = (string) $text;
+		if ( mb_strlen( $text ) > $len ) {
+			return '<span title="' . esc_attr( $text ) . '">' . esc_html( mb_substr( $text, 0, $len ) ) . '&hellip;</span>';
+		}
+		return esc_html( $text );
 	}
 
 	public function prepare_items() {

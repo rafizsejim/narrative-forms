@@ -18,10 +18,10 @@ class NRFM_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'menu_icon_style' ) );
 		add_action( 'admin_init', array( $this, 'handle_actions' ) );
 		add_action( 'admin_init', array( $this, 'maybe_create_starter_form' ) );
-		if ( ! function_exists( 'nrfm_is_pro_active' ) || ! nrfm_is_pro_active() ) {
-			require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-pro-upsell.php';
-			new NRFM_Pro_Upsell();
-		}
+		// Add-ons hub (always available): presents paid add-ons like Frontend
+		// Submissions and hosts their license activation via the nrfm_addons_screen hook.
+		require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-addons.php';
+		new NRFM_Addons_Screen();
 	}
 
 	/**
@@ -478,7 +478,7 @@ class NRFM_Admin {
 				'honeypot_enabled'   => ! empty( $raw_settings['honeypot_enabled'] ) ? 1 : 0,
 				'async_actions'      => 1, // always on
 			);
-			// Allow PRO to persist extra settings (e.g., require_login, submission_limit)
+			// Allow add-ons and modules to persist extra settings (e.g., require_login, submission_limit)
 			$data['settings'] = apply_filters( 'nrfm_save_form_settings', $data['settings'] );
 		}
 
@@ -487,14 +487,16 @@ class NRFM_Admin {
             // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Nonce verified in handle_actions()
 			$raw_messages     = wp_unslash( $_POST['messages'] );
 			$data['messages'] = array(
-				'success'                => isset( $raw_messages['success'] ) ? sanitize_textarea_field( $raw_messages['success'] ) : '',
-				'error'                  => isset( $raw_messages['error'] ) ? sanitize_textarea_field( $raw_messages['error'] ) : '',
+				'success'                => isset( $raw_messages['success'] ) ? wp_kses_post( $raw_messages['success'] ) : '',
+				'error'                  => isset( $raw_messages['error'] ) ? wp_kses_post( $raw_messages['error'] ) : '',
+				// Field-level validation messages render via textContent (showFieldError),
+				// so they stay plain text — only Success and General Error allow HTML.
 				'invalid_email'          => isset( $raw_messages['invalid_email'] ) ? sanitize_textarea_field( $raw_messages['invalid_email'] ) : '',
 				'required_field_missing' => isset( $raw_messages['required_field_missing'] ) ? sanitize_textarea_field( $raw_messages['required_field_missing'] ) : '',
 				'file_too_large'         => isset( $raw_messages['file_too_large'] ) ? sanitize_textarea_field( $raw_messages['file_too_large'] ) : '',
 				'max_files'              => isset( $raw_messages['max_files'] ) ? sanitize_textarea_field( $raw_messages['max_files'] ) : '',
 			);
-			// Allow PRO to persist extra messages
+			// Allow add-ons and modules to persist extra messages
 			$data['messages'] = apply_filters( 'nrfm_save_form_messages', $data['messages'] );
 		}
 
@@ -538,12 +540,12 @@ class NRFM_Admin {
 			$data['actions'] = $actions;
 		}
 
-		// PRO HOOK: Filter form settings/messages before save handled above
+		// Extension hook: Filter form settings/messages before save handled above
 		$form->save( $data );
 		// Persist field schema for submissions table headers
 		$this->update_form_schema( $form_id, $data['content'] ?? '' );
 
-		// PRO HOOK: After form save
+		// Extension hook: After form save
 		do_action( 'nrfm_save_form', $form_id, $data );
 		// Cache invalidation already handled inside update_form_schema()
 
@@ -902,7 +904,7 @@ class NRFM_Admin {
 			'spam_rate_limit_window_min' => isset( $_POST['spam_rate_limit_window_min'] ) ? max( 1, intval( wp_unslash( $_POST['spam_rate_limit_window_min'] ) ) ) : 10,
 		);
 
-		// PRO HOOK: Filter settings before saving
+		// Extension hook: Filter settings before saving
 		$settings = apply_filters( 'nrfm_save_global_settings', $settings );
 
 		update_option( 'nrfm_settings', $settings );

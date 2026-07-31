@@ -63,7 +63,7 @@
     display: block;
 }
 
-/* Nested sub-settings revealed by a parent toggle (captcha + Pro modules).
+/* Nested sub-settings revealed by a parent toggle (captcha + module settings).
    Scoped to the class itself so it works on both the global Settings page
    and the per-form Settings tab. */
 .nrfm-setting-children {

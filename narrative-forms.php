@@ -3,7 +3,7 @@
  * Plugin Name: Narrative Forms
  * Plugin URI: https://narrative-forms.com
  * Description: Lightweight, developer-friendly WordPress form plugin. Pure HTML forms with no complexity.
- * Version: 1.0.4
+ * Version: 1.2.0
  * Author: NarrativeCode
  * Text Domain: narrative-forms
  * Domain Path: /languages
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('NRFM_VERSION', '1.0.4');
+define('NRFM_VERSION', '1.2.0');
 define('NRFM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NRFM_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -36,13 +36,15 @@ function appsero_init_tracker_narrative_forms() {
 }
 appsero_init_tracker_narrative_forms();
 
-register_activation_hook(__FILE__, 'nrfm_activate');
-function nrfm_activate() {
+/**
+ * Submissions table schema. Single source of truth used by both activation and
+ * the schema-upgrade path (DRY).
+ */
+function nrfm_submissions_table_sql() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'nrfm_submissions';
     $charset_collate = $wpdb->get_charset_collate();
-    
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+    return "CREATE TABLE IF NOT EXISTS $table_name (
         id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
         form_id bigint(20) unsigned NOT NULL,
         data longtext NOT NULL,
@@ -57,45 +59,98 @@ function nrfm_activate() {
         KEY form_id_id (form_id, id),
         KEY form_id_ip (form_id, ip_address)
     ) $charset_collate;";
-    
+}
+
+register_activation_hook(__FILE__, 'nrfm_activate');
+function nrfm_activate() {
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta($sql);
-    
+    dbDelta( nrfm_submissions_table_sql() );
+
+    // Tables/columns/cron for the built-in feature modules folded in from the
+    // former Pro add-on (Save & Resume, Submission Notifications, Webhooks).
+    nrfm_install_feature_schema();
+
     nrfm_register_post_type();
     flush_rewrite_rules();
-    update_option( 'nrfm_schema_version', 2 );
+    update_option( 'nrfm_schema_version', 4 );
+}
+
+// Clean up feature crons on deactivation.
+register_deactivation_hook(__FILE__, 'nrfm_deactivate');
+function nrfm_deactivate() {
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-save-resume.php';
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-webhooks.php';
+    NRFM_Save_Resume::unschedule_cleanup();
+    NRFM_Webhooks::unschedule_cleanup();
+}
+
+/**
+ * Create the schema owned by the folded-in features and schedule their cron.
+ * Idempotent, so it is safe to call on activation and on schema upgrade.
+ */
+function nrfm_install_feature_schema() {
+    require_once NRFM_PLUGIN_DIR . 'includes/functions.php';
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-save-resume.php';
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-submission-notifications.php';
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-webhooks.php';
+    NRFM_Save_Resume::create_table();
+    NRFM_Save_Resume::schedule_cleanup();
+    NRFM_Submission_Notifications::maybe_add_seen_column();
+    NRFM_Webhooks::create_table();
+    NRFM_Webhooks::schedule_cleanup();
+
+    // One-time cleanup of artifacts from the former Pro add-on (its schema is now
+    // owned by core's nrfm_schema_version). All no-ops on a fresh install or a
+    // site that never ran the old Pro add-on.
+    // TODO: remove this block in a later release. It only matters for sites
+    // upgrading past these schema versions that had run the old Pro add-on; once
+    // those have updated, it is pure dead code.
+    wp_clear_scheduled_hook( 'nrfm_pro_resume_cleanup' );
+    wp_clear_scheduled_hook( 'nrfm_pro_webhook_retry' );
+    wp_clear_scheduled_hook( 'nrfm_pro_webhook_logs_cleanup' );
+    delete_option( 'nrfm_pro_notifications_schema' );
+    delete_option( 'nrfm_pro_resume_schema' );
+    delete_option( 'nrfm_pro_webhooks_schema' );
 }
 
 // Schema upgrades (add indexes safely)
 add_action( 'admin_init', 'nrfm_maybe_upgrade_schema' );
 function nrfm_maybe_upgrade_schema() {
     $current = (int) get_option( 'nrfm_schema_version', 1 );
-    if ( $current >= 2 ) {
+    if ( $current >= 4 ) {
         return;
     }
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'nrfm_submissions';
-    $charset_collate = $wpdb->get_charset_collate();
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-        id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-        form_id bigint(20) unsigned NOT NULL,
-        data longtext NOT NULL,
-        ip_address varchar(45) DEFAULT NULL,
-        user_agent text,
-        referer_url text,
-        submitted_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        KEY form_id (form_id),
-        KEY submitted_at (submitted_at),
-        KEY form_id_submitted (form_id, submitted_at),
-        KEY form_id_id (form_id, id),
-        KEY form_id_ip (form_id, ip_address)
-    ) $charset_collate;";
-
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    dbDelta( $sql );
-    update_option( 'nrfm_schema_version', 2 );
+    dbDelta( nrfm_submissions_table_sql() );
+
+    // Save & Resume table + cron, the Submission Notifications `seen` column, and
+    // the Webhooks logs table (folded in from the former Pro add-on). Idempotent.
+    nrfm_install_feature_schema();
+
+    update_option( 'nrfm_schema_version', 4 );
+}
+
+// Flush rewrite rules once so the share-link rewrite (registered on 'init' by
+// NRFM_Share_Links) is persisted. Bump the version to force a one-time reflush.
+add_action( 'admin_init', 'nrfm_maybe_flush_rewrites' );
+function nrfm_maybe_flush_rewrites() {
+    if ( (int) get_option( 'nrfm_rewrite_version', 0 ) < 1 ) {
+        flush_rewrite_rules();
+        update_option( 'nrfm_rewrite_version', 1 );
+    }
+}
+
+// Cutover safety: if the retired Pro add-on is still active alongside this
+// version (its features are now built in), tell the admin to remove it.
+// TODO: removable in a later release once sites have completed the cutover.
+add_action( 'admin_notices', 'nrfm_legacy_pro_notice' );
+function nrfm_legacy_pro_notice() {
+    if ( ! defined( 'NRFM_PRO_VERSION' ) || ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+    echo '<div class="notice notice-warning"><p>'
+        . esc_html__( 'Narrative Forms Pro is now built into Narrative Forms. You can safely deactivate and delete the Narrative Forms Pro plugin.', 'narrative-forms' )
+        . '</p></div>';
 }
 
 // Initialize plugin
@@ -117,7 +172,31 @@ function nrfm_init() {
     if (is_admin()) {
         require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-admin.php';
         new NRFM_Admin();
+
+        require_once NRFM_PLUGIN_DIR . 'includes/admin/class-nrfm-ai-form-builder.php';
+        new NRFM_AI_Form_Builder();
     }
+
+    // Built-in feature modules (load in both admin and frontend contexts: each
+    // module scopes its own hooks/assets to where they are needed).
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-conditional-logic.php';
+    new NRFM_Conditional_Logic();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-submission-notifications.php';
+    new NRFM_Submission_Notifications();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-save-resume.php';
+    new NRFM_Save_Resume();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-webhooks.php';
+    new NRFM_Webhooks();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-webhook-templates.php';
+    new NRFM_Webhook_Templates();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-rest-api.php';
+    new NRFM_REST_API();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-require-login.php';
+    new NRFM_Require_Login();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-schedule-windows.php';
+    new NRFM_Schedule_Windows();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-share-links.php';
+    new NRFM_Share_Links();
 
     // Initialize free CAPTCHA
     new NRFM_Captcha();

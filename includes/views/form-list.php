@@ -76,9 +76,8 @@ defined( 'ABSPATH' ) || exit;
 					<input type="submit" id="doaction" class="button action" value="<?php echo esc_attr__( 'Apply', 'narrative-forms' ); ?>">
 				</div>
 				<div class="tablenav-pages">
-					<?php /* translators: %s is the number of forms */ ?>
 					<?php $nrfm_total_items = isset( $nrfm_total ) ? $nrfm_total : count( $nrfm_forms ); ?>
-					<span class="displaying-num"><?php echo esc_html( sprintf( _n( '%s item', '%s items', $nrfm_total_items, 'narrative-forms' ), number_format_i18n( $nrfm_total_items ) ) ); ?></span>
+					<span class="displaying-num"><?php echo esc_html( sprintf( /* translators: %s: the number of forms. */ _n( '%s item', '%s items', $nrfm_total_items, 'narrative-forms' ), number_format_i18n( $nrfm_total_items ) ) ); ?></span>
 					<?php if ( ! empty( $nrfm_pages ) && $nrfm_pages > 1 ) : ?>
 						<?php
 						$base_args = array(
@@ -350,9 +349,8 @@ defined( 'ABSPATH' ) || exit;
 					<input type="submit" id="doaction2" class="button action" value="<?php echo esc_attr__( 'Apply', 'narrative-forms' ); ?>">
 				</div>
 				<div class="tablenav-pages">
-					<?php /* translators: %s is the number of forms */ ?>
 					<?php $nrfm_total_items = isset( $nrfm_total ) ? $nrfm_total : count( $nrfm_forms ); ?>
-					<span class="displaying-num"><?php echo esc_html( sprintf( _n( '%s item', '%s items', $nrfm_total_items, 'narrative-forms' ), number_format_i18n( $nrfm_total_items ) ) ); ?></span>
+					<span class="displaying-num"><?php echo esc_html( sprintf( /* translators: %s: the number of forms. */ _n( '%s item', '%s items', $nrfm_total_items, 'narrative-forms' ), number_format_i18n( $nrfm_total_items ) ) ); ?></span>
 					<?php if ( ! empty( $nrfm_pages ) && $nrfm_pages > 1 ) : ?>
 						<?php
 						$base_args = array(

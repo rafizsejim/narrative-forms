@@ -2,14 +2,14 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Narrative Forms 1.0.3\n"
+"Project-Id-Version: Narrative Forms 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/narrative-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-14T08:36:17+00:00\n"
+"POT-Creation-Date: 2026-07-31T18:59:06+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: narrative-forms\n"
@@ -37,6 +37,35 @@ msgstr ""
 msgid "NarrativeCode"
 msgstr ""
 
+#: includes/admin/class-nrfm-addons.php:23
+#: includes/admin/class-nrfm-addons.php:24
+msgid "Add-ons"
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:51
+msgid "Narrative Forms Add-ons"
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:52
+msgid "Extend Narrative Forms with optional add-ons. Everything in the core plugin, including the AI form builder, conditional logic, notifications, and save & resume, is free."
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:57
+msgid "Frontend Submissions (Views)"
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:59
+msgid "Installed"
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:62
+msgid "Publish your form submissions as public content: directories, testimonial walls, galleries, job boards, and more, with search, pagination, single pages, per-field privacy, and approval moderation."
+msgstr ""
+
+#: includes/admin/class-nrfm-addons.php:65
+msgid "Get Frontend Submissions"
+msgstr ""
+
 #: includes/admin/class-nrfm-admin.php:58
 msgid "Contact Form"
 msgstr ""
@@ -59,8 +88,8 @@ msgid "you@example.com"
 msgstr ""
 
 #: includes/admin/class-nrfm-admin.php:85
-#: includes/views/form-edit.php:338
-#: includes/views/form-edit.php:443
+#: includes/views/form-edit.php:347
+#: includes/views/form-edit.php:452
 msgid "Subject"
 msgstr ""
 
@@ -81,8 +110,8 @@ msgid "Other"
 msgstr ""
 
 #: includes/admin/class-nrfm-admin.php:94
-#: includes/views/form-edit.php:342
-#: includes/views/form-edit.php:447
+#: includes/views/form-edit.php:351
+#: includes/views/form-edit.php:456
 msgid "Message"
 msgstr ""
 
@@ -117,19 +146,22 @@ msgstr ""
 #: includes/admin/class-nrfm-admin.php:141
 #: includes/admin/class-nrfm-admin.php:142
 #: includes/views/form-edit.php:98
-#: includes/views/form-list.php:241
+#: includes/views/form-list.php:240
 #: includes/views/settings.php:10
 #: includes/views/settings.php:13
 msgid "Settings"
 msgstr ""
 
 #: includes/admin/class-nrfm-admin.php:291
-#: includes/admin/class-nrfm-admin.php:975
+#: includes/admin/class-nrfm-admin.php:977
 #: includes/class-nrfm-submission.php:65
 msgid "Form not found"
 msgstr ""
 
 #: includes/admin/class-nrfm-admin.php:297
+#: includes/class-nrfm-rest-api.php:303
+#: includes/class-nrfm-rest-api.php:370
+#: includes/class-nrfm-rest-api.php:400
 msgid "Submissions table is unavailable."
 msgstr ""
 
@@ -137,173 +169,247 @@ msgstr ""
 msgid "No submissions to export"
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:963
+#: includes/admin/class-nrfm-admin.php:965
 msgid "Sorry, you are not allowed to access this page."
 msgstr ""
 
-#: includes/admin/class-nrfm-admin.php:988
-#: includes/views/form-edit.php:559
+#: includes/admin/class-nrfm-admin.php:990
+#: includes/class-nrfm-save-resume.php:239
+#: includes/views/form-edit.php:568
 msgid "Security check failed."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:19
-#: includes/admin/class-nrfm-pro-upsell.php:20
-msgid "Go PRO"
+#: includes/admin/class-nrfm-ai-form-builder.php:53
+msgid "Custom (OpenAI-compatible)"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:65
-msgid "Narrative Forms PRO"
+#: includes/admin/class-nrfm-ai-form-builder.php:138
+msgid "AI Form Builder"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:65
-msgid "Recommended"
+#: includes/admin/class-nrfm-ai-form-builder.php:140
+msgid "Provider"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:67
-msgid "Unlock powerful features for serious forms"
+#: includes/admin/class-nrfm-ai-form-builder.php:147
+msgid "Use your own account with an OpenAI-compatible AI provider. The plugin sends your instruction and the current form markup to this provider only when you click Generate."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:68
-msgid "Go beyond simple submissions with conditional logic, access control, scheduling, webhooks, and a REST API — all while keeping the same lightweight, HTML-first workflow you love."
+#: includes/admin/class-nrfm-ai-form-builder.php:150
+msgid "Generating a very complex form can take up to a minute. On some hosts you may need to allow more time; developers can raise it with the nrfm_ai_timeout filter."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:70
-msgid "Upgrade to PRO"
+#: includes/admin/class-nrfm-ai-form-builder.php:155
+msgid "API Key"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:71
-msgid "See full feature list"
+#: includes/admin/class-nrfm-ai-form-builder.php:158
+msgid "The API key is set with the NRFM_AI_API_KEY constant, so it cannot be edited here."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:77
-msgid "Conditional Logic"
+#: includes/admin/class-nrfm-ai-form-builder.php:160
+msgid "A key is saved. Leave blank to keep it."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:78
-msgid "Show or hide fields based on what users enter. Build smarter forms without code."
+#: includes/admin/class-nrfm-ai-form-builder.php:160
+msgid "Paste your API key"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:81
-msgid "Require Login"
+#: includes/admin/class-nrfm-ai-form-builder.php:162
+msgid "Remove saved key"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:82
-msgid "Restrict submissions to logged-in users and prefill their details automatically."
+#: includes/admin/class-nrfm-ai-form-builder.php:164
+msgid "Stored for admins only and never sent to the browser. For extra safety, define NRFM_AI_API_KEY in wp-config.php instead."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:85
-msgid "Schedule Windows"
+#: includes/admin/class-nrfm-ai-form-builder.php:169
+msgid "Model"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:86
-msgid "Open and close a form automatically on set dates, with your own messages."
+#: includes/admin/class-nrfm-ai-form-builder.php:172
+msgid "Leave blank to use the provider default. Model names change over time, so if a request is rejected, check your provider's current model list and enter one here. Defaults: DeepSeek deepseek-chat, OpenAI gpt-4o-mini, OpenRouter openai/gpt-4o-mini."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:89
-msgid "Save & Resume"
+#: includes/admin/class-nrfm-ai-form-builder.php:176
+msgid "Custom API Base URL"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:90
-msgid "Let visitors save their progress and finish later from a private link."
+#: includes/admin/class-nrfm-ai-form-builder.php:179
+msgid "Only used when Provider is set to Custom. Enter the base URL of any OpenAI-compatible chat completions API."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:93
-msgid "Direct Form Links"
+#: includes/admin/class-nrfm-ai-form-builder.php:236
+msgid "Generate with AI"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:94
-msgid "Share a hosted form at its own URL — no page or shortcode required."
+#. translators: %s: link to the Settings page.
+#: includes/admin/class-nrfm-ai-form-builder.php:245
+#, php-format
+msgid "Add your AI provider key to build forms with AI. %s"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:97
-msgid "Submission Notifications"
+#: includes/admin/class-nrfm-ai-form-builder.php:246
+msgid "Open Settings"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:98
-msgid "Unread badges across the admin so you never miss a new entry."
+#: includes/admin/class-nrfm-ai-form-builder.php:255
+msgid "Contact form"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:101
-msgid "Webhook Logs & Retry"
+#: includes/admin/class-nrfm-ai-form-builder.php:255
+msgid "A contact form with name, email, subject, and message."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:102
-msgid "See every webhook delivery and automatically retry the ones that fail."
+#: includes/admin/class-nrfm-ai-form-builder.php:256
+msgid "RSVP"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:105
-msgid "Webhook Templates"
+#: includes/admin/class-nrfm-ai-form-builder.php:256
+msgid "An RSVP form with name, email, number of guests, and a yes or no attending choice."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:106
-msgid "Custom JSON payloads with one-click Discord, Slack, and Teams presets."
+#: includes/admin/class-nrfm-ai-form-builder.php:257
+msgid "Survey"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:109
-msgid "REST API"
+#: includes/admin/class-nrfm-ai-form-builder.php:257
+msgid "A short customer satisfaction survey with a 1 to 5 rating and a comments box."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:110
-msgid "Read and manage your forms and submissions from anywhere with a secure key."
+#: includes/admin/class-nrfm-ai-form-builder.php:258
+msgid "Quiz"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:113
-msgid "Multi‑step"
+#: includes/admin/class-nrfm-ai-form-builder.php:258
+msgid "A 5 question multiple choice quiz about a topic of your choice."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:113
-#: includes/admin/class-nrfm-pro-upsell.php:117
-msgid "Coming Soon"
+#: includes/admin/class-nrfm-ai-form-builder.php:259
+msgid "Job application"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:114
-msgid "Split long forms into bite‑sized steps with progress indicators."
+#: includes/admin/class-nrfm-ai-form-builder.php:259
+msgid "A job application form with name, email, phone, position, resume upload, and a cover letter."
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:117
-msgid "Submission Limits"
+#: includes/admin/class-nrfm-ai-form-builder.php:271
+msgid "Describe your form or what to change"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:118
-msgid "Cap total submissions per form or per user, with a custom closed message."
+#: includes/admin/class-nrfm-ai-form-builder.php:272
+msgid "Describe your form, or tell the AI what to change…"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:121
-msgid "And more…"
+#: includes/admin/class-nrfm-ai-form-builder.php:275
+msgid "Generate"
 msgstr ""
 
-#: includes/admin/class-nrfm-pro-upsell.php:122
-msgid "Integrations, automation, and templates — with new features on the way."
+#: includes/admin/class-nrfm-ai-form-builder.php:276
+msgid "↻ Regenerate"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:33
-#: includes/admin/class-nrfm-submissions-table.php:174
+#: includes/admin/class-nrfm-ai-form-builder.php:277
+msgid "Reset"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:282
+msgid "The AI replaces the form code below. Press Ctrl/Cmd+Z to undo, or Revert to an earlier version above."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:323
+msgid "Tell the AI what to build or change first."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:324
+msgid "Something went wrong. Try again in a moment."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:325
+msgid "You"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:326
+msgid "Updated the form code."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:327
+msgid "Revert"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:328
+msgid "Reverted to that version."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:330
+msgid "Add your AI provider key under Settings to build forms with AI."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:331
+msgid "That request is a bit long. Shorten it and try again."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:332
+msgid "The AI took too long to respond. Try a simpler request, or try again."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:333
+msgid "The AI provider returned an error. Check your key and model, then try again."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:334
+msgid "The AI did not return a form. Try rephrasing your request."
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:337
+msgid "Generating…"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:338
+msgid "Thinking through the fields…"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:339
+msgid "Writing the form…"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:340
+msgid "Almost there…"
+msgstr ""
+
+#: includes/admin/class-nrfm-ai-form-builder.php:353
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: includes/admin/class-nrfm-submissions-table.php:40
+#: includes/admin/class-nrfm-submissions-table.php:181
 msgid "Delete"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:79
+#: includes/admin/class-nrfm-submissions-table.php:86
 msgid "No submissions found."
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:83
+#: includes/admin/class-nrfm-submissions-table.php:90
 msgid "Select submission"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:173
+#: includes/admin/class-nrfm-submissions-table.php:180
 msgid "View"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:174
+#: includes/admin/class-nrfm-submissions-table.php:181
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:193
+#: includes/admin/class-nrfm-submissions-table.php:200
 msgid "Submitted On"
 msgstr ""
 
-#: includes/admin/class-nrfm-submissions-table.php:194
+#: includes/admin/class-nrfm-submissions-table.php:201
+#: includes/class-nrfm-webhooks.php:341
 #: includes/views/form-edit.php:99
-#: includes/views/form-list.php:256
+#: includes/views/form-list.php:255
 msgid "Actions"
 msgstr ""
 
@@ -312,10 +418,16 @@ msgid "Security check failed. Please refresh the page and try again."
 msgstr ""
 
 #: includes/class-nrfm-ajax.php:21
+#: includes/class-nrfm-save-resume.php:243
 msgid "Form ID missing."
 msgstr ""
 
 #: includes/class-nrfm-ajax.php:32
+#: includes/class-nrfm-rest-api.php:269
+#: includes/class-nrfm-rest-api.php:292
+#: includes/class-nrfm-rest-api.php:428
+#: includes/class-nrfm-save-resume.php:247
+#: includes/views/form-share.php:13
 msgid "Form not found."
 msgstr ""
 
@@ -343,6 +455,96 @@ msgstr ""
 msgid "Captcha verification failed. Please try again."
 msgstr ""
 
+#: includes/class-nrfm-conditional-logic.php:19
+#: includes/class-nrfm-conditional-logic.php:39
+msgid "Conditional Logic"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:40
+msgid "Show or hide a field when another field matches a rule."
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:42
+msgid "Match"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:44
+msgid "Any rule (OR)"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:45
+msgid "All rules (AND)"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:52
+msgid "If Field"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:53
+msgid "Operator"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:54
+#: includes/views/form-edit.php:585
+#: includes/views/form-edit.php:627
+msgid "Value"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:55
+msgid "Then"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:56
+msgid "Target Field"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:72
+msgid "Add Rule"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:90
+msgid "Equals"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:91
+msgid "Not equals"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:92
+msgid "Contains"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:93
+msgid "Greater than"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:94
+msgid "Less than"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:95
+msgid "Is empty"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:96
+msgid "Is not empty"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:99
+#: includes/class-nrfm-rest-api.php:23
+#: includes/class-nrfm-rest-api.php:218
+msgid "Show"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:100
+#: includes/class-nrfm-rest-api.php:24
+msgid "Hide"
+msgstr ""
+
+#: includes/class-nrfm-conditional-logic.php:138
+msgid "Remove rule"
+msgstr ""
+
 #: includes/class-nrfm-form.php:110
 msgid "Thank you! We will be in touch soon."
 msgstr ""
@@ -364,13 +566,13 @@ msgid "One or more files have an unsupported file type."
 msgstr ""
 
 #: includes/class-nrfm-form.php:115
-#: includes/views/form-edit.php:219
+#: includes/views/form-edit.php:228
 msgid "One or more files exceed the maximum allowed size."
 msgstr ""
 
 #. translators: %d is the maximum number of files allowed for a field.
 #: includes/class-nrfm-form.php:117
-#: includes/views/form-edit.php:228
+#: includes/views/form-edit.php:237
 #, php-format
 msgid "You can upload up to %d files."
 msgstr ""
@@ -379,14 +581,336 @@ msgstr ""
 msgid "There was an error uploading the file."
 msgstr ""
 
+#: includes/class-nrfm-require-login.php:24
+msgid "Require Login"
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:28
+msgid "Only allow logged-in users to submit this form."
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:31
+msgid "You can use {{user.email}}, {{user.name}}, etc. in your form HTML to prefill user data."
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:35
+msgid "Message (optional)"
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:36
+#: includes/class-nrfm-require-login.php:88
+#: includes/class-nrfm-require-login.php:99
+msgid "Please log in to continue."
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:39
+msgid "Login URL (optional)"
+msgstr ""
+
+#: includes/class-nrfm-require-login.php:94
+msgid "Log in"
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:25
+#: includes/class-nrfm-rest-api.php:219
+msgid "Copy"
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:26
+#: includes/class-nrfm-share-links.php:101
+msgid "Copied"
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:158
+#: includes/class-nrfm-rest-api.php:169
+msgid "Authentication required."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:215
+msgid "REST API Key"
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:220
+msgid "Used for Narrative Forms REST API access via header X-NRFM-API-Key or Authorization: Bearer <key>."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:221
+msgid "Keep this secret. Anyone with this key can read and delete every submission on this site."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:222
+msgid "Leave empty to disable API key auth (administrator capability still works)."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:380
+#: includes/class-nrfm-rest-api.php:410
+msgid "Submission not found."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:436
+msgid "Invalid submission data."
+msgstr ""
+
+#: includes/class-nrfm-rest-api.php:453
+#: includes/class-nrfm-rest-api.php:461
+msgid "Submission failed."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:77
+#: includes/class-nrfm-save-resume.php:139
+msgid "Save & Resume Later"
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:78
+#: includes/class-nrfm-save-resume.php:142
+#: includes/class-nrfm-save-resume.php:222
+msgid "Draft saved. Use this link to resume:"
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:104
+msgid "Save & Resume"
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:108
+msgid "Allow visitors to save progress and continue later."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:110
+msgid "A unique resume link is generated when users click the Save & Resume action on the form."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:113
+msgid "Save Button Label"
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:117
+msgid "Saved Message Text"
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:223
+msgid "Unable to save your progress. Please try again."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:224
+msgid "Draft loaded."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:251
+msgid "Save & Resume is disabled for this form."
+msgstr ""
+
+#: includes/class-nrfm-save-resume.php:267
+msgid "Unable to save draft."
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:37
+msgid "Schedule Window"
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:41
+msgid "Enable open/close dates for this form"
+msgstr ""
+
+#. translators: %s: the site timezone name.
+#: includes/class-nrfm-schedule-windows.php:43
+#, php-format
+msgid "Times use your site timezone: %s."
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:46
+msgid "Open Date"
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:50
+msgid "Close Date"
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:54
+msgid "Not Open Yet Message (optional)"
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:55
+#: includes/class-nrfm-schedule-windows.php:137
+#: includes/class-nrfm-schedule-windows.php:166
+msgid "This form is not open yet."
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:58
+msgid "Closed Message (optional)"
+msgstr ""
+
+#: includes/class-nrfm-schedule-windows.php:59
+#: includes/class-nrfm-schedule-windows.php:142
+#: includes/class-nrfm-schedule-windows.php:169
+msgid "This form is now closed."
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:38
+msgid "Direct Link Base"
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:43
+msgid "Base slug for hosted form links. Example: /forms/your-form-slug"
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:68
+msgid "Direct Form Link"
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:73
+msgid "Enable direct link for this form"
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:75
+msgid "Link is visible here, but will only work after you enable it and save."
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:78
+msgid "Share this URL to open a hosted version of the form."
+msgstr ""
+
+#: includes/class-nrfm-share-links.php:79
+#: includes/class-nrfm-share-links.php:100
+msgid "Copy Link"
+msgstr ""
+
+#. translators: %d: number of new (unseen) submissions.
+#: includes/class-nrfm-submission-notifications.php:69
+#, php-format
+msgid "%d new"
+msgstr ""
+
+#: includes/class-nrfm-submission-notifications.php:71
+msgid "Mark as seen"
+msgstr ""
+
 #: includes/class-nrfm-submission.php:661
-#: includes/views/form-edit.php:339
-#: includes/views/form-edit.php:444
+#: includes/views/form-edit.php:348
+#: includes/views/form-edit.php:453
 msgid "New Form Submission"
 msgstr ""
 
 #: includes/class-nrfm-submission.php:684
 msgid "New form submission received:"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:157
+msgid "Custom Template"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:158
+msgid "Payload Template"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:159
+msgid "Use {{field_name}} placeholders for form fields. Use {{all_fields}} for all fields as key-value pairs."
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:160
+msgid "Request Headers (JSON)"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:161
+msgid "Optional. JSON object of headers, e.g. {\"Authorization\":\"Bearer ...\",\"Accept\":\"application/json\"}"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:162
+msgid "Headers JSON is valid."
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:163
+msgid "Invalid JSON. Please provide a JSON object, e.g. {\"Accept\":\"application/json\"}"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:166
+msgid "Available placeholders:"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:167
+msgid "Load Preset:"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:168
+msgid "Discord"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:169
+msgid "Slack"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:170
+msgid "Microsoft Teams"
+msgstr ""
+
+#: includes/class-nrfm-webhook-templates.php:171
+msgid "Generic JSON"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:259
+msgid "View Webhook Logs"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:260
+msgid "Back to Actions"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:319
+msgid "Webhook Logs"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:320
+msgid "Recent webhook delivery attempts for this form. Logs are retained for 30 days."
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:322
+msgid "Webhook logs cleared for this form. Pending retries were canceled."
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:328
+msgid "Clear all logs for this form? Pending retries for these logs will be canceled."
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:329
+msgid "Clear Logs"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:334
+msgid "ID"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:335
+#: includes/views/form-edit.php:121
+msgid "URL"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:336
+#: includes/views/form-edit.php:403
+#: includes/views/form-edit.php:498
+msgid "Method"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:337
+msgid "Status"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:338
+msgid "Code"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:339
+msgid "Attempts"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:340
+msgid "Created"
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:346
+msgid "No webhook logs found for this form."
+msgstr ""
+
+#: includes/class-nrfm-webhooks.php:378
+msgid "Retry"
 msgstr ""
 
 #: includes/views/form-edit.php:38
@@ -422,8 +946,8 @@ msgid "Edit"
 msgstr ""
 
 #: includes/views/form-edit.php:82
-#: includes/views/form-list.php:123
-#: includes/views/form-list.php:332
+#: includes/views/form-list.php:122
+#: includes/views/form-list.php:331
 msgid "Shortcode"
 msgstr ""
 
@@ -432,20 +956,20 @@ msgid "Copy this shortcode and paste it into your post, page, or text widget con
 msgstr ""
 
 #: includes/views/form-edit.php:96
-#: includes/views/form-edit.php:603
-#: includes/views/form-list.php:211
+#: includes/views/form-edit.php:612
+#: includes/views/form-list.php:210
 msgid "Fields"
 msgstr ""
 
 #: includes/views/form-edit.php:97
-#: includes/views/form-list.php:226
+#: includes/views/form-list.php:225
 msgid "Messages"
 msgstr ""
 
 #: includes/views/form-edit.php:102
-#: includes/views/form-list.php:124
-#: includes/views/form-list.php:275
-#: includes/views/form-list.php:333
+#: includes/views/form-list.php:123
+#: includes/views/form-list.php:274
+#: includes/views/form-list.php:332
 msgid "Submissions"
 msgstr ""
 
@@ -455,10 +979,6 @@ msgstr ""
 
 #: includes/views/form-edit.php:119
 msgid "Text"
-msgstr ""
-
-#: includes/views/form-edit.php:121
-msgid "URL"
 msgstr ""
 
 #: includes/views/form-edit.php:122
@@ -493,289 +1013,280 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: includes/views/form-edit.php:133
+#: includes/views/form-edit.php:144
 msgid "Use the buttons above to generate your field HTML, or manually modify your form below."
 msgstr ""
 
-#: includes/views/form-edit.php:139
+#: includes/views/form-edit.php:150
 msgid "Configure Field"
 msgstr ""
 
-#: includes/views/form-edit.php:150
+#: includes/views/form-edit.php:161
 msgid "Form Code"
 msgstr ""
 
-#: includes/views/form-edit.php:151
+#: includes/views/form-edit.php:162
 msgid "Show Preview"
 msgstr ""
 
-#: includes/views/form-edit.php:159
+#: includes/views/form-edit.php:170
 msgid "Form Preview"
 msgstr ""
 
-#: includes/views/form-edit.php:160
+#: includes/views/form-edit.php:171
 msgid "Hide Preview"
 msgstr ""
 
-#: includes/views/form-edit.php:170
+#: includes/views/form-edit.php:181
 msgid "Form Messages"
 msgstr ""
 
-#: includes/views/form-edit.php:175
+#: includes/views/form-edit.php:186
 msgid "Success"
 msgstr ""
 
-#: includes/views/form-edit.php:180
+#: includes/views/form-edit.php:190
 msgid "The text that shows after a successful form submission."
 msgstr ""
 
-#: includes/views/form-edit.php:185
+#: includes/views/form-edit.php:195
 msgid "Invalid Email Address"
 msgstr ""
 
-#: includes/views/form-edit.php:190
+#: includes/views/form-edit.php:200
 msgid "The text that shows when an invalid email address is given."
 msgstr ""
 
-#: includes/views/form-edit.php:195
+#: includes/views/form-edit.php:205
 msgid "Required Field Missing"
 msgstr ""
 
-#: includes/views/form-edit.php:200
+#: includes/views/form-edit.php:210
 msgid "The text that shows when a required field is missing."
 msgstr ""
 
-#: includes/views/form-edit.php:205
+#: includes/views/form-edit.php:215
 msgid "General Error"
 msgstr ""
 
-#: includes/views/form-edit.php:210
+#: includes/views/form-edit.php:219
 msgid "The text that shows when a general error occurred."
 msgstr ""
 
-#: includes/views/form-edit.php:215
+#: includes/views/form-edit.php:224
 msgid "File Too Large"
 msgstr ""
 
-#: includes/views/form-edit.php:224
+#: includes/views/form-edit.php:233
 msgid "Maximum Files Exceeded"
 msgstr ""
 
 #. translators: %d is the maximum number of files allowed for a field.
-#: includes/views/form-edit.php:229
+#: includes/views/form-edit.php:238
 msgid "Shown when the number of selected files exceeds the per-field limit."
 msgstr ""
 
 #. translators: %s is a small HTML snippet example, e.g., <strong>, <em>, <a>
-#: includes/views/form-edit.php:239
+#: includes/views/form-edit.php:248
 #, php-format
-msgid "HTML tags like %s are allowed in the message fields."
-msgstr ""
-
-#: includes/views/form-edit.php:244
-msgid "Form Settings"
-msgstr ""
-
-#: includes/views/form-edit.php:246
-msgid "Submission Behavior"
-msgstr ""
-
-#: includes/views/form-edit.php:249
-msgid "Save Form Submissions"
+msgid "The Success and General Error messages accept HTML and inline styles (for example %s, or a styled div), so you can format and style them. The other messages are plain text."
 msgstr ""
 
 #: includes/views/form-edit.php:253
-msgid "Store successful form submissions."
+msgid "Form Settings"
 msgstr ""
 
 #: includes/views/form-edit.php:255
+msgid "Submission Behavior"
+msgstr ""
+
+#: includes/views/form-edit.php:258
+msgid "Save Form Submissions"
+msgstr ""
+
+#: includes/views/form-edit.php:262
+msgid "Store successful form submissions."
+msgstr ""
+
+#: includes/views/form-edit.php:264
 msgid "Disable this if you only want to send data via actions and not keep records in WordPress."
 msgstr ""
 
-#: includes/views/form-edit.php:259
+#: includes/views/form-edit.php:268
 msgid "Hide Form After Successful Submission"
 msgstr ""
 
-#: includes/views/form-edit.php:263
+#: includes/views/form-edit.php:272
 msgid "Hide form fields after a successful submission."
 msgstr ""
 
-#: includes/views/form-edit.php:269
+#: includes/views/form-edit.php:278
 msgid "Redirect to URL After Successful Submission"
 msgstr ""
 
-#: includes/views/form-edit.php:275
+#: includes/views/form-edit.php:284
 msgid "Leave empty for no redirect. Use full URLs including https://"
 msgstr ""
 
-#: includes/views/form-edit.php:291
+#: includes/views/form-edit.php:300
 msgid "Access & Availability"
 msgstr ""
 
-#: includes/views/form-edit.php:297
+#: includes/views/form-edit.php:306
 msgid "Data & Drafts"
 msgstr ""
 
-#: includes/views/form-edit.php:302
+#: includes/views/form-edit.php:311
 msgid "Sharing"
 msgstr ""
 
-#: includes/views/form-edit.php:309
+#: includes/views/form-edit.php:318
 msgid "Form Actions"
 msgstr ""
 
-#: includes/views/form-edit.php:311
+#: includes/views/form-edit.php:320
 msgid "Actions run after a valid submission. Add one or more actions below. Emails deliver content; Webhooks send the data to an external URL."
 msgstr ""
 
-#: includes/views/form-edit.php:322
-#: includes/views/form-edit.php:427
+#: includes/views/form-edit.php:331
+#: includes/views/form-edit.php:436
 msgid "Send Email"
 msgstr ""
 
-#: includes/views/form-edit.php:325
-#: includes/views/form-edit.php:385
-#: includes/views/form-edit.php:430
-#: includes/views/form-edit.php:480
+#: includes/views/form-edit.php:334
+#: includes/views/form-edit.php:394
+#: includes/views/form-edit.php:439
+#: includes/views/form-edit.php:489
 msgid "Remove"
 msgstr ""
 
-#: includes/views/form-edit.php:330
-#: includes/views/form-edit.php:435
+#: includes/views/form-edit.php:339
+#: includes/views/form-edit.php:444
 msgid "From"
 msgstr ""
 
-#: includes/views/form-edit.php:334
-#: includes/views/form-edit.php:439
+#: includes/views/form-edit.php:343
+#: includes/views/form-edit.php:448
 msgid "To"
-msgstr ""
-
-#: includes/views/form-edit.php:353
-#: includes/views/form-edit.php:454
-msgid "Content Type"
 msgstr ""
 
 #: includes/views/form-edit.php:362
 #: includes/views/form-edit.php:463
+msgid "Content Type"
+msgstr ""
+
+#: includes/views/form-edit.php:371
+#: includes/views/form-edit.php:472
 msgid "Additional Headers"
 msgstr ""
 
-#: includes/views/form-edit.php:365
-#: includes/views/form-edit.php:466
+#: includes/views/form-edit.php:374
+#: includes/views/form-edit.php:475
 msgid "Optional. One per line. Example: Reply-To: John <john@example.com>"
 msgstr ""
 
-#: includes/views/form-edit.php:382
-#: includes/views/form-edit.php:477
+#: includes/views/form-edit.php:391
+#: includes/views/form-edit.php:486
 msgid "Webhook"
 msgstr ""
 
-#: includes/views/form-edit.php:390
-#: includes/views/form-edit.php:485
+#: includes/views/form-edit.php:399
+#: includes/views/form-edit.php:494
 msgid "Webhook URL"
 msgstr ""
 
-#: includes/views/form-edit.php:394
-#: includes/views/form-edit.php:489
-msgid "Method"
-msgstr ""
-
-#: includes/views/form-edit.php:403
-#: includes/views/form-edit.php:498
+#: includes/views/form-edit.php:412
+#: includes/views/form-edit.php:507
 msgid "Format"
 msgstr ""
 
-#: includes/views/form-edit.php:420
+#: includes/views/form-edit.php:429
 msgid "Add New Action"
 msgstr ""
 
-#: includes/views/form-edit.php:421
+#: includes/views/form-edit.php:430
 msgid "Add Email Notification"
 msgstr ""
 
-#: includes/views/form-edit.php:422
+#: includes/views/form-edit.php:431
 msgid "Add Webhook"
 msgstr ""
 
-#: includes/views/form-edit.php:525
+#: includes/views/form-edit.php:534
 #: includes/views/settings.php:132
 msgid "Save Changes"
 msgstr ""
 
-#: includes/views/form-edit.php:541
+#: includes/views/form-edit.php:550
 msgid "Export delimiter:"
 msgstr ""
 
-#: includes/views/form-edit.php:548
+#: includes/views/form-edit.php:557
 msgid "Export to CSV"
 msgstr ""
 
-#: includes/views/form-edit.php:570
+#: includes/views/form-edit.php:579
 msgid "Viewing Form Submission"
 msgstr ""
 
-#: includes/views/form-edit.php:575
+#: includes/views/form-edit.php:584
 msgid "Meta"
 msgstr ""
 
-#: includes/views/form-edit.php:576
-#: includes/views/form-edit.php:618
-msgid "Value"
-msgstr ""
-
-#: includes/views/form-edit.php:581
+#: includes/views/form-edit.php:590
 msgid "Timestamp"
 msgstr ""
 
-#: includes/views/form-edit.php:585
+#: includes/views/form-edit.php:594
 msgid "User Agent"
 msgstr ""
 
-#: includes/views/form-edit.php:589
+#: includes/views/form-edit.php:598
 msgid "IP Address"
 msgstr ""
 
-#: includes/views/form-edit.php:593
+#: includes/views/form-edit.php:602
 msgid "Referrer URL"
 msgstr ""
 
-#: includes/views/form-edit.php:597
+#: includes/views/form-edit.php:606
 msgid "Action"
 msgstr ""
 
-#: includes/views/form-edit.php:617
+#: includes/views/form-edit.php:626
 msgid "Field"
 msgstr ""
 
-#: includes/views/form-edit.php:665
+#: includes/views/form-edit.php:674
 msgid "Empty"
 msgstr ""
 
-#: includes/views/form-edit.php:675
+#: includes/views/form-edit.php:684
 msgid "Raw"
 msgstr ""
 
-#: includes/views/form-edit.php:683
+#: includes/views/form-edit.php:692
 msgid "Back to submissions list"
 msgstr ""
 
-#: includes/views/form-edit.php:701
+#. translators: %d: number of submissions deleted.
+#: includes/views/form-edit.php:710
 #, php-format
 msgid "%d submission deleted."
 msgid_plural "%d submissions deleted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/views/form-edit.php:709
+#: includes/views/form-edit.php:718
 msgid "Search submissions"
 msgstr ""
 
-#: includes/views/form-edit.php:711
+#: includes/views/form-edit.php:720
 msgid "Delete the selected submissions? This cannot be undone."
 msgstr ""
 
 #: includes/views/form-list.php:21
-#: narrative-forms.php:180
+#: narrative-forms.php:259
 msgid "Forms"
 msgstr ""
 
@@ -788,7 +1299,7 @@ msgid "All"
 msgstr ""
 
 #: includes/views/form-list.php:41
-#: includes/views/form-list.php:289
+#: includes/views/form-list.php:288
 msgid "Trash"
 msgstr ""
 
@@ -801,69 +1312,70 @@ msgid "Search Forms"
 msgstr ""
 
 #: includes/views/form-list.php:66
-#: includes/views/form-list.php:340
+#: includes/views/form-list.php:339
 msgid "Select bulk action"
 msgstr ""
 
 #: includes/views/form-list.php:68
-#: includes/views/form-list.php:342
+#: includes/views/form-list.php:341
 msgid "Bulk actions"
 msgstr ""
 
 #: includes/views/form-list.php:70
-#: includes/views/form-list.php:181
-#: includes/views/form-list.php:344
+#: includes/views/form-list.php:180
+#: includes/views/form-list.php:343
 msgid "Restore"
 msgstr ""
 
 #: includes/views/form-list.php:71
-#: includes/views/form-list.php:196
-#: includes/views/form-list.php:345
+#: includes/views/form-list.php:195
+#: includes/views/form-list.php:344
 msgid "Delete Permanently"
 msgstr ""
 
 #: includes/views/form-list.php:73
-#: includes/views/form-list.php:347
+#: includes/views/form-list.php:346
 msgid "Move to Trash"
 msgstr ""
 
 #: includes/views/form-list.php:76
-#: includes/views/form-list.php:350
+#: includes/views/form-list.php:349
 msgid "Apply"
 msgstr ""
 
-#: includes/views/form-list.php:81
-#: includes/views/form-list.php:355
+#. translators: %s: the number of forms.
+#: includes/views/form-list.php:80
+#: includes/views/form-list.php:353
 #, php-format
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/views/form-list.php:117
-#: includes/views/form-list.php:326
+#: includes/views/form-list.php:116
+#: includes/views/form-list.php:325
 msgid "Select All"
 msgstr ""
 
-#: includes/views/form-list.php:121
-#: includes/views/form-list.php:330
-#: narrative-forms.php:181
+#: includes/views/form-list.php:120
+#: includes/views/form-list.php:329
+#: narrative-forms.php:260
 msgid "Form"
 msgstr ""
 
-#: includes/views/form-list.php:131
+#: includes/views/form-list.php:130
 msgid "No forms in Trash."
 msgstr ""
 
-#: includes/views/form-list.php:135
+#: includes/views/form-list.php:134
 msgid "No forms found."
 msgstr ""
 
-#: includes/views/form-list.php:136
+#: includes/views/form-list.php:135
 msgid "Create your first form"
 msgstr ""
 
-#: includes/views/form-list.php:293
+#: includes/views/form-list.php:292
 msgid "Show more details"
 msgstr ""
 
@@ -1013,4 +1525,8 @@ msgstr ""
 #. translators: %s is the URL to the Narrative Forms documentation
 #: includes/views/settings.php:140
 msgid "Narrative Forms docs"
+msgstr ""
+
+#: narrative-forms.php:152
+msgid "Narrative Forms Pro is now built into Narrative Forms. You can safely deactivate and delete the Narrative Forms Pro plugin."
 msgstr ""

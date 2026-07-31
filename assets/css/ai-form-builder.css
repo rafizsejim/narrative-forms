@@ -1,0 +1,125 @@
+/* Narrative Forms AI form builder panel */
+
+.nrfm-ai-builder {
+	margin: 0 0 16px;
+}
+
+.nrfm-ai-toggle.button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.nrfm-ai-spark {
+	font-size: 13px;
+	line-height: 1;
+}
+
+.nrfm-ai-panel {
+	margin-top: 12px;
+	padding: 16px;
+	max-width: 680px;
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+}
+
+.nrfm-ai-locked {
+	margin: 0 0 12px;
+	padding: 10px 12px;
+	background: #f9fafb;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	color: #5c5b7d;
+	font-size: 13px;
+}
+
+.nrfm-ai-transcript {
+	max-height: 140px;
+	overflow-y: auto;
+	margin-bottom: 10px;
+}
+
+.nrfm-ai-transcript:empty {
+	display: none;
+}
+
+.nrfm-ai-line {
+	font-size: 13px;
+	line-height: 1.6;
+	color: #374151;
+}
+
+.nrfm-ai-who {
+	color: #9aa0ab;
+	font-weight: 500;
+}
+
+.nrfm-ai-instruction.nrfm-ai-instruction {
+	width: 100%;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+.nrfm-ai-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 10px;
+	flex-wrap: wrap;
+}
+
+.nrfm-ai-status {
+	color: #6b7280;
+	font-size: 12px;
+}
+
+.nrfm-ai-hint {
+	margin: 10px 0 0;
+	color: #9aa0ab;
+}
+
+/* Starter chips */
+.nrfm-ai-starters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-bottom: 10px;
+}
+
+.nrfm-ai-chip.button {
+	height: auto;
+	padding: 2px 10px;
+	font-size: 12px;
+	line-height: 1.8;
+	border-radius: 100px;
+	color: #4b5563;
+}
+
+/* Version-history revert affordance in each transcript line */
+.nrfm-ai-revert.button-link {
+	margin-left: 6px;
+	font-size: 11px;
+	color: #6b7280;
+	text-decoration: none;
+}
+
+.nrfm-ai-revert.button-link:hover {
+	color: #1f2937;
+	text-decoration: underline;
+}
+
+/* Keep WordPress's spinner inline inside the actions row */
+.nrfm-ai-actions .nrfm-ai-spinner.spinner {
+	float: none;
+	margin: 0;
+}
+
+.nrfm-ai-meta {
+	margin: 8px 0 0;
+}
+
+.nrfm-ai-quota {
+	color: #6b7280;
+	font-size: 12px;
+}

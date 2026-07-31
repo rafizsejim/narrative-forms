@@ -101,7 +101,7 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
             if ($nrfm_settings['save_submissions']) {
                 $nrfm_tabs['submissions'] = esc_html__('Submissions', 'narrative-forms');
             }
-            // PRO HOOK: Filter tabs
+            // Extension hook: Filter tabs
             $nrfm_tabs = apply_filters('nrfm_form_tabs', $nrfm_tabs, $nrfm_form_id);
             foreach ($nrfm_tabs as $nrfm_tab_key => $nrfm_tab_label): ?>
                 <a href="#" class="nav-tab <?php echo $this->current_tab === $nrfm_tab_key ? 'nav-tab-active' : ''; ?>" 
@@ -186,8 +186,7 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                             <label for="message-success"><?php esc_html_e('Success', 'narrative-forms'); ?></label>
                         </th>
                         <td>
-                            <input type="text" name="messages[success]" id="message-success" class="large-text" 
-                                   value="<?php echo esc_attr($nrfm_messages['success']); ?>">
+                            <textarea name="messages[success]" id="message-success" class="large-text" rows="2"><?php echo esc_textarea($nrfm_messages['success']); ?></textarea>
                             <p class="description"><?php echo esc_html__('The text that shows after a successful form submission.', 'narrative-forms'); ?></p>
                         </td>
                     </tr>
@@ -216,8 +215,7 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                             <label for="message-error"><?php esc_html_e('General Error', 'narrative-forms'); ?></label>
                         </th>
                         <td>
-                            <input type="text" name="messages[error]" id="message-error" class="large-text" 
-                                   value="<?php echo esc_attr($nrfm_messages['error']); ?>">
+                            <textarea name="messages[error]" id="message-error" class="large-text" rows="2"><?php echo esc_textarea($nrfm_messages['error']); ?></textarea>
                             <p class="description"><?php echo esc_html__('The text that shows when a general error occurred.', 'narrative-forms'); ?></p>
                         </td>
                     </tr>
@@ -242,12 +240,12 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                     </tr>
                     
                     <?php 
-                    // PRO HOOK: Add additional form messages inside this table so layout matches
+                    // Extension hook: Add additional form messages inside this table so layout matches
                     do_action('nrfm_form_messages_after_error', $form); 
                     ?>
                 </table>
                 <?php /* translators: %s is a small HTML snippet example, e.g., <strong>, <em>, <a> */ ?>
-                <p><?php echo wp_kses_post( sprintf( esc_html__('HTML tags like %s are allowed in the message fields.', 'narrative-forms'), '<code>&lt;strong&gt;&lt;em&gt;&lt;a&gt;</code>' ) ); ?></p>
+                <p><?php echo wp_kses_post( sprintf( esc_html__('The Success and General Error messages accept HTML and inline styles (for example %s, or a styled div), so you can format and style them. The other messages are plain text.', 'narrative-forms'), '<code>&lt;strong&gt;&lt;em&gt;&lt;a&gt;</code>' ) ); ?></p>
             </div>
             
             <!-- Settings Tab -->
@@ -709,7 +707,7 @@ if ( isset( $_GET['saved'] ) && $nrfm_saved_nonce && wp_verify_nonce( $nrfm_save
                         }
                     }
                     if ( $nrfm_deleted_count > 0 ) {
-                        echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( _n( '%d submission deleted.', '%d submissions deleted.', $nrfm_deleted_count, 'narrative-forms' ), $nrfm_deleted_count ) ) . '</p></div>';
+                        echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( /* translators: %d: number of submissions deleted. */ _n( '%d submission deleted.', '%d submissions deleted.', $nrfm_deleted_count, 'narrative-forms' ), $nrfm_deleted_count ) ) . '</p></div>';
                     }
                     ?>
                     <form method="get">

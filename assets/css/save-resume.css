@@ -1,0 +1,40 @@
+.nrfm-save-resume-actions {
+	display: inline;
+	margin-left: 12px;
+	vertical-align: middle;
+}
+
+.nrfm-save-resume {
+	color: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: inherit;
+	font-family: inherit;
+}
+
+.nrfm-save-resume:hover {
+	text-decoration: none;
+}
+
+.nrfm-save-resume-message {
+	margin-top: 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+	padding: 10px 12px;
+	font-size: 13px;
+	color: #1d2327;
+	word-break: break-word;
+}
+
+.nrfm-save-resume-message:empty {
+	display: none;
+}
+
+.nrfm-save-resume-message a {
+	color: #2271b1;
+	text-decoration: underline;
+}
