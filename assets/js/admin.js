@@ -100,7 +100,7 @@
             } else {
                 isEnabled = $input.is(':checked');
             }
-            $group.toggle(isEnabled);
+            $group.toggleClass('nrfm-collapsed', !isEnabled);
         }
 
         $children.each(function() {

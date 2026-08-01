@@ -73,7 +73,7 @@ class NRFM_Share_Links {
 					<?php esc_html_e( 'Enable direct link for this form', 'narrative-forms' ); ?>
 				</label>
 				<p class="description"><?php esc_html_e( 'Link is visible here, but will only work after you enable it and save.', 'narrative-forms' ); ?></p>
-				<div class="nrfm-setting-children" data-parent-input="#nrfm-share-enabled">
+				<div class="nrfm-setting-children<?php echo $enabled ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-share-enabled">
 					<input type="url" id="nrfm-share-link" class="large-text code" readonly value="<?php echo esc_url( $url ); ?>">
 					<p class="description"><?php esc_html_e( 'Share this URL to open a hosted version of the form.', 'narrative-forms' ); ?></p>
 					<p><button type="button" class="button" id="nrfm-copy-share-link" data-target="nrfm-share-link"><?php esc_html_e( 'Copy Link', 'narrative-forms' ); ?></button></p>

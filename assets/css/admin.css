@@ -73,6 +73,7 @@
     background: #f9fafb;
     border-radius: var(--nrfm-admin-input-radius, 8px);
 }
+.nrfm-setting-children.nrfm-collapsed { display: none; }
 .nrfm-setting-children label {
     font-size: 13px;
     line-height: 1.35;

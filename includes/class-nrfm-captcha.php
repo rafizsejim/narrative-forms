@@ -40,7 +40,7 @@ class NRFM_Captcha {
 					<?php esc_html_e('Protect forms using Cloudflare Turnstile (recommended)', 'narrative-forms'); ?>
 				</label>
 				<p class="description"><?php esc_html_e('Free, privacy‑friendly CAPTCHA by Cloudflare. Requires a site key and secret key.', 'narrative-forms'); ?></p>
-				<div class="nrfm-setting-children" data-parent-input="#nrfm-turnstile-enabled">
+				<div class="nrfm-setting-children<?php echo ! empty( $settings['enabled'] ) ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-turnstile-enabled">
 					<p>
 						<label for="turnstile-site-key"><?php esc_html_e('Site Key', 'narrative-forms'); ?></label><br>
 						<input type="text" id="turnstile-site-key" name="turnstile_site_key" class="regular-text" value="<?php echo esc_attr($settings['site_key']); ?>">

@@ -172,7 +172,7 @@ class NRFM_AI_Form_Builder {
 				<p class="description"><?php esc_html_e( 'Leave blank to use the provider default. Model names change over time, so if a request is rejected, check your provider\'s current model list and enter one here. Defaults: DeepSeek deepseek-chat, OpenAI gpt-4o-mini, OpenRouter openai/gpt-4o-mini.', 'narrative-forms' ); ?></p>
 			</td>
 		</tr>
-		<tr class="nrfm-setting-children" data-parent-input="#nrfm-ai-provider" data-parent-value="custom">
+		<tr class="nrfm-setting-children<?php echo 'custom' === $provider ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-ai-provider" data-parent-value="custom">
 			<th scope="row"><label for="nrfm-ai-base-url"><?php esc_html_e( 'Custom API Base URL', 'narrative-forms' ); ?></label></th>
 			<td>
 				<input type="url" id="nrfm-ai-base-url" name="nrfm_ai_base_url" class="regular-text code" value="<?php echo esc_attr( $base_url ); ?>" placeholder="https://your-endpoint.example/v1">

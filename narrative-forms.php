@@ -3,7 +3,7 @@
  * Plugin Name: Narrative Forms
  * Plugin URI: https://narrative-forms.com
  * Description: Lightweight, developer-friendly WordPress form plugin. Pure HTML forms with no complexity.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: NarrativeCode
  * Text Domain: narrative-forms
  * Domain Path: /languages
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('NRFM_VERSION', '1.2.0');
+define('NRFM_VERSION', '1.2.1');
 define('NRFM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NRFM_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -130,13 +130,17 @@ function nrfm_maybe_upgrade_schema() {
     update_option( 'nrfm_schema_version', 4 );
 }
 
-// Flush rewrite rules once so the share-link rewrite (registered on 'init' by
-// NRFM_Share_Links) is persisted. Bump the version to force a one-time reflush.
+// Flush rewrite rules whenever the share-link base changes (and once after this
+// rule was introduced). The signature is keyed to the base slug, so changing the
+// Direct Link Base self-heals on the next admin load instead of needing a manual
+// Settings -> Permalinks flush. Runs on admin_init, after 'init' has registered
+// the current rule, so the flush persists the correct pattern.
 add_action( 'admin_init', 'nrfm_maybe_flush_rewrites' );
 function nrfm_maybe_flush_rewrites() {
-    if ( (int) get_option( 'nrfm_rewrite_version', 0 ) < 1 ) {
+    $signature = '2:' . nrfm_get_share_base();
+    if ( get_option( 'nrfm_rewrite_signature' ) !== $signature ) {
         flush_rewrite_rules();
-        update_option( 'nrfm_rewrite_version', 1 );
+        update_option( 'nrfm_rewrite_signature', $signature );
     }
 }
 

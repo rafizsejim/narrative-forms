@@ -30,7 +30,7 @@ class NRFM_Require_Login {
 				<p class="description">
 					<?php esc_html_e( 'You can use {{user.email}}, {{user.name}}, etc. in your form HTML to prefill user data.', 'narrative-forms' ); ?>
 				</p>
-				<div class="nrfm-setting-children" data-parent-input="#nrfm-require-login-enabled">
+				<div class="nrfm-setting-children<?php echo $enabled ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-require-login-enabled">
 					<p>
 						<label for="nrfm-login-message"><?php esc_html_e( 'Message (optional)', 'narrative-forms' ); ?></label><br>
 						<input type="text" id="nrfm-login-message" name="nrfm_login_message" class="large-text" value="<?php echo esc_attr( $message ); ?>" placeholder="<?php echo esc_attr__( 'Please log in to continue.', 'narrative-forms' ); ?>">

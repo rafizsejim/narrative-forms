@@ -108,7 +108,7 @@ class NRFM_Save_Resume {
 					<?php esc_html_e( 'Allow visitors to save progress and continue later.', 'narrative-forms' ); ?>
 				</label>
 				<p class="description"><?php esc_html_e( 'A unique resume link is generated when users click the Save & Resume action on the form.', 'narrative-forms' ); ?></p>
-				<div class="nrfm-setting-children" data-parent-input="#nrfm-save-resume-enabled">
+				<div class="nrfm-setting-children<?php echo $enabled ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-save-resume-enabled">
 					<p>
 						<label for="nrfm-save-resume-label"><?php esc_html_e( 'Save Button Label', 'narrative-forms' ); ?></label><br>
 						<input type="text" id="nrfm-save-resume-label" name="settings[save_resume_button_label]" class="regular-text" value="<?php echo esc_attr( $settings['save_resume_button_label'] ); ?>">

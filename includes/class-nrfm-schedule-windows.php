@@ -41,7 +41,7 @@ class NRFM_Schedule_Windows {
 					<?php esc_html_e( 'Enable open/close dates for this form', 'narrative-forms' ); ?>
 				</label>
 				<p class="description"><?php echo esc_html( sprintf( /* translators: %s: the site timezone name. */ __( 'Times use your site timezone: %s.', 'narrative-forms' ), $tz_label ) ); ?></p>
-				<div class="nrfm-setting-children" data-parent-input="#nrfm-schedule-enabled">
+				<div class="nrfm-setting-children<?php echo $enabled ? '' : ' nrfm-collapsed'; ?>" data-parent-input="#nrfm-schedule-enabled">
 					<p>
 						<label for="nrfm-open-date"><?php esc_html_e( 'Open Date', 'narrative-forms' ); ?></label><br>
 						<input type="datetime-local" id="nrfm-open-date" name="nrfm_schedule_open" value="<?php echo esc_attr( $open_val ); ?>">

@@ -4,7 +4,7 @@ Tags: html forms, contact form, form builder, custom form, conditional logic
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,9 +52,7 @@ Narrative Forms is built to move your form submissions wherever they need to go.
 
 = Contact forms, custom forms, and every form in between =
 
-Narrative Forms is a general purpose form plugin, so the same HTML first workflow covers almost any form you need to build. Use it for a simple contact form, a lead capture form, a support request form, a job application, an RSVP, a survey, a registration form, a file upload form, or a custom form with a layout that a drag and drop builder cannot easily produce. Because a field is just an HTML element with a name attribute, you can build the exact contact form or custom form you have in mind and wire it to email, a webhook, or the REST API.
-
-Agencies and developers reach for this HTML form plugin when a client needs a form that does not fit a builder's template: a multi column layout, a branded card, a stepper, a pricing calculator, or markup a designer handed over. You paste the HTML, give the fields names, and the form is live with AJAX form submissions, stored data, conditional logic, and CSV export. There is no template to fight and no field type you cannot add, which is the difference between an HTML form plugin and a drag and drop form builder. Whether you collect a handful of submissions a month or millions over time, the same lightweight form plugin scales with you.
+Narrative Forms is a general purpose form plugin, so the same HTML first workflow covers almost any form: a simple contact form, a lead capture or support request form, a job application, an RSVP, a survey, a registration form, a file upload form, or a custom form with a layout a drag and drop builder cannot easily produce. Because a field is just an HTML element with a name attribute, you paste the HTML, give the fields names, and the form is live with AJAX form submissions, stored data, conditional logic, and CSV export. There is no template to fight and no field type you cannot add, which is the difference between an HTML form plugin and a drag and drop form builder, and the same lightweight form plugin scales from a handful of submissions a month to millions over time.
 
 = Developer friendly HTML form plugin =
 
@@ -126,6 +124,10 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed: direct share links now work right after you change the Direct Link Base, with no need to visit Settings then Permalinks to refresh.
+* Fixed: on the form Settings tab, the direct link field and Copy button no longer occasionally stay hidden until a page refresh.
+
 = 1.2.0 =
 * New: webhook delivery logs and automatic retries. See every webhook call and its response, and failed calls retry automatically with backoff.
 * New: webhook templates with Discord, Slack, and Microsoft Teams presets, plus custom JSON payloads and request headers.
@@ -174,6 +176,9 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Upgrade Notice ==
 
+= 1.2.1 =
+Fixes direct share links needing a manual permalink refresh after a base change, and a direct link field that could stay hidden on the Settings tab until reload. No changes for existing forms.
+
 = 1.2.0 =
 Adds webhook delivery logs and retries, webhook templates, a REST API, require login, schedule windows, and share links, all free. Existing forms keep working.
 
@@ -207,9 +212,9 @@ Learn more about how [Appsero collects and uses this data](https://appsero.com/p
 
 == External services ==
 
-This plugin connects to external services only in these optional cases, and each is off until you enable or allow it.
+This plugin connects to external services only in these optional cases. Each is off until you enable or allow it.
 
-* **Cloudflare Turnstile (optional CAPTCHA).** Used only if you enable Turnstile. When a page with a form loads, the browser requests `https://challenges.cloudflare.com/turnstile/v0/api.js` to render the widget; on submit, the server sends the Turnstile token, your secret key, and the visitor's IP address to `https://challenges.cloudflare.com/turnstile/v0/siteverify` to verify it. Terms: `https://www.cloudflare.com/website-terms/` Privacy: `https://www.cloudflare.com/privacypolicy/`
-* **Webhooks (optional, configured by you).** Used only if you add a Webhook action. After a successful submission, the submitted form fields plus limited metadata (timestamp, IP address, user agent, referrer) are sent as JSON or URL encoded data to the exact URL you configure, on a domain you choose. Example URLs in the UI are placeholders and receive nothing. The destination is your choice, so consult that service's terms and privacy policy.
-* **Appsero (optional usage analytics).** Off until you allow it through the admin notice; nothing is sent before that. It then sends basic environment details (site URL, WordPress and PHP versions, active theme and plugins, locale, and the admin email used to confirm) to `https://api.appsero.com`, plus an optional survey if you deactivate. No form submissions or visitor data are sent. Privacy: `https://appsero.com/privacy-policy/`
-* **AI form builder (optional, configured by you).** Off until you enter an API key under Narrative Forms, then Settings. It then contacts your chosen AI provider only when you click Generate on a form, sending your instruction text and the current form markup in the editor to that provider's chat completions endpoint. Nothing is sent at any other time, and no form submissions or visitor data are ever sent. You use your own account and API key with the provider you pick, so your request is governed by that provider's terms and privacy policy. Supported endpoints: DeepSeek `https://api.deepseek.com` (Privacy: `https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html`), OpenAI `https://api.openai.com` (Privacy: `https://openai.com/policies/privacy-policy/`), OpenRouter `https://openrouter.ai` (Privacy: `https://openrouter.ai/privacy`), or any OpenAI compatible endpoint you configure. Your API key is stored for administrators only and is never sent to the browser or to visitors.
+* **Cloudflare Turnstile (optional CAPTCHA).** Only if you enable Turnstile. The browser loads `https://challenges.cloudflare.com/turnstile/v0/api.js` to render the widget, and on submit the server posts the token, your secret key, and the visitor IP to `https://challenges.cloudflare.com/turnstile/v0/siteverify`. Terms: `https://www.cloudflare.com/website-terms/` Privacy: `https://www.cloudflare.com/privacypolicy/`
+* **Webhooks (optional, configured by you).** Only if you add a Webhook action. After a successful submission, the form fields plus limited metadata (timestamp, IP address, user agent, referrer) are sent to the exact URL you configure. The destination is your choice, so consult that service's terms and privacy policy.
+* **Appsero (optional usage analytics).** Off until you allow it in the admin notice. It then sends basic environment details (site URL, WordPress and PHP versions, active theme and plugins, locale, admin email) to `https://api.appsero.com`. No form submissions or visitor data are sent. Privacy: `https://appsero.com/privacy-policy/`
+* **AI form builder (optional, configured by you).** Off until you add an API key. It contacts your chosen provider only when you click Generate, sending your instruction text and the current form markup to that provider's chat completions endpoint. No form submissions or visitor data are ever sent, and your key is stored for admins only. Supported endpoints: DeepSeek `https://api.deepseek.com` (Privacy: `https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html`), OpenAI `https://api.openai.com` (Privacy: `https://openai.com/policies/privacy-policy/`), OpenRouter `https://openrouter.ai` (Privacy: `https://openrouter.ai/privacy`), or any OpenAI compatible endpoint you configure.
