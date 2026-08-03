@@ -55,16 +55,8 @@ class NRFM_Ajax {
 
 		// Process submission with only expected fields from the form markup (includes file handling)
 		$submission    = new NRFM_Submission();
-		$allowed_names = method_exists( $form, 'get_field_names' ) ? array_fill_keys( $form->get_field_names(), true ) : array();
-		$input         = array();
-		foreach ( $allowed_names as $nm => $_x ) {
-			if ( isset( $_POST[ $nm ] ) ) {
-				// Sanitize immediately to satisfy WPCS: sanitize input at read
-				$input[ $nm ] = is_array( $_POST[ $nm ] )
-					? map_deep( wp_unslash( $_POST[ $nm ] ), 'sanitize_text_field' )
-					: sanitize_text_field( wp_unslash( $_POST[ $nm ] ) );
-			}
-		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce verified above; sanitized in nrfm_whitelist_field_input().
+		$input = nrfm_whitelist_field_input( $form, wp_unslash( $_POST ) );
 		$result = $submission->process( $form_id, $input );
 
 		// Make sure we have all required response fields

@@ -96,8 +96,17 @@ class NRFM_Submission {
         
         // Save submission if enabled
         $settings = $form->get_settings();
+        $submission_id = 0;
         if ($settings['save_submissions']) {
-            $this->save($form_id, $cleaned_data);
+            $submission_id = (int) $this->save($form_id, $cleaned_data);
+        }
+
+        // Per-submission edit link, exposed to actions (email [NRFM_EDIT_URL]) and the
+        // redirect. Not persisted in the stored row; it is regenerated deterministically
+        // from the id, so keeping it out of $cleaned_data keeps it out of the database.
+        $action_data = $cleaned_data;
+        if ($submission_id > 0 && function_exists('nrfm_edit_url')) {
+            $action_data['nrfm_edit_url'] = nrfm_edit_url($submission_id);
         }
         
         // Actions — only run the pipeline when the form actually has actions to process.
@@ -110,7 +119,7 @@ class NRFM_Submission {
                 // Queue for async processing (Action Scheduler if available, else WP-Cron)
                 $job = array(
                     'form_id' => $form_id,
-                    'data' => $cleaned_data,
+                    'data' => $action_data,
                     'when' => time(),
                 );
                 if ( function_exists( 'nrfm_enqueue_actions_job' ) ) {
@@ -119,18 +128,19 @@ class NRFM_Submission {
                     wp_schedule_single_event(time() + 5, 'nrfm_process_actions_async', array($job));
                 }
             } else {
-                $this->process_actions($form, $cleaned_data);
+                $this->process_actions($form, $action_data);
             }
         }
-        
-        // Hook
-        do_action('nrfm_form_submitted', $form_id, $cleaned_data);
+
+        // Hook. Third arg is the new submission's id (0 when not stored), added for the
+        // edit-link/re-moderation flow; existing two-arg listeners are unaffected.
+        do_action('nrfm_form_submitted', $form_id, $cleaned_data, $submission_id);
         
         $result = array(
             'success' => true,
             'message' => $form->get_message('success'),
             'hide_form' => $settings['hide_after_success'],
-            'redirect_url' => self::token_replace_redirect($settings['redirect_url'], $cleaned_data),
+            'redirect_url' => self::token_replace_redirect($settings['redirect_url'], $action_data),
         );
         return $result;
     }
@@ -426,7 +436,10 @@ class NRFM_Submission {
             if (strpos($key, 'nrfm_') === 0 || strpos($key, '_') === 0) {
                 continue;
             }
-            if (preg_match('/^(cf-?turnstile-response|g-recaptcha-response|h-captcha-response|recaptcha.*|captcha.*|.*token.*)$/i', $key)) {
+            // Match captcha/CSRF token fields only. Anchor "token" to the end so
+            // legitimate fields that merely contain the word (e.g. token_price) survive,
+            // while csrf_token / authenticity_token / *-token are still dropped.
+            if (preg_match('/^(cf-?turnstile-response|g-recaptcha-response|h-captcha-response|recaptcha.*|captcha.*|(.*[_-])?token)$/i', $key)) {
                 continue;
             }
             
@@ -615,10 +628,67 @@ class NRFM_Submission {
         
         // Invalidate cached counts for this form
         nrfm_clear_submission_cache( $form_id );
-        
+
         return $wpdb->insert_id;
     }
-    
+
+    /**
+     * Update an existing submission's stored field data (edit-link + admin-edit flows).
+     *
+     * $input is the already whitelisted, per-form field map from the editor. It is
+     * overlaid onto the existing record, so untouched fields are preserved; file inputs
+     * are only overwritten when a new file is actually uploaded this request. Callers
+     * MUST verify capability/token and nonce before calling this. Returns the form id on
+     * success, or false on failure.
+     */
+    public function update_submission($submission_id, $input) {
+        global $wpdb;
+
+        $submission_id = (int) $submission_id;
+        if ($submission_id <= 0) { return false; }
+
+        $table = nrfm_table('submissions');
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $row = $wpdb->get_row(
+            $wpdb->prepare('SELECT id, form_id, data FROM %i WHERE id = %d', $table, $submission_id),
+            ARRAY_A
+        );
+        if (!$row) { return false; }
+
+        $form_id  = (int) $row['form_id'];
+        $existing = json_decode((string) $row['data'], true);
+        if (!is_array($existing)) { $existing = array(); }
+
+        $form = new NRFM_Form($form_id);
+        if (!$form->exists()) { return false; }
+
+        // Newly uploaded files (only for file inputs actually re-submitted this request).
+        $file_data = $this->handle_file_uploads($form);
+        if ($file_data === false) { return false; }
+        if (!is_array($file_data)) { $file_data = array(); }
+
+        // Sanitize the editable fields, then overlay onto the existing record so
+        // untouched fields (and unreplaced files) are preserved.
+        $cleaned = $this->clean_data($input);
+        $merged  = array_merge($existing, $cleaned, $file_data);
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->update(
+            $table,
+            array('data' => wp_json_encode($merged)),
+            array('id' => $submission_id),
+            array('%s'),
+            array('%d')
+        );
+
+        nrfm_clear_submission_cache($form_id);
+
+        // Let add-ons react (e.g. Frontend Submissions re-queues the edited row for approval).
+        do_action('nrfm_submission_updated', $submission_id, $form_id, $merged);
+
+        return $form_id;
+    }
+
     /**
      * Process configured actions. Public so the async worker can call it directly.
      */

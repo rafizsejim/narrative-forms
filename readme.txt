@@ -4,7 +4,7 @@ Tags: html forms, contact form, form builder, custom form, conditional logic
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,10 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 
 == Changelog ==
 
+= 1.2.2 =
+* New: edit submissions. Update any entry from the Edit action on the submissions list, and optionally include a secure, expiring edit link in a confirmation email or redirect so people can update their own submission.
+* Fixed: fields whose name contains "token" (for example a price token) are no longer dropped as spam. Re-enter any affected values.
+
 = 1.2.1 =
 * Fixed: direct share links now work right after you change the Direct Link Base, with no need to visit Settings then Permalinks to refresh.
 * Fixed: on the form Settings tab, the direct link field and Copy button no longer occasionally stay hidden until a page refresh.
@@ -175,6 +179,9 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 * Customisable success and error messages, redirects, and template tags.
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+Adds editing of submissions from the admin and via a secure link, and fixes token-named fields being dropped as spam. Existing forms keep working.
 
 = 1.2.1 =
 Fixes direct share links needing a manual permalink refresh after a base change, and a direct link field that could stay hidden on the Settings tab until reload. No changes for existing forms.

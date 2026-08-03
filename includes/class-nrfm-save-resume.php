@@ -251,15 +251,8 @@ class NRFM_Save_Resume {
 			wp_send_json_error( array( 'message' => __( 'Save & Resume is disabled for this form.', 'narrative-forms' ) ) );
 		}
 
-		$allowed_names = method_exists( $form, 'get_field_names' ) ? array_fill_keys( $form->get_field_names(), true ) : array();
-		$data = array();
-		foreach ( $allowed_names as $name => $_x ) {
-			if ( ! isset( $_POST[ $name ] ) ) {
-				continue;
-			}
-			$raw = wp_unslash( $_POST[ $name ] );
-			$data[ $name ] = is_array( $raw ) ? map_deep( $raw, 'sanitize_text_field' ) : sanitize_text_field( $raw );
-		}
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce verified above; sanitized in nrfm_whitelist_field_input().
+		$data = nrfm_whitelist_field_input( $form, wp_unslash( $_POST ) );
 
 		$token = isset( $_POST['nrfm_resume_token'] ) ? sanitize_text_field( wp_unslash( $_POST['nrfm_resume_token'] ) ) : '';
 		$result = $this->save_draft( $form_id, $data, $token );

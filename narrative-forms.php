@@ -3,7 +3,7 @@
  * Plugin Name: Narrative Forms
  * Plugin URI: https://narrative-forms.com
  * Description: Lightweight, developer-friendly WordPress form plugin. Pure HTML forms with no complexity.
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: NarrativeCode
  * Text Domain: narrative-forms
  * Domain Path: /languages
@@ -14,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('NRFM_VERSION', '1.2.1');
+define('NRFM_VERSION', '1.2.2');
 define('NRFM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('NRFM_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -201,6 +201,8 @@ function nrfm_init() {
     new NRFM_Schedule_Windows();
     require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-share-links.php';
     new NRFM_Share_Links();
+    require_once NRFM_PLUGIN_DIR . 'includes/class-nrfm-edit.php';
+    new NRFM_Edit();
 
     // Initialize free CAPTCHA
     new NRFM_Captcha();
@@ -371,16 +373,8 @@ function nrfm_handle_form_submission() {
     
     // Process submission with only expected fields from the form markup
     $submission = new NRFM_Submission();
-    $allowed_names = method_exists($form, 'get_field_names') ? array_fill_keys($form->get_field_names(), true) : array();
-    $input = array();
-    foreach ($allowed_names as $nm => $_) {
-        if (isset($_POST[$nm])) {
-            $raw = wp_unslash($_POST[$nm]); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            $input[$nm] = is_array($raw)
-                ? map_deep($raw, 'sanitize_text_field')
-                : sanitize_text_field($raw);
-        }
-    }
+    // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- nonce verified above; sanitized in nrfm_whitelist_field_input().
+    $input = nrfm_whitelist_field_input($form, wp_unslash($_POST));
     $result = $submission->process($form_id, $input);
     
     // Handle redirect using token-replaced URL from result (supports success or error)

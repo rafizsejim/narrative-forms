@@ -177,7 +177,9 @@ class NRFM_Submissions_Table extends WP_List_Table {
 					),
 					admin_url( 'admin.php' )
 				);
+				$edit_url = class_exists( 'NRFM_Edit' ) ? NRFM_Edit::admin_edit_url( intval( $item['id'] ) ) : '';
 				return '<a class="button button-small" href="' . esc_url( $view_url ) . '">' . esc_html__( 'View', 'narrative-forms' ) . '</a> '
+					. ( $edit_url ? '<a class="button button-small" href="' . esc_url( $edit_url ) . '">' . esc_html__( 'Edit', 'narrative-forms' ) . '</a> ' : '' )
 					. '<a class="button button-small" onclick="return confirm(\'' . esc_attr__( 'Are you sure?', 'narrative-forms' ) . '\');" href="' . esc_url( $del_url ) . '">' . esc_html__( 'Delete', 'narrative-forms' ) . '</a>';
 		}
 		return '';

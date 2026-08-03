@@ -436,15 +436,8 @@ class NRFM_REST_API {
 			return new WP_Error( 'invalid_data', __( 'Invalid submission data.', 'narrative-forms' ), array( 'status' => 400 ) );
 		}
 
-		$allowed_names = method_exists( $form, 'get_field_names' ) ? array_fill_keys( $form->get_field_names(), true ) : array();
-		$input = array();
-		foreach ( $allowed_names as $name => $_x ) {
-			if ( isset( $body[ $name ] ) ) {
-				$input[ $name ] = is_array( $body[ $name ] )
-					? map_deep( $body[ $name ], 'sanitize_text_field' )
-					: sanitize_text_field( $body[ $name ] );
-			}
-		}
+		// REST body params are already unslashed by core; the helper whitelists + sanitizes.
+		$input = nrfm_whitelist_field_input( $form, $body );
 
 		$submission = new NRFM_Submission();
 		$result = $submission->process( $form_id, $input );

@@ -197,3 +197,82 @@ function nrfm_get_settings( $key = null, $default = null ) {
 
 	return $settings;
 }
+
+/**
+ * Signed, stateless "manage your listing" edit links for submissions.
+ *
+ * No storage: the signature is an HMAC of the submission id + an expiry timestamp,
+ * verified by recomputation. Treat the resulting URL as a secret, the same way a
+ * Save & Resume draft link is: whoever holds it can edit that one submission.
+ */
+function nrfm_edit_link_ttl() {
+	// Default 90 days. Filterable; return 0 for a link that never expires.
+	return (int) apply_filters( 'nrfm_edit_link_ttl', 90 * DAY_IN_SECONDS );
+}
+
+function nrfm_edit_sign( $submission_id, $expires ) {
+	$payload = (int) $submission_id . '|' . (int) $expires;
+	return hash_hmac( 'sha256', $payload, wp_salt( 'auth' ) );
+}
+
+function nrfm_verify_edit_signature( $submission_id, $expires, $signature ) {
+	$submission_id = (int) $submission_id;
+	$expires       = (int) $expires;
+	if ( $submission_id <= 0 || ! is_string( $signature ) || $signature === '' ) {
+		return false;
+	}
+	if ( $expires !== 0 && $expires < time() ) {
+		return false; // Link has expired.
+	}
+	return hash_equals( nrfm_edit_sign( $submission_id, $expires ), $signature );
+}
+
+function nrfm_edit_url( $submission_id, $ttl = null ) {
+	$submission_id = (int) $submission_id;
+	if ( $submission_id <= 0 ) {
+		return '';
+	}
+	if ( $ttl === null ) {
+		$ttl = nrfm_edit_link_ttl();
+	}
+	$ttl     = (int) $ttl;
+	$expires = $ttl > 0 ? ( time() + $ttl ) : 0;
+	$url     = add_query_arg(
+		array(
+			'nrfm_edit' => $submission_id,
+			'exp'       => $expires,
+			'sig'       => nrfm_edit_sign( $submission_id, $expires ),
+		),
+		home_url( '/' )
+	);
+	return esc_url_raw( $url );
+}
+
+/**
+ * Whitelist a submitted field map to a form's own field names and sanitize it.
+ *
+ * Single source of truth for the loop shared by the submit handler, the AJAX handler,
+ * Save & Resume, the REST endpoint, and the submission editor. $source must already be
+ * unslashed: $_POST callers pass wp_unslash( $_POST ); the REST body is unslashed by core.
+ * Scalars go through sanitize_text_field(); arrays are sanitized element-wise. Callers are
+ * responsible for verifying nonce/capability before calling this.
+ *
+ * @param object $form   Form whose get_field_names() defines the allowlist.
+ * @param array  $source Already-unslashed input (name => value).
+ * @return array<string,mixed>
+ */
+function nrfm_whitelist_field_input( $form, $source ) {
+	if ( ! is_array( $source ) || ! is_object( $form ) || ! method_exists( $form, 'get_field_names' ) ) {
+		return array();
+	}
+	$allowed = array_fill_keys( $form->get_field_names(), true );
+	$input   = array();
+	foreach ( $allowed as $name => $unused ) {
+		if ( ! array_key_exists( $name, $source ) ) {
+			continue;
+		}
+		$value          = $source[ $name ];
+		$input[ $name ] = is_array( $value ) ? map_deep( $value, 'sanitize_text_field' ) : sanitize_text_field( $value );
+	}
+	return $input;
+}
