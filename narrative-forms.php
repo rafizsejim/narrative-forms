@@ -317,24 +317,14 @@ function nrfm_form($id_or_slug) {
 // Frontend assets
 add_action('wp_enqueue_scripts', 'nrfm_enqueue_frontend_assets');
 function nrfm_enqueue_frontend_assets() {
-    // Load on preview or pages with forms
     $is_preview = ! empty( $_GET['nrfm_preview_form'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
     global $post;
-    if ( ! $is_preview && ( ! is_a( $post, 'WP_Post' ) || ! has_shortcode( $post->post_content, 'nrfm_form' ) ) ) {
-        return;
-    }
-    
-    // Load the frontend stylesheet only when enabled in settings (defaults to off).
-    $settings = function_exists('nrfm_get_settings') ? nrfm_get_settings() : get_option('nrfm_settings', array());
-    $load_main_css = !empty($settings['load_stylesheet']);
-    if ($load_main_css) {
-        // Version by file mtime so CSS edits bust the browser cache (falls back to NRFM_VERSION).
-        $css_path = NRFM_PLUGIN_DIR . 'assets/css/frontend.css';
-        $css_ver  = file_exists($css_path) ? (string) filemtime($css_path) : NRFM_VERSION;
-        wp_enqueue_style('narrative-forms', NRFM_PLUGIN_URL . 'assets/css/frontend.css', array(), $css_ver);
-    }
 
-    // Register script; enqueue later in footer only if a form actually rendered
+    // has_shortcode() only sees post_content, so it misses forms added via
+    // do_shortcode() in a theme template. The wp_footer enqueue below covers those.
+    $in_content = is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'nrfm_form' );
+
+    // Register always (emits nothing until enqueued in the footer for a rendered form).
     $js_path = NRFM_PLUGIN_DIR . 'assets/js/frontend.js';
     $js_ver  = file_exists($js_path) ? (string) filemtime($js_path) : NRFM_VERSION;
     wp_register_script('narrative-forms', NRFM_PLUGIN_URL . 'assets/js/frontend.js', array(), $js_ver, true);
@@ -342,7 +332,30 @@ function nrfm_enqueue_frontend_assets() {
         'url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('nrfm_ajax_nonce'),
     ));
-    add_action('wp_footer', function(){ if (!empty($GLOBALS['nrfm_form_rendered'])) { wp_enqueue_script('narrative-forms'); } });
+
+    // Optional stylesheet, off by default; enqueued in the head only when the form
+    // is detectable up front (preview or content shortcode).
+    $settings = function_exists('nrfm_get_settings') ? nrfm_get_settings() : get_option('nrfm_settings', array());
+    $load_main_css = !empty($settings['load_stylesheet']);
+    if ($load_main_css) {
+        $css_path = NRFM_PLUGIN_DIR . 'assets/css/frontend.css';
+        $css_ver  = file_exists($css_path) ? (string) filemtime($css_path) : NRFM_VERSION;
+        wp_register_style('narrative-forms', NRFM_PLUGIN_URL . 'assets/css/frontend.css', array(), $css_ver);
+        if ($is_preview || $in_content) {
+            wp_enqueue_style('narrative-forms');
+        }
+    }
+
+    // Enqueue for any form that actually rendered, including template-embedded ones.
+    add_action('wp_footer', function() use ($load_main_css) {
+        if (empty($GLOBALS['nrfm_form_rendered'])) {
+            return;
+        }
+        if ($load_main_css) {
+            wp_enqueue_style('narrative-forms');
+        }
+        wp_enqueue_script('narrative-forms');
+    });
 }
 
 // Handle non-AJAX form submission
