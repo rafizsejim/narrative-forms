@@ -4,7 +4,7 @@ Tags: html forms, contact form, form builder, custom form, conditional logic
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,9 @@ Yes, with the Narrative Forms Frontend Submissions add on, which publishes your 
 9. Appearance and protection settings: an optional stylesheet, honeypot, and Cloudflare Turnstile, privacy friendly with no third party tracking.
 
 == Changelog ==
+
+= 1.2.3 =
+* Fixed: forms placed in a page through a theme template (rather than in the page content) now load their script and styles correctly, so they submit without a page reload and show a properly styled confirmation message.
 
 = 1.2.2 =
 * New: edit submissions. Update any entry from the Edit action on the submissions list, and optionally include a secure, expiring edit link in a confirmation email or redirect so people can update their own submission.
